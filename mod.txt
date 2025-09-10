@@ -1,0 +1,11 @@
+[mod]
+name="Mod Configuration Menu"
+id="doinkoink-mcm"
+version="1.0.0"
+
+[autoload]
+mcm="res://ModConfigurationMenu/Main.gd"
+;ExampleMod="res://ModconfigurationMenu/ExampleModConfig.gd"
+
+[updates]
+modworkshop=53713

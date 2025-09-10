@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Slider.gd" id="1_lxfp6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cmd4"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3vt7"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wkdj"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Slider Value" type="MarginContainer"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+script = ExtResource("1_lxfp6")
+
+[node name="Container" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "Variable Name"
+vertical_alignment = 2
+
+[node name="Spacer" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container" type="HBoxContainer" parent="Container"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Slider" type="HSlider" parent="Container/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 4.0
+step = 0.001
+
+[node name="Input" type="SpinBox" parent="Container/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.001
+
+[node name="Default Button" type="Button" parent="Container"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+tooltip_text = "Revert to default value."
+theme_override_styles/hover = SubResource("StyleBoxFlat_6cmd4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p3vt7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1wkdj")
+text = "X"
+
+[connection signal="pressed" from="Container/Default Button" to="." method="_on_default_button_pressed"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6dxo"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl1s1"]
+bg_color = Color(0.1705, 0.24025, 0.31, 0)
+corner_detail = 1
+
+[node name="ModListButton" type="Button"]
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
+text = "    Mod Name"
+alignment = 0

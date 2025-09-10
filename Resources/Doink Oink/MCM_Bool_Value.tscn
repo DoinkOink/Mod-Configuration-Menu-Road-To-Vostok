@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Bool.gd" id="1_v2qi7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahqx1"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ymqu"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ildnp"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iykv3"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jbsf"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Bool Value" type="MarginContainer"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+script = ExtResource("1_v2qi7")
+
+[node name="Container" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "Variable Name"
+vertical_alignment = 2
+
+[node name="Spacer" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Options" type="HBoxContainer" parent="Container"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Off" type="Button" parent="Container/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ahqx1")
+toggle_mode = true
+text = "Off"
+
+[node name="On" type="Button" parent="Container/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3ymqu")
+toggle_mode = true
+button_pressed = true
+text = "On"
+
+[node name="Default Button" type="Button" parent="Container"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+tooltip_text = "Revert to default value."
+theme_override_styles/hover = SubResource("StyleBoxFlat_ildnp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iykv3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2jbsf")
+text = "X"
+
+[connection signal="pressed" from="Container/Default Button" to="." method="_on_default_button_pressed"]

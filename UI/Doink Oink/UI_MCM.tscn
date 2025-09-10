@@ -1,0 +1,214 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCMMenu.gd" id="1_5lfkr"]
+[ext_resource type="PackedScene" uid="uid://cptd3kyjylj1e" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Mod_List_Button.tscn" id="2_jxbuv"]
+[ext_resource type="PackedScene" uid="uid://bmik51trbunr" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn" id="2_v70ib"]
+[ext_resource type="Texture2D" uid="uid://b18gudbvb2dul" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/MCM_Gear.png" id="3_ow5jg"]
+[ext_resource type="PackedScene" uid="uid://dc2da8sy2h882" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn" id="3_x5oih"]
+[ext_resource type="PackedScene" uid="uid://bdb5as2m3kyye" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn" id="4_f8le3"]
+[ext_resource type="PackedScene" uid="uid://cacteimddbeyt" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn" id="5_iiujf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ea2b1"]
+bg_color = Color(0.129412, 0.156863, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0gwuu"]
+bg_color = Color(0.129412, 0.156863, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex4mn"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqa4j"]
+bg_color = Color(0.172549, 0.243137, 0.313726, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ai0e3"]
+texture = ExtResource("3_ow5jg")
+
+[node name="UiMcm" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5lfkr")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -302.0
+offset_top = 40.0
+offset_right = 302.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "Mod Configuration Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_top = 57.0
+offset_right = -79.0
+offset_bottom = 100.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_ea2b1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0gwuu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ex4mn")
+text = "Back"
+
+[node name="Settings_Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -880.0
+offset_top = -390.0
+offset_right = 880.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xqa4j")
+
+[node name="Margin_Panel" type="MarginContainer" parent="Settings_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Box_Container" type="HBoxContainer" parent="Settings_Panel/Margin_Panel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Mod_List_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Mods"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Mods" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ModListButton" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/ScrollContainer/Mods" instance=ExtResource("2_jxbuv")]
+layout_mode = 2
+
+[node name="Config_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Logo" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.5
+offset_top = -127.5
+offset_right = 127.5
+offset_bottom = 127.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(122.5, 122.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ai0e3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Settings" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="String Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/Settings" instance=ExtResource("2_v70ib")]
+layout_mode = 2
+
+[node name="Bool Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/Settings" instance=ExtResource("3_x5oih")]
+layout_mode = 2
+
+[node name="Int Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/Settings" instance=ExtResource("4_f8le3")]
+layout_mode = 2
+
+[node name="Keycode" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/Settings" instance=ExtResource("5_iiujf")]
+layout_mode = 2
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
