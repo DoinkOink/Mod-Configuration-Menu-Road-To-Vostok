@@ -4,7 +4,7 @@
 
 
 # What is Mod Configuration Menu
-MCM gives mod authors the ability to provide customizable values to the player through an easy to use Configuration Menu while in game so the player doesn't have to edit the mods source files.
+MCM gives mod authors the ability to provide customizable values to the player through an easy to use Configuration Menu while still in game.
 
 A great example use case would be a mod that adds an additional control input. With MCM the author can give the player access to change that input key whenever they want and for the players change to be saved even after the game is closed.
 
@@ -16,11 +16,11 @@ The configuration menu can be accessed in two places
 On both menus there will be a new button in the top right of the screen that say "MCM", clicking this button will take you to the configuration menu.
 
 # How to edit a mods configuration
-Once in the configuration menu of the left hand side you should see a list of all mods that have registered with MCM. All you have to do is click on the mods name you wish to edit which will then populate the right side of the menu with all of the available settings.
+Once in the configuration menu on the left hand side you should see a list of all mods that have registered with MCM. All you have to do is click on the mods name you wish to edit which will then populate the right side of the menu with all of the available settings.
 
 When editing a field you will nottice a button pop up to the right of the field with an "X" on it. Clicking this button will revert this value to the original value the mod author set it to.
 
-You may have noticed that there is no save button. So once you're done editing the values all you have to do to save them is either exit out of the menu, by clicking the exit button or by hitting the escape key on your keyboard, or click on one of the other mods listed on the left hand side and MCM will automatically save the changes you've made.
+To save changes either exit out of the menu, by clicking the exit button or by hitting the escape key, or click on one of the other mods listed on the left hand side. MCM will then save the settings automatically.
 
 # Installation
 * Install the [VostokMods Mod Loader](https://modworkshop.net/mod/49779)
