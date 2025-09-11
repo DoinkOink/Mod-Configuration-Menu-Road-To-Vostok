@@ -1,0 +1,1 @@
+<img width="245" height="245" alt="Blue gear icon with text "Mod Configuration Menu" in green, blocky letters at the center." src="https://github.com/user-attachments/assets/a01224d4-3706-4b8a-a183-9938100edc78" />
