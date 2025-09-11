@@ -5,7 +5,7 @@ version="1.0.0"
 
 [autoload]
 mcm="res://ModConfigurationMenu/Main.gd"
-;ExampleMod="res://ModconfigurationMenu/ExampleModConfig.gd"
+ExampleMod="res://ModconfigurationMenu/ExampleModConfig.gd"
 
 [updates]
 modworkshop=53713

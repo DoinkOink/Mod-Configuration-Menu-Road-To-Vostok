@@ -90,8 +90,8 @@ func SaveConfiguration(_modId: String):
 	for _element in ConfigPanel.get_children():
 		currentConfig.set_value(_element.section, _element.valueId, _element.GetValueData())
 		
-	if FileAccess.file_exists(McmHelpers.MCM_PATH + _modId + "/" + currentConfigFileId):
-		var _saveStatus = currentConfig.save(McmHelpers.MCM_PATH + _modId + "/" + currentConfigFileId)
+	if FileAccess.file_exists(McmHelpers.RegisteredMods[_modId].filePath + currentConfigFileId):
+		var _saveStatus = currentConfig.save(McmHelpers.RegisteredMods[_modId].filePath + currentConfigFileId)
 		if _saveStatus == 0:
 			print("[MCM] " + _modId + ": " + currentConfigFileId + " has been saved.")
 			McmHelpers.CallConfigCallback(_modId, currentConfigFileId, currentConfig)

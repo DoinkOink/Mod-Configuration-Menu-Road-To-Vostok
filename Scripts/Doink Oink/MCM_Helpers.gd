@@ -5,18 +5,22 @@ var RegisteredMods = {}
 
 const MCM_PATH = "user://MCM/"
 
-func RegisterConfiguration(_modId: String, _modFriendlyName: String, _modDescription: String, _fileOnSaveCallbacks: Dictionary):
+func RegisterConfiguration(_modId: String, _modFriendlyName: String, _modFilePath: String, _modDescription: String, _fileOnSaveCallbacks: Dictionary):
 	if !RegisteredMods.has(_modId):
+		if _modFilePath.substr(-1) != '/':
+			_modFilePath += "/"
+		
 		RegisteredMods[_modId] = {
 			id = _modId,
 			friendlyName = _modFriendlyName,
+			filePath = _modFilePath,
 			description = _modDescription,
 			fileOnSaveCallbacks = _fileOnSaveCallbacks
 		}
 		
 		var _config = ConfigFile.new()
 		for _fileId in _fileOnSaveCallbacks:
-			_config.load(MCM_PATH + _modId + "/" + _fileId)
+			_config.load(_modFilePath + _fileId)
 			if _config.has_section("Keycode"):
 				var _keycodes = _config.get_section_keys("Keycode")
 				for _action in _keycodes:
@@ -35,7 +39,7 @@ func LoadInputs():
 	var _config = ConfigFile.new()
 	for _modId in RegisteredMods:
 		for _fileName in RegisteredMods[_modId].fileOnSaveCallbacks:
-			_config.load(MCM_PATH + _modId + "/" + _fileName)
+			_config.load(RegisteredMods[_modId].filePath + _fileName)
 			
 			if _config.has_section("Keycode"):
 				var _keycodes = _config.get_section_keys("Keycode")
@@ -53,7 +57,7 @@ func LoadInput(_modId: String, _action: String, _keycode):
 				
 func UpdateInputs(_modId: String, _fileId):
 	var _config = ConfigFile.new()
-	_config.load(MCM_PATH + _modId + "/" + _fileId)
+	_config.load(RegisteredMods[_modId].filePath + _fileId)
 	
 	if _config.has_section("Keycode"):
 		var _keycodes = _config.get_section_keys("Keycode")
@@ -69,5 +73,5 @@ func UpdateInputs(_modId: String, _fileId):
 func GetModConfigFile(_modId: String, _fileId := "") -> ConfigFile:
 	var _fileName = RegisteredMods[_modId].fileOnSaveCallbacks.keys()[0] if _fileId == "" else _fileId
 	var _config = ConfigFile.new()
-	_config.load(MCM_PATH + _modId + "/" + _fileName)
+	_config.load(RegisteredMods[_modId].filePath + _fileName)
 	return _config

@@ -4,11 +4,11 @@ var McmHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Help
 
 var config = ConfigFile.new()
 
-const FILE_PATH = "user://MCM/ExampleMod/config.ini"
+const FILE_PATH = "user://MCM/ExampleMod"
 const MOD_ID = "ExampleMod"
 
 func _ready():
-	if !FileAccess.file_exists(FILE_PATH):
+	if !FileAccess.file_exists(FILE_PATH + "/config.ini"):
 		config.set_value("Int", "testInt", {
 			"name" = "Test Int",
 			"tooltip" = "A test int",
@@ -55,14 +55,15 @@ func _ready():
 			"value" = "Hello World"
 		})
 		
-		DirAccess.open("user://").make_dir("user://MCM/ExampleMod")
-		config.save(FILE_PATH)
+		DirAccess.open("user://").make_dir(FILE_PATH)
+		config.save(FILE_PATH + "/config.ini")
 	else:
-		config.load(FILE_PATH)
+		config.load(FILE_PATH + "/config.ini")
 		
 	McmHelpers.RegisterConfiguration(
 		MOD_ID,
 		"Example Mod",
+		FILE_PATH,
 		"A short description of the mod",
 		{
 			"config.ini" = UpdateConfigProperties
