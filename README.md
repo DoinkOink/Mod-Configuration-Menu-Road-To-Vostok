@@ -34,5 +34,7 @@ If you wish to make your mod compatible head over to the [documentation page](ht
 To report a bug please head over to the mods [github page and open an issue there.](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/issues)
 
 # Changelog
+###  v1.0.1
+* Fixed a crash that would occur when alt tabbing out of the game when loading a scene
 ### v1.0.0
 * Initial mod release
