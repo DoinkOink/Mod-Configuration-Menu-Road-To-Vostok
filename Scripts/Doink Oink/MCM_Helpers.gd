@@ -33,7 +33,8 @@ func RegisterConfiguration(_modId: String, _modFriendlyName: String, _modFilePat
 func CallConfigCallback(_modId: String, _fileId: String, data: ConfigFile):
 	if RegisteredMods.has(_modId):
 		if RegisteredMods[_modId].fileOnSaveCallbacks.has(_fileId):
-			RegisteredMods[_modId].fileOnSaveCallbacks[_fileId].call(data)
+			if (RegisteredMods[_modId].fileOnSaveCallbacks[_fileId] as Callable).is_valid():
+				RegisteredMods[_modId].fileOnSaveCallbacks[_fileId].call(data)
 
 func LoadInputs():
 	var _config = ConfigFile.new()

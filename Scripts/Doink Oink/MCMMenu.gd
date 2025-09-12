@@ -22,13 +22,8 @@ var currentConfig: ConfigFile
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ClearConfiguration()
-	for item in ModListPanel.get_children():
-		item.queue_free()
-		
+	CreateAllModButtons()
 	self.visibility_changed.connect(_on_visibility_changed)
-		
-	for _modId in McmHelpers.RegisteredMods:
-		CreateModButton(McmHelpers.RegisteredMods[_modId])
 		
 func _on_visibility_changed():
 	if loadedModId != "":
@@ -36,11 +31,19 @@ func _on_visibility_changed():
 		loadedModId = ""
 		
 	ClearConfiguration()
+	CreateAllModButtons()
 	Logo.show()
+
+func CreateAllModButtons():
+	for item in ModListPanel.get_children():
+		item.queue_free()
+		
+	for _modId in McmHelpers.RegisteredMods:
+		CreateModButton(McmHelpers.RegisteredMods[_modId])
 		
 func CreateModButton(_mod):
 	var _button: Button = modListButton.instantiate()
-	_button.text = _mod.friendlyName
+	_button.text = "    " + _mod.friendlyName
 	_button.pressed.connect(_on_mod_button_pressed.bind(_mod.id))
 	
 	ModListPanel.add_child(_button)

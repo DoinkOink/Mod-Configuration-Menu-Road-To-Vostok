@@ -1,6 +1,7 @@
 extends Node
 
-var McmHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
+var McmHelpers = load("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
+var MCMNotInstalledUI = preload("res://FreeLook/UI/mcm_not_installed.tscn")
 
 var config = ConfigFile.new()
 
@@ -60,19 +61,30 @@ func _ready():
 	else:
 		config.load(FILE_PATH + "/config.ini")
 		
-	McmHelpers.RegisterConfiguration(
-		MOD_ID,
-		"Example Mod",
-		FILE_PATH,
-		"A short description of the mod",
-		{
-			"config.ini" = UpdateConfigProperties
-		}
-	)
+	if McmHelpers:
+		McmHelpers.RegisterConfiguration(
+			MOD_ID,
+			"Example Mod",
+			FILE_PATH,
+			"A short description of the mod",
+			{
+				"config.ini" = UpdateConfigProperties
+			}
+		)
+	else:
+		var _notInstalledUI = MCMNotInstalledUI.instantiate()
+		_notInstalledUI.find_child("Link").pressed.connect(func():
+			OS.shell_open("https://modworkshop.net/mod/53713")
+		)
+		_notInstalledUI.find_child("Quit").pressed.connect(func():
+			Loader.Quit()
+		)
+		_notInstalledUI.find_child("Description").text = "Mod Configuration Menu must be installed to use " + MOD_ID + ". The button below will take you to the MCM ModWorkshop page."
+		
+		for _element in get_parent().get_children():
+			if _element.name == "Menu":
+				_element.find_child("Main").hide()
+				_element.add_child(_notInstalledUI)
 
 func UpdateConfigProperties(_config: ConfigFile):
 	print(_config.get_value("String", "testString"))
-	
-func _input(event):
-	if Input.is_action_just_pressed("testKeycode"):
-		print("Test Keycode Pressed!")

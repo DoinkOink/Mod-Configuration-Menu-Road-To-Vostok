@@ -1,33 +1,31 @@
 extends "res://Scripts/UIManager.gd"
 
 var mcmMenuScene = preload("res://ModConfigurationMenu/UI/Doink Oink/UI_MCM.tscn")
-var mcmMenu = null
+var mcmMenu: Control = null
 
 func ToggleMCMMenu():
-    gameData.mcmMenu = !gameData.mcmMenu
-
-    if gameData.mcmMenu:
-        gameData.settings = false
-        settings.hide()
-        mcmMenu.show()
-    else:
-        gameData.settings = true
-        settings.show()
-        mcmMenu.hide()
+	if !mcmMenu.visible:
+		gameData.settings = false
+		settings.hide()
+		mcmMenu.show()
+	else:
+		gameData.settings = true
+		settings.show()
+		mcmMenu.hide()
 
 func _ready():
-    super ()
+	super ()
 
-    mcmMenu = mcmMenuScene.instantiate()
-    mcmMenu.uiManager = self
-    mcmMenu.hide()
-    get_tree().root.add_child(mcmMenu)
+	mcmMenu = mcmMenuScene.instantiate()
+	mcmMenu.uiManager = self
+	mcmMenu.hide()
+	get_tree().root.add_child(mcmMenu)
 
 func _input(event):
-    if gameData.mcmMenu:
-        if event.is_action_pressed("settings") && !mcmMenu.isRemapping:
-            ToggleMCMMenu()
+	if mcmMenu.visible:
+		if event.is_action_pressed("settings") && !mcmMenu.isRemapping:
+			ToggleMCMMenu()
 
-        return
+		return
 
-    super (event)
+	super (event)
