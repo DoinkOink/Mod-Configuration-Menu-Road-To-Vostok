@@ -1,24 +1,22 @@
 extends Node
 
-var createButton = false
-var MCMButton
-
 var mcmMenuScene = preload("res://ModConfigurationMenu/UI/Doink Oink/UI_MCM.tscn")
-var mcmMenu: Control = null
-var settingsMenu
+var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
+
+# In order to not override Settings.gd, which can only be overridden once, we create
+#	the button and menu in our main file and store all associated variables in MCM_Helpers.
+#	Between each scene the MCMButton is set to be freed so we can just check if
+#	it currently exists. If it doesn't then we go ahead and create it again.
+func _process(delta):
+	if !MCMHelpers.MCMButton && get_tree().current_scene:
+		CreateMCMButton()
 
 func _ready():
 	name = "MCM"
 	
 	overrideScript("res://ModConfigurationMenu/Scripts/Overrides/Inputs.gd")
-	overrideScript("res://ModConfigurationMenu/Scripts/Overrides/Settings.gd")
 	overrideScript("res://ModConfigurationMenu/Scripts/Overrides/UIManager.gd")
 	overrideScript("res://ModConfigurationMenu/Scripts/Overrides/Menu.gd")
-	#queue_free()
-	
-	## We have to create the main menu button in the main script because overriding doesn't happen
-	##	until after the main menu loads.
-	CreateMCMButton()
 	
 func overrideScript(overrideScriptPath: String):
 	var script: Script = load(overrideScriptPath)
@@ -27,33 +25,40 @@ func overrideScript(overrideScriptPath: String):
 	script.take_over_path(parentScript.resource_path)
 	
 func CreateMCMButton():
-	mcmMenu = mcmMenuScene.instantiate()
-	mcmMenu.uiManager = self
-	mcmMenu.hide()
-	get_tree().root.add_child(mcmMenu)
+	# Even though the menu travels between each scene the menu for whatever reason
+	#	loses all inputs and buttons can't be pressed. So we have to free the menu
+	#	and then instantiate it again.
+	if MCMHelpers.MCMMenu:
+		MCMHelpers.MCMMenu.queue_free()
 		
-	for _element in get_parent().get_children():
-		if _element.name == "Menu":
-			MCMButton = Button.new()
-			settingsMenu = _element.find_child("Settings", false).find_child("UI_Settings")
-			MCMButton.text = "MCM"
+	MCMHelpers.MCMMenu = mcmMenuScene.instantiate()
+	MCMHelpers.MCMMenu.uiManager = self
+	MCMHelpers.MCMMenu.hide()
+	get_tree().root.add_child(MCMHelpers.MCMMenu)
+	
+	var _sceneName = get_tree().current_scene.name
+	MCMHelpers.SettingsMenu = get_tree().root.find_child("UI_Settings", true, false)
 
-			var _buttonSize = MCMButton.get_minimum_size() + Vector2(5, 5)
-			MCMButton.size.x = _buttonSize.x
-			MCMButton.size.y = _buttonSize.x
+	var _button = Button.new()
+	_button.text = "MCM"
 
-			var _size = DisplayServer.screen_get_size()
-			MCMButton.set_position(Vector2((_size.x/2)-_buttonSize.x-10, -((_size.y/2)-(_buttonSize.x*2))))
-			settingsMenu.add_child(MCMButton)
+	var _buttonSize = _button.get_minimum_size() + Vector2(5, 5)
+	_button.size.x = _buttonSize.x
+	_button.size.y = _buttonSize.x
 
-			MCMButton.button_down.connect(ToggleMCMMenu)
-			createButton = false
-			break
-			
-func ToggleMCMMenu():
-	if mcmMenu.visible:
-		settingsMenu.show()
-		mcmMenu.hide()
+	if _sceneName == "Menu":
+		var _size = DisplayServer.screen_get_size()
+		_button.set_position(Vector2((_size.x/2)-_buttonSize.x-10, -((_size.y/2)-(_buttonSize.x*2))))
 	else:
-		settingsMenu.hide()
-		mcmMenu.show()
+		_button.set_anchor(SIDE_LEFT, 1)
+		_button.set_anchor(SIDE_TOP, 0)
+		_button.set_anchor(SIDE_RIGHT, 1)
+		_button.set_anchor(SIDE_BOTTOM, 0)
+		
+		_button.set_position(Vector2(- (_buttonSize.x + 10), 10))
+		
+	MCMHelpers.MCMButton = _button
+		
+	MCMHelpers.SettingsMenu.add_child(MCMHelpers.MCMButton)
+
+	MCMHelpers.MCMButton.button_down.connect(MCMHelpers.ToggleMCMMenu)

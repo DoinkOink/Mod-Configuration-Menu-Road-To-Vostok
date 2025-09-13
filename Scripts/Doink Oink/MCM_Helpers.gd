@@ -3,6 +3,12 @@ class_name MCM_Helpers
 
 var RegisteredMods = {}
 
+var isRemapping = false
+
+var MCMButton
+var MCMMenu
+var SettingsMenu
+
 const MCM_PATH = "user://MCM/"
 
 func RegisterConfiguration(_modId: String, _modFriendlyName: String, _modFilePath: String, _modDescription: String, _fileOnSaveCallbacks: Dictionary):
@@ -18,6 +24,8 @@ func RegisterConfiguration(_modId: String, _modFriendlyName: String, _modFilePat
 			fileOnSaveCallbacks = _fileOnSaveCallbacks
 		}
 		
+		print("[MCM] " + _modId + " has been successfully registered")
+		
 		var _config = ConfigFile.new()
 		for _fileId in _fileOnSaveCallbacks:
 			_config.load(_modFilePath + _fileId)
@@ -25,8 +33,7 @@ func RegisterConfiguration(_modId: String, _modFriendlyName: String, _modFilePat
 				var _keycodes = _config.get_section_keys("Keycode")
 				for _action in _keycodes:
 					LoadInput(_modId, _action, _config.get_value("Keycode", _action)["value"])
-		
-		print("[MCM] " + _modId + " has been successfully registered")
+					
 	else:
 		push_warning("[MCM] " + _modId + " has failed to register. This ID already exists.")
 		
@@ -63,16 +70,25 @@ func UpdateInputs(_modId: String, _fileId):
 	if _config.has_section("Keycode"):
 		var _keycodes = _config.get_section_keys("Keycode")
 		for _action in _keycodes:
-			var _originalEvent = (InputMap.action_get_events(_action)[0] as InputEventKey)
-			if _originalEvent.physical_keycode != _config.get_value("Keycode", _action)["value"]:
-				var _actionEvent = InputEventKey.new()
-				_actionEvent.physical_keycode = _config.get_value("Keycode", _action)["value"]
-			
-				InputMap.action_erase_events(_action)
-				InputMap.action_add_event(_action, _actionEvent)
+			if InputMap.has_action(_action):
+				var _originalEvent = (InputMap.action_get_events(_action)[0] as InputEventKey)
+				if _originalEvent.physical_keycode != _config.get_value("Keycode", _action)["value"]:
+					var _actionEvent = InputEventKey.new()
+					_actionEvent.physical_keycode = _config.get_value("Keycode", _action)["value"]
+				
+					InputMap.action_erase_events(_action)
+					InputMap.action_add_event(_action, _actionEvent)
 
 func GetModConfigFile(_modId: String, _fileId := "") -> ConfigFile:
 	var _fileName = RegisteredMods[_modId].fileOnSaveCallbacks.keys()[0] if _fileId == "" else _fileId
 	var _config = ConfigFile.new()
 	_config.load(RegisteredMods[_modId].filePath + _fileName)
 	return _config
+	
+func ToggleMCMMenu():
+	if MCMMenu.visible:
+		SettingsMenu.show()
+		MCMMenu.hide()
+	else:
+		SettingsMenu.hide()
+		MCMMenu.show()

@@ -1,7 +1,7 @@
 [mod]
 name="Mod Configuration Menu"
 id="doinkoink-mcm"
-version="1.0.0"
+version="1.1.0"
 
 [autoload]
 mcm="res://ModConfigurationMenu/Main.gd"

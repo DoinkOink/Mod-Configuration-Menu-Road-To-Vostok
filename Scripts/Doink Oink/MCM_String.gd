@@ -11,8 +11,6 @@ var valueData
 var value: String
 var defaultValue: String
 
-var mcmMenu
-
 var hasChanged = false
 
 func _ready():	

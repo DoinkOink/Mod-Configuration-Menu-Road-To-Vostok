@@ -4,14 +4,14 @@ extends Node
 @onready var keycodeInput = find_child("Input")
 @onready var defaultRevertButton = find_child("Default Button")
 
+var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
+
 var valueId: String
 var section: String
 var valueData
 
 var value: InputEvent
 var defaultValue
-
-var mcmMenu
 
 var hasChanged = false
 var isRemapping = false
@@ -28,8 +28,6 @@ func _ready():
 	value.physical_keycode = valueData["value"]
 	
 	defaultValue = valueData["default"]
-	#defaultValue = InputEventKey.new()
-	#defaultValue.physical_keycode = valueData["default"]
 	
 	keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
 	
@@ -48,8 +46,8 @@ func _input(event):
 			
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 			isRemapping = false
-	else:
-		mcmMenu.isRemapping = false
+	elif MCMHelpers.MCMMenu && MCMHelpers.MCMMenu.visible:
+		MCMHelpers.isRemapping = false
 			
 func GetValueData():
 	valueData["value"] = value.physical_keycode
@@ -65,7 +63,7 @@ func CheckHasChanged(_value):
 func _on_keycode_pressed():
 	if !isRemapping:
 		isRemapping = true
-		mcmMenu.isRemapping = true
+		MCMHelpers.isRemapping = true
 		keycodeInput.text = "Press key to bind..."
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 

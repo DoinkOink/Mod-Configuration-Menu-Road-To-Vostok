@@ -12,8 +12,6 @@ var valueData
 var value
 var defaultValue
 
-var mcmMenu
-
 var minRange: float
 var maxRange: float
 var isInt = false

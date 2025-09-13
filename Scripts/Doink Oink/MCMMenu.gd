@@ -1,6 +1,6 @@
 extends Control
 
-var McmHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
+var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 
 @onready var ModListPanel = find_child("Mods")
 @onready var ConfigPanel = find_child("Settings")
@@ -38,8 +38,8 @@ func CreateAllModButtons():
 	for item in ModListPanel.get_children():
 		item.queue_free()
 		
-	for _modId in McmHelpers.RegisteredMods:
-		CreateModButton(McmHelpers.RegisteredMods[_modId])
+	for _modId in MCMHelpers.RegisteredMods:
+		CreateModButton(MCMHelpers.RegisteredMods[_modId])
 		
 func CreateModButton(_mod):
 	var _button: Button = modListButton.instantiate()
@@ -60,9 +60,9 @@ func _on_mod_button_pressed(_modId: String):
 func LoadConfiguration(_modId: String):
 	ClearConfiguration()
 	
-	var _configFiles: Dictionary = McmHelpers.RegisteredMods[loadedModId].fileOnSaveCallbacks
-	currentConfig = McmHelpers.GetModConfigFile(_modId)
-	currentConfigFileId = McmHelpers.RegisteredMods[_modId].fileOnSaveCallbacks.keys()[0]
+	var _configFiles: Dictionary = MCMHelpers.RegisteredMods[loadedModId].fileOnSaveCallbacks
+	currentConfig = MCMHelpers.GetModConfigFile(_modId)
+	currentConfigFileId = MCMHelpers.RegisteredMods[_modId].fileOnSaveCallbacks.keys()[0]
 	
 	for _section in currentConfig.get_sections():
 		for _valueKey in currentConfig.get_section_keys(_section):
@@ -85,7 +85,6 @@ func LoadConfiguration(_modId: String):
 			_element.valueId = _valueKey
 			_element.section = _section
 			_element.valueData = currentConfig.get_value(_section, _valueKey)
-			_element.mcmMenu = self
 			
 			ConfigPanel.add_child(_element)
 	
@@ -93,20 +92,20 @@ func SaveConfiguration(_modId: String):
 	for _element in ConfigPanel.get_children():
 		currentConfig.set_value(_element.section, _element.valueId, _element.GetValueData())
 		
-	if FileAccess.file_exists(McmHelpers.RegisteredMods[_modId].filePath + currentConfigFileId):
-		var _saveStatus = currentConfig.save(McmHelpers.RegisteredMods[_modId].filePath + currentConfigFileId)
+	if FileAccess.file_exists(MCMHelpers.RegisteredMods[_modId].filePath + currentConfigFileId):
+		var _saveStatus = currentConfig.save(MCMHelpers.RegisteredMods[_modId].filePath + currentConfigFileId)
 		if _saveStatus == 0:
 			print("[MCM] " + _modId + ": " + currentConfigFileId + " has been saved.")
-			McmHelpers.CallConfigCallback(_modId, currentConfigFileId, currentConfig)
+			MCMHelpers.CallConfigCallback(_modId, currentConfigFileId, currentConfig)
 		else:
 			print("[MCM] The config file " + currentConfigFileId + " for mod " + _modId + " has not been saved with the status code: " + _saveStatus)
 			
 	if currentConfig.has_section("Keycode"):
-		McmHelpers.UpdateInputs(_modId, currentConfigFileId)
+		MCMHelpers.UpdateInputs(_modId, currentConfigFileId)
 	
 func ClearConfiguration():
 	for _element in ConfigPanel.get_children():
 		_element.queue_free()
 
 func _on_back_pressed() -> void:
-	uiManager.ToggleMCMMenu()
+	MCMHelpers.ToggleMCMMenu()
