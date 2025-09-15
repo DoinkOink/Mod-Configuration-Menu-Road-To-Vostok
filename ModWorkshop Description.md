@@ -33,6 +33,9 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # {#3498db}(Changelog)
+### v1.1.1
+* Fixed a bug where the MCM folder, that holds the config files for mods, is never initially created by the mod. This would cause mods using MCM not to be able to create config files correctly.
+	* Thank you to DeleteBeliever for reporting this and helping me debug the issue.
 ### v1.1.0
 * Removed all overrides to scripts using `class_name`
 	* Oldman's Immersive Overhaul and MrJacket's Demo Overhaul are now compatible because of this change

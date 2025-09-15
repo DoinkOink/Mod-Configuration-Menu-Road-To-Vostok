@@ -14,6 +14,10 @@ func _process(delta):
 func _ready():
 	name = "MCM"
 	
+	var _dir = DirAccess.open("user://MCM")
+	if !_dir:
+		DirAccess.open("user://").make_dir("user://MCM")
+	
 	overrideScript("res://ModConfigurationMenu/Scripts/Overrides/Inputs.gd")
 	overrideScript("res://ModConfigurationMenu/Scripts/Overrides/UIManager.gd")
 	overrideScript("res://ModConfigurationMenu/Scripts/Overrides/Menu.gd")
