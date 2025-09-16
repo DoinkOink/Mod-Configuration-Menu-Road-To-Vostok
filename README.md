@@ -38,8 +38,10 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
-### V1.2.0
-* Added the `CheckConfigruationHasUpdated` function to the MCM_Helpers script
+### v1.2.1
+* Fixed a typo in the function name `CheckConfigurationHasUpdated`
+### v1.2.0
+* Added the `CheckConfigurationHasUpdated` function to the MCM_Helpers script
 	* This function will allow MCM to update a mods configuration file if there was new settings added with an update. Instructions on how to set this up will be on the [wiki](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki).
 ### v1.1.1
 * Fixed a bug where the MCM folder, that holds the config files for mods, is never initially created by the mod. This would cause mods using MCM not to be able to create config files correctly.
