@@ -34,6 +34,8 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # {#3498db}(Changelog)
+### v1.2.1
+* Fixed a typo in the function name `CheckConfigurationHasUpdated`
 ### V1.2.0
 * Added the `CheckConfigruationHasUpdated` function to the MCM_Helpers script
 	* This function will allow MCM to update a mods configuration file if there was new settings added with an update. Instructions on how to set this up will be on the [wiki](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki).
