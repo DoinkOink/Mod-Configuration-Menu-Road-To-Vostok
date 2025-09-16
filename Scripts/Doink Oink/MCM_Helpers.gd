@@ -11,7 +11,7 @@ var SettingsMenu
 
 const MCM_PATH = "user://MCM/"
 
-func CheckConfigruationHasUpdated(_modId, _newConfig: ConfigFile, _configPath):
+func CheckConfigurationHasUpdated(_modId, _newConfig: ConfigFile, _configPath):
 	var _newValue = false
 	var _currentConfig = ConfigFile.new()
 	_currentConfig.load(_configPath)
