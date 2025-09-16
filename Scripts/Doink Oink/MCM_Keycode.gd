@@ -23,6 +23,7 @@ func _ready():
 		return
 	
 	variableLabel.text = valueData["name"]
+	variableLabel.tooltip_text = valueData["tooltip"]
 	
 	value = InputEventKey.new()
 	value.physical_keycode = valueData["value"]

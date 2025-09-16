@@ -30,9 +30,13 @@ To report a bug please head over to the mods [github page and open an issue ther
 
 # {#e74c3c}(Known Mod Conflicts)
 I will do my best to make sure this list is as close to 0 as possible either by making MCM as compatible as possible or working along mod authors to fix the conflict.
+
 None right now :)
 
 # {#3498db}(Changelog)
+### V1.2.0
+* Added the `CheckConfigruationHasUpdated` function to the MCM_Helpers script
+	* This function will allow MCM to update a mods configuration file if there was new settings added with an update. Instructions on how to set this up will be on the [wiki](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki).
 ### v1.1.1
 * Fixed a bug where the MCM folder, that holds the config files for mods, is never initially created by the mod. This would cause mods using MCM not to be able to create config files correctly.
 	* Thank you to DeleteBeliever for reporting this and helping me debug the issue.

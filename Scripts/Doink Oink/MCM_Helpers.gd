@@ -11,6 +11,21 @@ var SettingsMenu
 
 const MCM_PATH = "user://MCM/"
 
+func CheckConfigruationHasUpdated(_modId, _newConfig: ConfigFile, _configPath):
+	var _newValue = false
+	var _currentConfig = ConfigFile.new()
+	_currentConfig.load(_configPath)
+	
+	for _section in _newConfig.get_sections():
+		for _key in _newConfig.get_section_keys(_section):
+			if !_currentConfig.has_section_key(_section, _key):
+				_currentConfig.set_value(_section, _key, _newConfig.get_value(_section, _key))
+				_newValue = true
+				
+	if _newValue:
+		print("[MCM] " + _modId + " has updated its config file successfully.")
+		_currentConfig.save(_configPath)
+
 func RegisterConfiguration(_modId: String, _modFriendlyName: String, _modFilePath: String, _modDescription: String, _fileOnSaveCallbacks: Dictionary):
 	if !RegisteredMods.has(_modId):
 		if _modFilePath.substr(-1) != '/':

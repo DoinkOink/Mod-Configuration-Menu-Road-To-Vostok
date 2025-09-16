@@ -19,6 +19,8 @@ func _ready():
 		return
 	
 	nameLabel.text = valueData["name"]
+	nameLabel.tooltip_text = valueData["tooltip"]
+	
 	value = valueData["value"]
 	defaultValue = valueData["default"]
 	
