@@ -38,6 +38,10 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.0.0
+* Updated the mod to work with the Next Fest demo
+* Configuration tooltips now display
+* Changing a configs default value, name, or tooltip will cause the config to be updated when calling `CheckConfigurationHasUpdated`
 ### v1.2.1
 * Fixed a typo in the function name `CheckConfigurationHasUpdated`
 ### v1.2.0

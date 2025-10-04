@@ -35,13 +35,22 @@ func CreateMCMButton():
 	if MCMHelpers.MCMMenu:
 		MCMHelpers.MCMMenu.queue_free()
 		
+	var _sceneName = get_tree().current_scene.name
+	
+	var _settings = get_tree().root.find_child("UI_Settings", true, false)
+	if (_settings):
+		MCMHelpers.SettingsMenu = _settings
+	else:
+		MCMHelpers.SettingsMenu = get_tree().root.find_child("Settings", true, false)#.get_child(1)
+	
+	# Just incase the settings menu wasn't found break out so we don't cause any issues.
+	if (!MCMHelpers.SettingsMenu):
+		return
+		
 	MCMHelpers.MCMMenu = mcmMenuScene.instantiate()
 	MCMHelpers.MCMMenu.uiManager = self
 	MCMHelpers.MCMMenu.hide()
 	get_tree().root.add_child(MCMHelpers.MCMMenu)
-	
-	var _sceneName = get_tree().current_scene.name
-	MCMHelpers.SettingsMenu = get_tree().root.find_child("UI_Settings", true, false)
 
 	var _button = Button.new()
 	_button.text = "MCM"

@@ -21,6 +21,21 @@ func CheckConfigurationHasUpdated(_modId, _newConfig: ConfigFile, _configPath):
 			if !_currentConfig.has_section_key(_section, _key):
 				_currentConfig.set_value(_section, _key, _newConfig.get_value(_section, _key))
 				_newValue = true
+			else:
+				var _newValues = _newConfig.get_value(_section, _key)
+				var _currentValues = _currentConfig.get_value(_section, _key)
+				
+				if (_newValues["default"] != _currentValues["default"]):
+					_currentValues["default"] = _newValues["default"]
+					_newValue = true
+				if (_newValues["name"] != _currentValues["name"]):
+					_currentValues["name"] = _newValues["name"]
+					_newValue = true
+				if (_newValues["tooltip"] != _currentValues["tooltip"]):
+					_currentValues["tooltip"] = _newValues["tooltip"]
+					_newValue = true
+					
+				_currentConfig.set_value(_section, _key, _currentValues)
 				
 	if _newValue:
 		print("[MCM] " + _modId + " has updated its config file successfully.")
