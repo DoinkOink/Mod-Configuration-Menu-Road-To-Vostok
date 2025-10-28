@@ -33,6 +33,7 @@ func _on_visibility_changed():
 	ClearConfiguration()
 	CreateAllModButtons()
 	Logo.show()
+	#MCMHelpers.MCMMenu.get_children()[2].pressed.get_connections()[0].callable.call()
 
 func CreateAllModButtons():
 	for item in ModListPanel.get_children():
@@ -49,6 +50,7 @@ func CreateModButton(_mod):
 	ModListPanel.add_child(_button)
 	
 func _on_mod_button_pressed(_modId: String):
+	print(_modId)
 	if loadedModId != "":
 		SaveConfiguration(loadedModId)
 	else:

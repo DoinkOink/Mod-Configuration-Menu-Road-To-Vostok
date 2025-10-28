@@ -50,7 +50,12 @@ func CreateMCMButton():
 	MCMHelpers.MCMMenu = mcmMenuScene.instantiate()
 	MCMHelpers.MCMMenu.uiManager = self
 	MCMHelpers.MCMMenu.hide()
-	get_tree().root.add_child(MCMHelpers.MCMMenu)
+	
+	if _sceneName == "Menu":
+		MCMHelpers.SettingsMenu.get_parent().visibility_changed.connect(_on_settings_visibility_changed)
+		get_tree().root.add_child(MCMHelpers.MCMMenu)
+	else:
+		MCMHelpers.SettingsMenu.get_parent().add_child(MCMHelpers.MCMMenu)
 
 	var _button = Button.new()
 	_button.text = "MCM"
@@ -61,17 +66,29 @@ func CreateMCMButton():
 
 	if _sceneName == "Menu":
 		var _size = DisplayServer.screen_get_size()
-		_button.set_position(Vector2((_size.x/2)-_buttonSize.x-10, -((_size.y/2)-(_buttonSize.x*2))))
-	else:
-		_button.set_anchor(SIDE_LEFT, 1)
-		_button.set_anchor(SIDE_TOP, 0)
-		_button.set_anchor(SIDE_RIGHT, 1)
-		_button.set_anchor(SIDE_BOTTOM, 0)
-		
-		_button.set_position(Vector2(- (_buttonSize.x + 10), 10))
-		
+		#MCMHelpers.SettingsMenu.get_parent().size = _size
+		#MCMHelpers.SettingsMenu.get_parent().set_global_position(Vector2(0, 0))
+		#MCMHelpers.SettingsMenu.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+		#_button.set_global_position(Vector2((_size.x/2)-_buttonSize.x-10, -(_size.y/2)+10))
+		#_button.set_global_position(Vector2(540,10))
+	#else:
+	_button.set_anchor(SIDE_LEFT, 1)
+	_button.set_anchor(SIDE_TOP, 0)
+	_button.set_anchor(SIDE_RIGHT, 1)
+	_button.set_anchor(SIDE_BOTTOM, 0)
+	
+	_button.set_position(Vector2(- (_buttonSize.x + 10), 10))
+	
 	MCMHelpers.MCMButton = _button
-		
-	MCMHelpers.SettingsMenu.add_child(MCMHelpers.MCMButton)
+	
+	if _sceneName == "Menu":
+		MCMHelpers.MCMButton.visible = false
+		MCMHelpers.SettingsMenu.get_parent().get_parent().add_child(MCMHelpers.MCMButton)
+	else:
+		MCMHelpers.SettingsMenu.add_child(MCMHelpers.MCMButton)
 
 	MCMHelpers.MCMButton.button_down.connect(MCMHelpers.ToggleMCMMenu)
+
+func _on_settings_visibility_changed():
+	if MCMHelpers.SettingsMenu:
+		MCMHelpers.MCMButton.visible = MCMHelpers.SettingsMenu.get_parent().visible

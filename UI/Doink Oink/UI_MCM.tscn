@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://cpllxwxucrfr1"]
 
-[ext_resource type="Script" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCMMenu.gd" id="1_5lfkr"]
+[ext_resource type="Script" uid="uid://bb2ho30bbe4pu" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCMMenu.gd" id="1_5lfkr"]
 [ext_resource type="PackedScene" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Mod_List_Button.tscn" id="2_jxbuv"]
-[ext_resource type="PackedScene" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn" id="2_v70ib"]
+[ext_resource type="PackedScene" uid="uid://dfu35yank8jbg" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn" id="2_v70ib"]
 [ext_resource type="Texture2D" uid="uid://dn5gtpcye5g4h" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/MCM_Gear.png" id="3_ow5jg"]
-[ext_resource type="PackedScene" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn" id="3_x5oih"]
-[ext_resource type="PackedScene" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn" id="4_f8le3"]
-[ext_resource type="PackedScene" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn" id="5_iiujf"]
+[ext_resource type="PackedScene" uid="uid://7lg0l3h8unnq" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn" id="3_x5oih"]
+[ext_resource type="PackedScene" uid="uid://33nsgfalxfbr" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn" id="4_f8le3"]
+[ext_resource type="PackedScene" uid="uid://ccio7axqb4r3q" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn" id="5_iiujf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ea2b1"]
 bg_color = Color(0.129412, 0.156863, 0.184314, 1)

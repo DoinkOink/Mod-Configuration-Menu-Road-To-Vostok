@@ -38,6 +38,10 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.0.1
+* Fixed the Configuration Menu not being editable while on the main menu
+* Fixed the MCM button not showing up in the settings screen on larger displays
+	* Thank you to both Bama and CrackpotTheorist from the Vostok discord for helping me test fixes for these issues.
 ### v2.0.0
 * Updated the mod to work with the Next Fest demo
 * Configuration tooltips now display
