@@ -63,15 +63,7 @@ func CreateMCMButton():
 	var _buttonSize = _button.get_minimum_size() + Vector2(5, 5)
 	_button.size.x = _buttonSize.x
 	_button.size.y = _buttonSize.x
-
-	if _sceneName == "Menu":
-		var _size = DisplayServer.screen_get_size()
-		#MCMHelpers.SettingsMenu.get_parent().size = _size
-		#MCMHelpers.SettingsMenu.get_parent().set_global_position(Vector2(0, 0))
-		#MCMHelpers.SettingsMenu.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-		#_button.set_global_position(Vector2((_size.x/2)-_buttonSize.x-10, -(_size.y/2)+10))
-		#_button.set_global_position(Vector2(540,10))
-	#else:
+		
 	_button.set_anchor(SIDE_LEFT, 1)
 	_button.set_anchor(SIDE_TOP, 0)
 	_button.set_anchor(SIDE_RIGHT, 1)
