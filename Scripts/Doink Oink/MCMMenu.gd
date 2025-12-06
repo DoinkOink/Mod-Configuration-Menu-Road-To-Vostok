@@ -66,29 +66,36 @@ func LoadConfiguration(_modId: String):
 	currentConfig = MCMHelpers.GetModConfigFile(_modId)
 	currentConfigFileId = MCMHelpers.RegisteredMods[_modId].fileOnSaveCallbacks.keys()[0]
 	
-	for _section in currentConfig.get_sections():
-		for _valueKey in currentConfig.get_section_keys(_section):
-			var _element: Control
+	var _properties = SortModProperties(currentConfig)
+	
+	#for _section in currentConfig.get_sections():
+	for _valueKey in _properties:
+		var _element: Control
+		var _property = _properties[_valueKey]
+		var _section = _property["section"]
+		
+		_property.erase("section")
+		_property.erase("key")
+		
+		if _section == "Int" || _section == "Float":
+			_element = sliderValueEditor.instantiate()
+			if _section == "Int":
+				_element.isInt = true
+		elif _section == "Bool":
+			_element = boolValueEditor.instantiate()
+		elif _section == "String":
+			_element = stringValueEditor.instantiate()
+		elif _section == "Keycode":
+			_element = keycodeValueEditor.instantiate()
+		else:
+			push_warning("[MCM] " + _modId + " has an unsupported value type [" + _section + "] in config file")
+			continue
 			
-			if _section == "Int" || _section == "Float":
-				_element = sliderValueEditor.instantiate()
-				if _section == "Int":
-					_element.isInt = true
-			elif _section == "Bool":
-				_element = boolValueEditor.instantiate()
-			elif _section == "String":
-				_element = stringValueEditor.instantiate()
-			elif _section == "Keycode":
-				_element = keycodeValueEditor.instantiate()
-			else:
-				push_warning("[MCM] " + _modId + " has an unsupported value type [" + _section + "] in config file")
-				continue
-				
-			_element.valueId = _valueKey
-			_element.section = _section
-			_element.valueData = currentConfig.get_value(_section, _valueKey)
-			
-			ConfigPanel.add_child(_element)
+		_element.valueId = _valueKey
+		_element.section = _section
+		_element.valueData = _property
+		
+		ConfigPanel.add_child(_element)
 	
 func SaveConfiguration(_modId: String):
 	for _element in ConfigPanel.get_children():
@@ -105,9 +112,36 @@ func SaveConfiguration(_modId: String):
 	if currentConfig.has_section("Keycode"):
 		MCMHelpers.UpdateInputs(_modId, currentConfigFileId)
 	
+func SortModProperties(configFile):
+	var _values = []
+	var _properties: Dictionary = {}
+	
+	for _section in configFile.get_sections():
+		for _valueKey in configFile.get_section_keys(_section):
+			var _data = configFile.get_value(_section, _valueKey)
+			_data["section"] = _section
+			_data["key"] = _valueKey
+			_values.append(_data)
+			
+	_values.sort_custom(_sort_by_pos_and_name)
+	
+	for _value in _values:
+		_properties[_value["key"]] = _value
+			
+	return _properties
+	
 func ClearConfiguration():
 	for _element in ConfigPanel.get_children():
 		_element.queue_free()
+		
+func _sort_by_pos_and_name(a, b):
+	var _aPos = 1000000 if !a.has("menu_pos") else a["menu_pos"]
+	var _bPos = 1000000 if !b.has("menu_pos") else b["menu_pos"]
+	
+	if (_aPos == _bPos):
+		return a["name"] < b["name"]
+	else:
+		return _aPos < _bPos
 
 func _on_back_pressed() -> void:
 	MCMHelpers.ToggleMCMMenu()

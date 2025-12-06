@@ -34,6 +34,10 @@ func CheckConfigurationHasUpdated(_modId, _newConfig: ConfigFile, _configPath):
 				if (_newValues["tooltip"] != _currentValues["tooltip"]):
 					_currentValues["tooltip"] = _newValues["tooltip"]
 					_newValue = true
+				if (_newValues.has("menu_pos")):
+					if (!_currentValues.has("menu_pos") || _newValues["menu_pos"] != _currentValues["menu_pos"]):
+						_currentValues["menu_pos"] = _newValues["menu_pos"]
+						_newValue = true
 					
 				_currentConfig.set_value(_section, _key, _currentValues)
 				
