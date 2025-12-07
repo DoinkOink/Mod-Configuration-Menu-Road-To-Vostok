@@ -38,6 +38,9 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.1.0
+* Mod authors can now set custom menu ordering by setting "menu_pos"
+	* [A new wiki page has been created going over this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
 ### v2.0.1
 * Fixed the Configuration Menu not being editable while on the main menu
 * Fixed the MCM button not showing up in the settings screen on larger displays
