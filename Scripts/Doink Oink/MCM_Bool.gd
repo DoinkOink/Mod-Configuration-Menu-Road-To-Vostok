@@ -48,8 +48,8 @@ func _on_on_pressed() -> void:
 	
 	CheckHasChanged(value)
 
-func CheckHasChanged(_value):
-	hasChanged = defaultValue != _value
+func CheckHasChanged(checkValue):
+	hasChanged = defaultValue != checkValue
 	if hasChanged:
 		defaultRevertButton.show()
 	else:

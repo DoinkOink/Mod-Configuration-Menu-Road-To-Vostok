@@ -49,20 +49,20 @@ func GetValueData():
 	valueData["value"] = sliderInput.value
 	return valueData
 
-func CheckHasChanged(_value):
-	hasChanged = defaultValue != _value
+func CheckHasChanged(checkValue):
+	hasChanged = defaultValue != checkValue
 	if hasChanged:
 		defaultRevertButton.show()
 	else:
 		defaultRevertButton.hide()
 
-func _on_slider_value_changed(_value: float) -> void:
-	sliderInput.value = _value
-	CheckHasChanged(_value)
+func _on_slider_value_changed(newValue: float) -> void:
+	sliderInput.value = newValue
+	CheckHasChanged(newValue)
 
-func _on_input_value_changed(_value: float) -> void:
-	slider.value = _value
-	CheckHasChanged(_value)
+func _on_input_value_changed(newValue: float) -> void:
+	slider.value = newValue
+	CheckHasChanged(newValue)
 
 func _on_default_button_pressed() -> void:
 	value = defaultValue

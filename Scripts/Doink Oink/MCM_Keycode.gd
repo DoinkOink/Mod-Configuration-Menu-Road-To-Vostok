@@ -54,8 +54,8 @@ func GetValueData():
 	valueData["value"] = value.physical_keycode
 	return valueData
 
-func CheckHasChanged(_value):
-	hasChanged = defaultValue != _value.physical_keycode
+func CheckHasChanged(checkValue):
+	hasChanged = defaultValue != checkValue.physical_keycode
 	if hasChanged:
 		defaultRevertButton.show()
 	else:

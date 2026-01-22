@@ -43,29 +43,28 @@ func CreateAllModButtons():
 	for _modId in MCMHelpers.RegisteredMods:
 		CreateModButton(MCMHelpers.RegisteredMods[_modId])
 		
-func CreateModButton(_mod):
+func CreateModButton(mod):
 	var _button: Button = modListButton.instantiate()
-	_button.text = "    " + _mod.friendlyName
-	_button.pressed.connect(_on_mod_button_pressed.bind(_mod.id))
+	_button.text = "    " + mod.friendlyName
+	_button.pressed.connect(_on_mod_button_pressed.bind(mod.id))
 	
 	ModListPanel.add_child(_button)
 	
-func _on_mod_button_pressed(_modId: String):
-	print(_modId)
+func _on_mod_button_pressed(modId: String):
 	if loadedModId != "":
 		SaveConfiguration(loadedModId)
 	else:
 		Logo.hide()
 		
-	loadedModId = _modId
+	loadedModId = modId
 	LoadConfiguration(loadedModId)
 	
-func LoadConfiguration(_modId: String):
+func LoadConfiguration(modId: String):
 	ClearConfiguration()
 	
 	var _configFiles: Dictionary = MCMHelpers.RegisteredMods[loadedModId].fileOnSaveCallbacks
-	currentConfig = MCMHelpers.GetModConfigFile(_modId)
-	currentConfigFileId = MCMHelpers.RegisteredMods[_modId].fileOnSaveCallbacks.keys()[0]
+	currentConfig = MCMHelpers.GetModConfigFile(modId)
+	currentConfigFileId = MCMHelpers.RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
 	
 	var _properties = SortModProperties(currentConfig)
 	
@@ -91,7 +90,7 @@ func LoadConfiguration(_modId: String):
 		elif _section == "Color":
 			_element = colorValueEditor.instantiate()
 		else:
-			push_warning("[MCM] " + _modId + " has an unsupported value type [" + _section + "] in config file")
+			push_warning("[MCM] " + modId + " has an unsupported value type [" + _section + "] in config file")
 			continue
 			
 		_element.valueId = _valueKey
@@ -100,20 +99,20 @@ func LoadConfiguration(_modId: String):
 		
 		ConfigPanel.add_child(_element)
 	
-func SaveConfiguration(_modId: String):
+func SaveConfiguration(modId: String):
 	for _element in ConfigPanel.get_children():
 		currentConfig.set_value(_element.section, _element.valueId, _element.GetValueData())
 		
-	if FileAccess.file_exists(MCMHelpers.RegisteredMods[_modId].filePath + currentConfigFileId):
-		var _saveStatus = currentConfig.save(MCMHelpers.RegisteredMods[_modId].filePath + currentConfigFileId)
+	if FileAccess.file_exists(MCMHelpers.RegisteredMods[modId].filePath + currentConfigFileId):
+		var _saveStatus = currentConfig.save(MCMHelpers.RegisteredMods[modId].filePath + currentConfigFileId)
 		if _saveStatus == 0:
-			print("[MCM] " + _modId + ": " + currentConfigFileId + " has been saved.")
-			MCMHelpers.CallConfigCallback(_modId, currentConfigFileId, currentConfig)
+			print("[MCM] " + modId + ": " + currentConfigFileId + " has been saved.")
+			MCMHelpers.CallConfigCallback(modId, currentConfigFileId, currentConfig)
 		else:
-			print("[MCM] The config file " + currentConfigFileId + " for mod " + _modId + " has not been saved with the status code: " + _saveStatus)
+			print("[MCM] The config file " + currentConfigFileId + " for mod " + modId + " has not been saved with the status code: " + _saveStatus)
 			
 	if currentConfig.has_section("Keycode"):
-		MCMHelpers.UpdateInputs(_modId, currentConfigFileId)
+		MCMHelpers.UpdateInputs(modId, currentConfigFileId)
 	
 func SortModProperties(configFile):
 	var _values = []

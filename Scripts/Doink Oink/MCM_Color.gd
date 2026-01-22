@@ -32,8 +32,8 @@ func GetValueData():
 	valueData["value"] = colorPicker.color
 	return valueData
 
-func CheckHasChanged(_value):
-	hasChanged = defaultValue != _value
+func CheckHasChanged(checkValue):
+	hasChanged = defaultValue != checkValue
 	if hasChanged:
 		defaultRevertButton.show()
 	else:

@@ -32,15 +32,15 @@ func GetValueData():
 	valueData["value"] = value
 	return valueData
 	
-func CheckHasChanged(_value):
-	hasChanged = defaultValue != _value
+func CheckHasChanged(checkValue):
+	hasChanged = defaultValue != checkValue
 	if hasChanged:
 		defaultRevertButton.show()
 	else:
 		defaultRevertButton.hide()
 
-func _on_input_text_submitted(new_text):
-	value = new_text
+func _on_input_text_submitted(newValue):
+	value = newValue
 	CheckHasChanged(value)
 
 func _on_default_button_pressed() -> void:
