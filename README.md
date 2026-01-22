@@ -42,7 +42,6 @@ None right now :)
 * The Color Picker value type has been added
 	* [Head over to the new wiki page to see this new value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
 	* Thank you for LanaOnTheRhoades for suggesting this
-
 ### v2.1.0
 * Mod authors can now set custom menu ordering by setting "menu_pos"
 	* [A new wiki page has been created going over this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
