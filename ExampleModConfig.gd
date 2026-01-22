@@ -1,7 +1,7 @@
 extends Node
 
 var McmHelpers = load("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
-var MCMNotInstalledUI = preload("res://FreeLook/UI/mcm_not_installed.tscn")
+var MCMNotInstalledUI = preload("res://ModConfigurationMenu/UI/mcm_not_installed.tscn")
 
 const FILE_PATH = "user://MCM/ExampleMod"
 const MOD_ID = "ExampleMod"
