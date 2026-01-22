@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpllxwxucrfr1"]
+[gd_scene load_steps=14 format=3 uid="uid://cpllxwxucrfr1"]
 
 [ext_resource type="Script" uid="uid://bb2ho30bbe4pu" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCMMenu.gd" id="1_5lfkr"]
 [ext_resource type="PackedScene" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Mod_List_Button.tscn" id="2_jxbuv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://7lg0l3h8unnq" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn" id="3_x5oih"]
 [ext_resource type="PackedScene" uid="uid://33nsgfalxfbr" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn" id="4_f8le3"]
 [ext_resource type="PackedScene" uid="uid://ccio7axqb4r3q" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn" id="5_iiujf"]
+[ext_resource type="PackedScene" uid="uid://cfkvwghmbu1b0" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn" id="8_w012w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ea2b1"]
 bg_color = Color(0.129412, 0.156863, 0.184314, 1)
@@ -209,6 +210,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Keycode" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/Settings" instance=ExtResource("5_iiujf")]
+layout_mode = 2
+
+[node name="String Value_2" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/Settings" instance=ExtResource("8_w012w")]
 layout_mode = 2
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

@@ -11,6 +11,7 @@ var sliderValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink
 var boolValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn")
 var stringValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn")
 var keycodeValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn")
+var colorValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn")
 
 var uiManager
 var isRemapping = false
@@ -87,6 +88,8 @@ func LoadConfiguration(_modId: String):
 			_element = stringValueEditor.instantiate()
 		elif _section == "Keycode":
 			_element = keycodeValueEditor.instantiate()
+		elif _section == "Color":
+			_element = colorValueEditor.instantiate()
 		else:
 			push_warning("[MCM] " + _modId + " has an unsupported value type [" + _section + "] in config file")
 			continue
