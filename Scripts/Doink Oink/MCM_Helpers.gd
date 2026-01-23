@@ -41,6 +41,13 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
 					
 				_currentConfig.set_value(_section, _key, _currentValues)
 				
+	# Now check to see if the author has removed any values from the config
+	for _section in _currentConfig.get_sections():
+		for _key in _currentConfig.get_section_keys(_section):
+			if (!newConfig.has_section_key(_section, _key)):
+				_currentConfig.erase_section_key(_section, _key)
+				_newValue = true
+				
 	if _newValue:
 		print("[MCM] " + modId + " has updated its config file successfully.")
 		_currentConfig.save(configPath)
