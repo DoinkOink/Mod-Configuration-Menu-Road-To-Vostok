@@ -1,9 +1,9 @@
 extends Node
 
-@onready var nameLabel = find_child("Label")
-@onready var slider = find_child("Slider")
-@onready var sliderInput = find_child("Input")
-@onready var defaultRevertButton = find_child("Default Button")
+@onready var nameLabel : Label = find_child("Label")
+@onready var slider : HSlider = find_child("Slider")
+@onready var sliderInput : SpinBox = find_child("Input")
+@onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
 var section: String
@@ -24,6 +24,8 @@ func _ready():
 	
 	if !valueId:
 		return
+		
+	isInt = section == "Int"
 	
 	nameLabel.text = valueData["name"]
 	nameLabel.tooltip_text = valueData["tooltip"]
@@ -40,8 +42,12 @@ func _ready():
 	
 	slider.value = value
 	slider.min_value = minRange
-	slider.max_value = maxRange	
+	slider.max_value = maxRange
 	slider.rounded = isInt
+	
+	if (isInt):
+		sliderInput.step = 1
+		slider.step = 1
 	
 	CheckHasChanged(value)
 	
@@ -51,10 +57,8 @@ func GetValueData():
 
 func CheckHasChanged(checkValue):
 	hasChanged = defaultValue != checkValue
-	if hasChanged:
-		defaultRevertButton.show()
-	else:
-		defaultRevertButton.hide()
+	defaultRevertButton.disabled = !hasChanged
+	defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
 func _on_slider_value_changed(newValue: float) -> void:
 	sliderInput.value = newValue
@@ -68,4 +72,4 @@ func _on_default_button_pressed() -> void:
 	value = defaultValue
 	sliderInput.value = value
 	slider.value = value
-	defaultRevertButton.hide()
+	CheckHasChanged(value)

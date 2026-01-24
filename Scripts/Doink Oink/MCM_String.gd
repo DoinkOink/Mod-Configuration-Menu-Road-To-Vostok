@@ -1,8 +1,8 @@
 extends Node
 
-@onready var variableLabel = find_child("Label")
-@onready var textInput = find_child("Input")
-@onready var defaultRevertButton = find_child("Default Button")
+@onready var variableLabel : Label = find_child("Label")
+@onready var textInput : LineEdit = find_child("Input")
+@onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
 var section: String
@@ -34,10 +34,8 @@ func GetValueData():
 	
 func CheckHasChanged(checkValue):
 	hasChanged = defaultValue != checkValue
-	if hasChanged:
-		defaultRevertButton.show()
-	else:
-		defaultRevertButton.hide()
+	defaultRevertButton.disabled = !hasChanged
+	defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
 func _on_input_text_submitted(newValue):
 	value = newValue
@@ -46,4 +44,4 @@ func _on_input_text_submitted(newValue):
 func _on_default_button_pressed() -> void:
 	value = defaultValue
 	textInput.text = value
-	defaultRevertButton.hide()
+	CheckHasChanged(value)

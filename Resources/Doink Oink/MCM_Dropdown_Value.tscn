@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg7bdpjwt3mrv"]
+[gd_scene load_steps=6 format=3 uid="uid://cg7bdpjwt3mrv"]
 
 [ext_resource type="Script" uid="uid://b6rlgwpcoyw4a" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Dropdown.gd" id="1_wh4rw"]
+[ext_resource type="Texture2D" uid="uid://bl21dxqpc5dcb" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/revert.png" id="2_8rek5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib3qj"]
 bg_color = Color(0.172549, 0.243137, 0.313726, 1)
@@ -55,14 +56,15 @@ layout_mode = 2
 allow_reselect = true
 
 [node name="Default Button" type="Button" parent="Container"]
-visible = false
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 tooltip_text = "Revert to default value."
 theme_override_styles/hover = SubResource("StyleBoxFlat_ib3qj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0iw1i")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mwru0")
-text = "X"
+disabled = true
+icon = ExtResource("2_8rek5")
+icon_alignment = 1
 
 [connection signal="item_selected" from="Container/Dropdown" to="." method="_on_dropdown_item_selected"]
 [connection signal="pressed" from="Container/Default Button" to="." method="_on_default_button_pressed"]

@@ -1,9 +1,9 @@
 extends Node
 
-@onready var nameLabel = find_child("Label")
-@onready var off = find_child("Off")
-@onready var on = find_child("On")
-@onready var defaultRevertButton = find_child("Default Button")
+@onready var nameLabel : Label = find_child("Label")
+@onready var off : Button = find_child("Off")
+@onready var on : Button = find_child("On")
+@onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
 var section: String
@@ -50,13 +50,11 @@ func _on_on_pressed() -> void:
 
 func CheckHasChanged(checkValue):
 	hasChanged = defaultValue != checkValue
-	if hasChanged:
-		defaultRevertButton.show()
-	else:
-		defaultRevertButton.hide()
+	defaultRevertButton.disabled = !hasChanged
+	defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
 func _on_default_button_pressed() -> void:
 	value = defaultValue
 	on.button_pressed = value
 	off.button_pressed = !value
-	defaultRevertButton.hide()
+	CheckHasChanged(value)

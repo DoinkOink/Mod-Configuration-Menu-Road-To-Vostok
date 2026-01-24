@@ -1,8 +1,8 @@
 extends Node
 
-@onready var variableLabel = find_child("Label")
-@onready var keycodeInput = find_child("Input")
-@onready var defaultRevertButton = find_child("Default Button")
+@onready var variableLabel : Label = find_child("Label")
+@onready var keycodeInput : Button = find_child("Input")
+@onready var defaultRevertButton : Button = find_child("Default Button")
 
 var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 
@@ -56,10 +56,8 @@ func GetValueData():
 
 func CheckHasChanged(checkValue):
 	hasChanged = defaultValue != checkValue.physical_keycode
-	if hasChanged:
-		defaultRevertButton.show()
-	else:
-		defaultRevertButton.hide()
+	defaultRevertButton.disabled = !hasChanged
+	defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
 func _on_keycode_pressed():
 	if !isRemapping:
@@ -73,4 +71,4 @@ func _on_default_button_pressed() -> void:
 	value.physical_keycode = defaultValue
 	
 	keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
-	defaultRevertButton.hide()
+	CheckHasChanged(value)

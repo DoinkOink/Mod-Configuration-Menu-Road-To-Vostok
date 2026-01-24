@@ -38,6 +38,12 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.3.1
+* Changed how the revert button displays
+	* Changed to an Icon instead of using an X for better function readability
+	* UI elements will not shift when being hidden/shown anymore
+* Fixed the Int slider behaving like a Float
+	* Thank you for Oldman for pointing this out
 ### v2.3.0
 * CheckConfigurationHasUpdated has been updated to also remove config values that no longer exist
 * The Dropdown value type as been added

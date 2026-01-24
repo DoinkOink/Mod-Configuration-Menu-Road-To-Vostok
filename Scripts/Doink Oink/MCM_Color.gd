@@ -1,9 +1,8 @@
 extends Node
 
-@onready var nameLabel = find_child("Label")
-@onready var slider = find_child("Slider")
-@onready var colorPicker = find_child("ColorPicker")
-@onready var defaultRevertButton = find_child("Default Button")
+@onready var nameLabel : Label = find_child("Label")
+@onready var colorPicker : ColorPickerButton = find_child("ColorPicker")
+@onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
 var section: String
@@ -34,10 +33,8 @@ func GetValueData():
 
 func CheckHasChanged(checkValue):
 	hasChanged = defaultValue != checkValue
-	if hasChanged:
-		defaultRevertButton.show()
-	else:
-		defaultRevertButton.hide()
+	defaultRevertButton.disabled = !hasChanged
+	defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
 func _on_color_picker_color_changed(color: Color) -> void:
 	value = color
@@ -46,4 +43,4 @@ func _on_color_picker_color_changed(color: Color) -> void:
 func _on_default_button_pressed() -> void:
 	value = defaultValue
 	colorPicker.color = value
-	defaultRevertButton.hide()
+	CheckHasChanged(value)

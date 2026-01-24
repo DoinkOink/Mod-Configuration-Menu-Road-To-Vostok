@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccio7axqb4r3q"]
+[gd_scene load_steps=6 format=3 uid="uid://ccio7axqb4r3q"]
 
 [ext_resource type="Script" uid="uid://0vo8q4ix2bcm" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Keycode.gd" id="1_oos7r"]
+[ext_resource type="Texture2D" uid="uid://bl21dxqpc5dcb" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/revert.png" id="2_wcdjo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4ard"]
 bg_color = Color(0.172549, 0.243137, 0.313726, 1)
@@ -56,13 +57,14 @@ theme_override_font_sizes/font_size = 25
 text = "Press key to bind..."
 
 [node name="Default Button" type="Button" parent="Container"]
-visible = false
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 tooltip_text = "Revert to default value."
 theme_override_styles/hover = SubResource("StyleBoxFlat_c4ard")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_m8k1w")
 theme_override_styles/normal = SubResource("StyleBoxFlat_pyq26")
-text = "X"
+disabled = true
+icon = ExtResource("2_wcdjo")
+icon_alignment = 1
 
 [connection signal="pressed" from="Container/Default Button" to="." method="_on_default_button_pressed"]

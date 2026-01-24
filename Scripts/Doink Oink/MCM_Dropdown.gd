@@ -1,8 +1,8 @@
 extends Node
 
-@onready var variableLabel = find_child("Label")
+@onready var variableLabel : Label = find_child("Label")
 @onready var dropdown : OptionButton = find_child("Dropdown")
-@onready var defaultRevertButton = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
 var section: String
@@ -39,10 +39,8 @@ func GetValueData():
 	
 func CheckHasChanged(checkValue):
 	hasChanged = defaultValue != checkValue
-	if hasChanged:
-		defaultRevertButton.show()
-	else:
-		defaultRevertButton.hide()
+	defaultRevertButton.disabled = !hasChanged
+	defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
 func _on_input_text_submitted(newValue):
 	value = newValue
@@ -51,7 +49,7 @@ func _on_input_text_submitted(newValue):
 func _on_default_button_pressed() -> void:
 	value = defaultValue
 	dropdown.selected = value
-	defaultRevertButton.hide()
+	CheckHasChanged(value)
 
 func _on_dropdown_item_selected(index: int) -> void:
 	value = index
