@@ -6,6 +6,8 @@ var MCMNotInstalledUI = preload("res://ModConfigurationMenu/UI/mcm_not_installed
 const FILE_PATH = "user://MCM/ExampleMod"
 const MOD_ID = "ExampleMod"
 
+enum testEnum {first, second, third}
+
 func _ready():
 	var _config = ConfigFile.new()
 	_config.set_value("Int", "testInt", {
@@ -60,6 +62,18 @@ func _ready():
 		"default" = Color.WHITE,
 		"value" = Color.WHITE
 	})
+	
+	_config.set_value("Dropdown", "testDropdown", {
+		"name" = "Test Dropdown",
+		"tooltip" = "A test dropdown",
+		"default" = 1,
+		"value" = 1,
+		"options" = [
+			"Option 1",
+			"Option 2",
+			"Option 3"
+		]
+	})
 		
 	if McmHelpers:
 		if !FileAccess.file_exists(FILE_PATH + "/config.ini"):
@@ -68,7 +82,7 @@ func _ready():
 		else:
 			McmHelpers.CheckConfigurationHasUpdated(MOD_ID, _config, FILE_PATH + "/config.ini")
 			_config.load(FILE_PATH + "/config.ini")
-		
+	
 		McmHelpers.RegisterConfiguration(
 			MOD_ID,
 			"Example Mod",

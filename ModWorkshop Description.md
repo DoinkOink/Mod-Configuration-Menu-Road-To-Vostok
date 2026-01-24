@@ -34,13 +34,18 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # {#3498db}(Changelog)
+### v2.3.0
+* CheckConfigurationHasUpdated has been updated to also remove config values that no longer exist
+* The Dropdown value type as been added
+	* [Head over to the new wiki page to see how to add this value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
+	* Thank you for Oldman for the suggesting this
 ### v2.2.0
 * The Color Picker value type has been added
-	* [Head over to the new wiki page to see how to add this value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
+	* [Head over to the wiki page to see how to add this value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
 	* Thank you for LanaOnTheRhoades for suggesting this
 ### v2.1.0
 * Mod authors can now set custom menu ordering by setting "menu_pos"
-	* [A new wiki page has been created going over this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
+	* [A wiki page has been created going over this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
 ### v2.0.1
 * Fixed the Configuration Menu not being editable while on the main menu
 * Fixed the MCM button not showing up in the settings screen on larger displays

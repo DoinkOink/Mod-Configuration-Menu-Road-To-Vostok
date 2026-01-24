@@ -7,11 +7,23 @@ var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Help
 @onready var Logo: Control = find_child("Logo")
 
 var modListButton = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Mod_List_Button.tscn")
-var sliderValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn")
-var boolValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn")
-var stringValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn")
-var keycodeValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn")
-var colorValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn")
+#var sliderValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn")
+#var boolValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn")
+#var stringValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn")
+#var keycodeValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn")
+#var colorValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn")
+#var dropdownValueEditor = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Dropdown_Value.tscn")
+
+var availableElements = {
+	"Int": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn"),
+	# The float element will be added in _ready() since it is the same as int
+	# "FLoat": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn"),
+	"Bool": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn"),
+	"String": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn"),
+	"Keycode": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn"),
+	"Color": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn"),
+	"Dropdown": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Dropdown_Value.tscn")
+}
 
 var uiManager
 var isRemapping = false
@@ -22,6 +34,8 @@ var currentConfig: ConfigFile
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	availableElements["Float"] = availableElements["Int"]
+	
 	ClearConfiguration()
 	CreateAllModButtons()
 	self.visibility_changed.connect(_on_visibility_changed)
@@ -77,18 +91,20 @@ func LoadConfiguration(modId: String):
 		_property.erase("section")
 		_property.erase("key")
 		
-		if _section == "Int" || _section == "Float":
-			_element = sliderValueEditor.instantiate()
-			if _section == "Int":
-				_element.isInt = true
-		elif _section == "Bool":
-			_element = boolValueEditor.instantiate()
-		elif _section == "String":
-			_element = stringValueEditor.instantiate()
-		elif _section == "Keycode":
-			_element = keycodeValueEditor.instantiate()
-		elif _section == "Color":
-			_element = colorValueEditor.instantiate()
+		#if _section == "Int" || _section == "Float":
+			#_element = sliderValueEditor.instantiate()
+			#if _section == "Int":
+				#_element.isInt = true
+		#elif _section == "Bool":
+			#_element = boolValueEditor.instantiate()
+		#elif _section == "String":
+			#_element = stringValueEditor.instantiate()
+		#elif _section == "Keycode":
+			#_element = keycodeValueEditor.instantiate()
+		#elif _section == "Color":
+			#_element = colorValueEditor.instantiate()
+		if (availableElements.has(_section)):
+			_element = availableElements.get(_section).instantiate()
 		else:
 			push_warning("[MCM] " + modId + " has an unsupported value type [" + _section + "] in config file")
 			continue
