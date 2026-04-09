@@ -14,16 +14,18 @@ const MCM_PATH = "user://MCM/"
 func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
 	var _newValue = false
 	var _currentConfig = ConfigFile.new()
+	var _tempConfig = ConfigFile.new()
 	_currentConfig.load(configPath)
+	_tempConfig.load(configPath)
 	
 	for _section in newConfig.get_sections():
 		for _key in newConfig.get_section_keys(_section):
-			if !_currentConfig.has_section_key(_section, _key):
-				_currentConfig.set_value(_section, _key, newConfig.get_value(_section, _key))
+			if !_tempConfig.has_section_key(_section, _key):
+				_tempConfig.set_value(_section, _key, newConfig.get_value(_section, _key))
 				_newValue = true
 			else:
 				var _newValues = newConfig.get_value(_section, _key)
-				var _currentValues = _currentConfig.get_value(_section, _key)
+				var _currentValues = _tempConfig.get_value(_section, _key)
 				
 				if (_newValues["default"] != _currentValues["default"]):
 					_currentValues["default"] = _newValues["default"]
@@ -38,19 +40,33 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
 					if (!_currentValues.has("menu_pos") || _newValues["menu_pos"] != _currentValues["menu_pos"]):
 						_currentValues["menu_pos"] = _newValues["menu_pos"]
 						_newValue = true
+				if (_newValues.has("allowAlpha")):
+					if (!_currentValues.has("allowAlpha") || _newValues["allowAlpha"] != _currentValues["allowAlpha"]):
+						_currentValues["allowAlpha"] = _newValues["allowAlpha"]
+						_newValue = true
+				elif (_currentValues.has("allowAlpha")):
+					_currentValues.erase("allowAlpha")
+					_newValue = true
 					
-				_currentConfig.set_value(_section, _key, _currentValues)
+				_tempConfig.set_value(_section, _key, _currentValues)
 				
 	# Now check to see if the author has removed any values from the config
-	for _section in _currentConfig.get_sections():
-		for _key in _currentConfig.get_section_keys(_section):
+	for _section in _tempConfig.get_sections():
+		for _key in _tempConfig.get_section_keys(_section):
 			if (!newConfig.has_section_key(_section, _key)):
-				_currentConfig.erase_section_key(_section, _key)
+				_tempConfig.erase_section_key(_section, _key)
 				_newValue = true
 				
-	if _newValue:
+	if ConfigHasChanged(_tempConfig, _currentConfig):
 		print("[MCM] " + modId + " has updated its config file successfully.")
-		_currentConfig.save(configPath)
+		_tempConfig.save(configPath)
+		
+func ConfigHasChanged(newConfig: ConfigFile, initialConfig: ConfigFile):
+	for section in newConfig.get_sections():
+		for key in newConfig.get_section_keys(section):
+			if newConfig.get_value(section, key) != initialConfig.get_value(section, key):
+				return true
+	return false
 
 func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: String, modDescription: String, fileOnSaveCallbacks: Dictionary):
 	if !RegisteredMods.has(modId):

@@ -38,6 +38,8 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+###
+* Added the ability to disable the alpha channel on the Color Picker value type
 ### v2.3.1
 * Changed how the revert button displays
 	* Changed to an Icon instead of using an X for better function readability

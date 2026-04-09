@@ -25,6 +25,9 @@ func _ready():
 	
 	colorPicker.color = value
 	
+	if (valueData.has("allowAlpha")):
+		colorPicker.edit_alpha = valueData["allowAlpha"]
+	
 	CheckHasChanged(value)
 	
 func GetValueData():
