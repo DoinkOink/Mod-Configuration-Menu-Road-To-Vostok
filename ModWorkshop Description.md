@@ -19,7 +19,7 @@ To save changes either exit out of the menu, by clicking the exit button or by h
 
 # {#3498db}(Installation)
 * Install the [VostokMods Mod Loader](https://modworkshop.net/mod/49779)
-	* Follow the installation instructions for the mod loader
+    * Follow the installation instructions for the mod loader
 * Move the downloaded ModConfigurationMenu.zip file to the mods folder in your game installation
 
 # {#3498db}(Mod Authors)
@@ -34,30 +34,30 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # {#3498db}(Changelog)
-###
+### v2.3.2
 * Added the ability to disable the alpha channel on the Color Picker value type
 ### v2.3.1
 * Changed how the revert button displays
-	* Changed to an Icon instead of using an X for better function readability
-	* UI elements will not shift when being hidden/shown anymore
+    * Changed to an Icon instead of using an X for better function readability
+    * UI elements will not shift when being hidden/shown anymore
 * Fixed the Int slider behaving like a Float
-	* Thank you for Oldman for pointing this out
+    * Thank you for Oldman for pointing this out
 ### v2.3.0
 * CheckConfigurationHasUpdated has been updated to also remove config values that no longer exist
 * The Dropdown value type as been added
-	* [Head over to the new wiki page to see how to add this value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
-	* Thank you for Oldman for the suggesting this
+    * [Head over to the new wiki page to see how to add this value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
+    * Thank you for Oldman for the suggesting this
 ### v2.2.0
 * The Color Picker value type has been added
-	* [Head over to the wiki page to see how to add this value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
-	* Thank you for LanaOnTheRhoades for suggesting this
+    * [Head over to the wiki page to see how to add this value type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
+    * Thank you for LanaOnTheRhoades for suggesting this
 ### v2.1.0
 * Mod authors can now set custom menu ordering by setting "menu_pos"
-	* [A wiki page has been created going over this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
+    * [A wiki page has been created going over this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
 ### v2.0.1
 * Fixed the Configuration Menu not being editable while on the main menu
 * Fixed the MCM button not showing up in the settings screen on larger displays
-	* Thank you to both Bama and CrackpotTheorist from the Vostok discord for helping me test fixes for these issues.
+    * Thank you to both Bama and CrackpotTheorist from the Vostok discord for helping me test fixes for these issues.
 ### v2.0.0
 * Updated the mod to work with the Next Fest demo
 * Configuration tooltips now display
@@ -66,13 +66,13 @@ None right now :)
 * Fixed a typo in the function name `CheckConfigurationHasUpdated`
 ### V1.2.0
 * Added the `CheckConfigruationHasUpdated` function to the MCM_Helpers script
-	* This function will allow MCM to update a mods configuration file if there was new settings added with an update. Instructions on how to set this up will be on the [wiki](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki).
+    * This function will allow MCM to update a mods configuration file if there was new settings added with an update. Instructions on how to set this up will be on the [wiki](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki).
 ### v1.1.1
 * Fixed a bug where the MCM folder, that holds the config files for mods, is never initially created by the mod. This would cause mods using MCM not to be able to create config files correctly.
-	* Thank you to DeleteBeliever for reporting this and helping me debug the issue.
+    * Thank you to DeleteBeliever for reporting this and helping me debug the issue.
 ### v1.1.0
 * Removed all overrides to scripts using `class_name`
-	* Oldman's Immersive Overhaul and MrJacket's Demo Overhaul are now compatible because of this change
+    * Oldman's Immersive Overhaul and MrJacket's Demo Overhaul are now compatible because of this change
 * Fixed an error when changing keycodes while in the main menu
 ### v1.0.1
 * Fixed a crash that would occur when alt tabbing out of the game when loading a scene
