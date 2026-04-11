@@ -6,8 +6,6 @@ var MCMNotInstalledUI = preload("res://ModConfigurationMenu/UI/mcm_not_installed
 const FILE_PATH = "user://MCM/ExampleMod"
 const MOD_ID = "ExampleMod"
 
-enum testEnum {first, second, third}
-
 func _ready():
     var _config = ConfigFile.new()
     _config.set_value("Int", "testInt", {
@@ -46,7 +44,9 @@ func _ready():
         "name" = "Test Keycode",
         "tooltip" = "A test keycode",
         "default" = KEY_ALT,
-        "value" = KEY_ALT
+        "default_type" = "Key",
+        "value" = KEY_ALT,
+        "type" = "Key"
     })
     
     _config.set_value("String", "testString", {

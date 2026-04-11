@@ -38,6 +38,10 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.3.3
+* The Keycode datatype now allows users to input Mouse Buttons
+    * While this doesn't require any extra setup for mod authors to be compatible it is best to implement the new values talked about [here](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Keycode-Value-Type)
+    * Thank you to Zippy for bringing this to my attention
 ### v2.3.2
 * Added the ability to disable the alpha channel on the Color Picker value type
 ### v2.3.1
