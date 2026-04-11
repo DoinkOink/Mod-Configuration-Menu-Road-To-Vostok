@@ -1,5 +1,5 @@
 <p align="center">
-<img width="245" height="245" alt="Blue gear icon with text 'Mod Configuration Menu' in green, blocky letters at the center." src="https://github.com/user-attachments/assets/a01224d4-3706-4b8a-a183-9938100edc78" />
+<img height="350" alt="White text on black background reads 'MCM' in vertical block letters and 'Mod Configuration Menu' to the right, with two horizontal lines." src="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true" />
 </p>
 
 # What is Mod Configuration Menu
