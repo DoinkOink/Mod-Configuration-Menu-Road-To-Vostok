@@ -109,3 +109,7 @@ func _ready():
 
 func UpdateConfigProperties(config: ConfigFile):
     print(config.get_value("String", "testString"))
+    
+func _input(event):
+    if (Input.is_action_pressed("testKeycode")):
+        print("Test Keycode Pressed")
