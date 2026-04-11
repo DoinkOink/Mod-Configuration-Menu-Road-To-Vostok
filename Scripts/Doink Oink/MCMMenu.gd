@@ -1,10 +1,14 @@
 extends Control
+class_name MCMMenu
 
 var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
+var audioLibrary = preload("res://Resources/AudioLibrary.tres")
+var audioInstance2D = preload("res://Resources/AudioInstance2D.tscn")
 
 @onready var ModListPanel = find_child("Mods")
 @onready var ConfigPanel = find_child("Settings")
 @onready var Logo: Control = find_child("Logo")
+@onready var SettingsLabel: Label = find_child("Settings_Label", true, false)
 
 var modListButton = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Mod_List_Button.tscn")
 
@@ -23,6 +27,7 @@ var uiManager
 var isRemapping = false
 
 var loadedModId: String = ""
+var loadedButton: Button
 var currentConfigFileId: String = ""
 var currentConfig: ConfigFile
 
@@ -41,7 +46,8 @@ func _on_visibility_changed():
         
     ClearConfiguration()
     CreateAllModButtons()
-    Logo.show()
+    PlayClick()
+    #Logo.show()
     #MCMHelpers.MCMMenu.get_children()[2].pressed.get_connections()[0].callable.call()
 
 func CreateAllModButtons():
@@ -54,18 +60,22 @@ func CreateAllModButtons():
 func CreateModButton(mod):
     var _button: Button = modListButton.instantiate()
     _button.text = "    " + mod.friendlyName
-    _button.pressed.connect(_on_mod_button_pressed.bind(mod.id))
+    _button.pressed.connect(_on_mod_button_pressed.bind(mod.id, _button))
     
     ModListPanel.add_child(_button)
     
-func _on_mod_button_pressed(modId: String):
+func _on_mod_button_pressed(modId: String, button: Button):
     if loadedModId != "":
         SaveConfiguration(loadedModId)
+        loadedButton.button_pressed = false
     else:
         Logo.hide()
         
     loadedModId = modId
+    loadedButton = button
+    loadedButton.button_pressed = true
     LoadConfiguration(loadedModId)
+    PlayClick()
     
 func LoadConfiguration(modId: String):
     ClearConfiguration()
@@ -73,6 +83,8 @@ func LoadConfiguration(modId: String):
     var _configFiles: Dictionary = MCMHelpers.RegisteredMods[loadedModId].fileOnSaveCallbacks
     currentConfig = MCMHelpers.GetModConfigFile(modId)
     currentConfigFileId = MCMHelpers.RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
+    
+    SettingsLabel.text = MCMHelpers.RegisteredMods[loadedModId].friendlyName + " Settings"
     
     var _properties = SortModProperties(currentConfig)
     
@@ -93,6 +105,7 @@ func LoadConfiguration(modId: String):
         _element.valueId = _valueKey
         _element.section = _section
         _element.valueData = _property
+        _element.menu = self
         
         ConfigPanel.add_child(_element)
     
@@ -143,4 +156,10 @@ func _sort_by_pos_and_name(a, b):
         return _aPos < _bPos
 
 func _on_back_pressed() -> void:
+    SettingsLabel.text = "Settings"
     MCMHelpers.ToggleMCMMenu()
+
+func PlayClick():
+    var click = audioInstance2D.instantiate()
+    add_child(click)
+    click.PlayInstance(audioLibrary.UIClick)

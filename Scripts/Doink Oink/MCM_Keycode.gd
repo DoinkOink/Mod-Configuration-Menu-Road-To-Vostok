@@ -9,6 +9,7 @@ var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Help
 var valueId: String
 var section: String
 var valueData
+var menu: MCMMenu
 
 var value: InputEvent
 var defaultValue
@@ -61,7 +62,7 @@ func _input(event):
             
             Input.mouse_mode = Input.MOUSE_MODE_CONFINED
             isRemapping = false
-    elif MCMHelpers.MCMMenu && MCMHelpers.MCMMenu.visible:
+    elif MCMHelpers.MCM_Menu && MCMHelpers.MCM_Menu.visible:
         MCMHelpers.isRemapping = false
             
 func GetValueData():
@@ -106,6 +107,7 @@ func _on_keycode_pressed():
         MCMHelpers.isRemapping = true
         keycodeInput.text = "Press key to bind..."
         Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+        menu.PlayClick()
 
 func _on_default_button_pressed() -> void:
     if (valueData["default_type"] == "Mouse"):
@@ -120,3 +122,4 @@ func _on_default_button_pressed() -> void:
     valueData["type"] = valueData["default_type"]
     
     CheckHasChanged(value)
+    menu.PlayClick()

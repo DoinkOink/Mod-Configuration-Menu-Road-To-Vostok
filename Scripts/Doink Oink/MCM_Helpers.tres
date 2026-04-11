@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="MCM_Helpers" load_steps=2 format=4]
+[gd_resource type="Resource" script_class="MCM_Helpers" format=3 uid="uid://dl4ylcpgk7pcg"]
 
-[ext_resource type="Script" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.gd" id="1"]
+[ext_resource type="Script" uid="uid://hsf8iljwxg2d" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.gd" id="1"]
 
 [resource]
 script = ExtResource("1")

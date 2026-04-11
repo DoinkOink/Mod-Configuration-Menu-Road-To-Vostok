@@ -6,7 +6,7 @@ var RegisteredMods = {}
 var isRemapping = false
 
 var MCMButton
-var MCMMenu
+var MCM_Menu
 var SettingsMenu
 
 const MCM_PATH = "user://MCM/"
@@ -172,9 +172,9 @@ func GetModConfigFile(modId: String, fileId := "") -> ConfigFile:
     return _config
     
 func ToggleMCMMenu():
-    if MCMMenu.visible:
+    if MCM_Menu.visible:
         SettingsMenu.show()
-        MCMMenu.hide()
+        MCM_Menu.hide()
     else:
         SettingsMenu.hide()
-        MCMMenu.show()
+        MCM_Menu.show()
