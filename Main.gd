@@ -37,9 +37,12 @@ func CreateMCMButton():
         MCMHelpers.MCM_Menu.queue_free()
         
     var _sceneName = get_tree().current_scene.name    
-    var _settings = get_tree().root.find_child("UI_Settings", true, false)    
-    #var _inputs = get_tree().root.find_child("Inputs", true, false)
-    #var _resetButton = _inputs.find_child("Reset") as Button
+    var _settings = get_tree().root.find_child("UI_Settings", true, false)   
+    
+    print(_sceneName) 
+    
+    if (_sceneName == "Death"):
+        return
     
     if (_settings):
         MCMHelpers.SettingsMenu = _settings

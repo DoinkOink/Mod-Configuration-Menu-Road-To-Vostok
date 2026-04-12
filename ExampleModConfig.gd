@@ -26,7 +26,7 @@ func _ready():
     
     _config.set_value("Bool", "testBool2", {
         "name" = "Test Bool 2",
-        "tooltip" = "The first test bool",
+        "tooltip" = "The second test bool",
         "default" = true,
         "value" = true
     })
@@ -37,7 +37,8 @@ func _ready():
         "default" = 10.3,
         "value" = 10.3,
         "minRange" = 0,
-        "maxRange" = 50.5
+        "maxRange" = 50.5,
+        "step" = 0.1
     })
     
     _config.set_value("Keycode", "testKeycode", {
@@ -110,6 +111,6 @@ func _ready():
 func UpdateConfigProperties(config: ConfigFile):
     print(config.get_value("String", "testString"))
     
-#func _input(event):
-    #if (Input.is_action_pressed("testKeycode")):
-        #print("Test Keycode Pressed")
+func _input(event):
+    if (InputMap.has_action("testKeycode") && Input.is_action_pressed("testKeycode")):
+        print("Test Keycode Pressed")

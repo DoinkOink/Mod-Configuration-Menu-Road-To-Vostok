@@ -1,9 +1,9 @@
 <p align="center">
-<picture>
-  <source width="600px" media="(prefers-color-scheme: dark)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
-  <source width="600px" media="(prefers-color-scheme: light)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent_light-bg.png?raw=true">
-  <img width="600px" alt="Fallback image description" src="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
-</picture>
+    <picture>
+    <source width="600px" media="(prefers-color-scheme: dark)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
+    <source width="600px" media="(prefers-color-scheme: light)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent_light-bg.png?raw=true">
+    <img width="600px" alt="Fallback image description" src="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
+    </picture>
 </p>
 
 # What is Mod Configuration Menu
@@ -42,6 +42,11 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.5.1
+* Actually fixed the slider issue this time
+* Fixed a crash when the player dies
+    * Thank you to domfrags for finding this one
+* Added the ability to set how many decimal spots are in a Float value with the step value
 ### v2.5.0
 * Complete redesign of the MCM UI to match the games UI
     * A huge shotout to MJRamon for creating this redesign along with the new logo

@@ -41,12 +41,15 @@ func _ready():
     sliderInput.rounded = isInt
     sliderInput.value = value
     
-    slider.value = value
     slider.min_value = minRange
     slider.max_value = maxRange
     slider.rounded = isInt
+    slider.value = value
     
-    if (isInt):
+    if ("step" in valueData):
+        sliderInput.step = valueData["step"]
+        slider.step = valueData["step"]
+    elif (isInt):
         sliderInput.step = 1
         slider.step = 1
     
