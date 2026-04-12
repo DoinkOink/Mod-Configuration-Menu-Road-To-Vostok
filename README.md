@@ -1,5 +1,9 @@
 <p align="center">
-<img height="350" alt="White text on black background reads 'MCM' in vertical block letters and 'Mod Configuration Menu' to the right, with two horizontal lines." src="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true" />
+<picture>
+  <source width="600px" media="(prefers-color-scheme: dark)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
+  <source width="600px" media="(prefers-color-scheme: light)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent_light-bg.png?raw=true">
+  <img width="600px" alt="Fallback image description" src="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
+</picture>
 </p>
 
 # What is Mod Configuration Menu
