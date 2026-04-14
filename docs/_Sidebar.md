@@ -1,0 +1,18 @@
+* [Initial Mod Setup](Initial-Mod-Setup)
+* [Creating The Config File](Creating-The-Config-File)
+    * [String Value Type](String-Value-Type)
+    * [Integer Value Type](Integer-Value-Type)
+    * [Float Value Type](Float-Value-Type)
+    * [Boolean Value Type](Boolean-Value-Type)
+    * [Keycode Value Type](Keycode-Value-Type)
+    * [Color Value Type](Color-Picker-Value-Type)
+    * [Dropdown Value Type](Dropdown-Value-Type)
+* [Registering Your Mod With MCM](Registering-Your-Mod-With-MCM)
+* [Updating Your Mods Configuration](Updating-Your-Mods-Configuration)
+* [Handling Configuration Updates By The Player](Handling-configuration-updates-by-the-player)
+* [Value Change Callbacks](Value-Change-Callbacks)
+* [Wrapping Up](Wrapping-Up)
+
+### Extras
+* [MCM Not Installed Warning](Extra:-MCM-Not-Installed-Warning)
+* [Custom Config Property Sorting](Custom-Config-Property-Sorting)
