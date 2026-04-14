@@ -80,9 +80,9 @@ func _on_mod_button_pressed(modId: String, button: Button):
 func LoadConfiguration(modId: String):
     ClearConfiguration()
     
-    var _configFiles: Dictionary = MCMHelpers.RegisteredMods[loadedModId].fileOnSaveCallbacks
     currentConfig = MCMHelpers.GetModConfigFile(modId)
     currentConfigFileId = MCMHelpers.RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
+    var _callbackObject = MCMHelpers.RegisteredMods[modId].callbackObject
     
     SettingsLabel.text = MCMHelpers.RegisteredMods[loadedModId].friendlyName + " Settings"
     
@@ -106,6 +106,7 @@ func LoadConfiguration(modId: String):
         _element.section = _section
         _element.valueData = _property
         _element.menu = self
+        _element.callbackObject = _callbackObject
         
         ConfigPanel.add_child(_element)
     

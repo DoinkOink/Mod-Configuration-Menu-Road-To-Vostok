@@ -8,6 +8,7 @@ var valueId: String
 var section: String
 var valueData
 var menu: MCMMenu
+var callbackObject: Object
 
 var value : Color
 var defaultValue : Color
@@ -29,23 +30,30 @@ func _ready():
     if (valueData.has("allowAlpha")):
         colorPicker.edit_alpha = valueData["allowAlpha"]
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
     
 func GetValueData():
     valueData["value"] = colorPicker.color
     return valueData
 
-func CheckHasChanged(checkValue):
+func CheckIsDefault(checkValue):
     hasChanged = defaultValue != checkValue
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
+    
+func OnValueChanged(value):
+    if ("on_value_changed" in valueData && callbackObject):
+        var _callable = Callable(callbackObject, valueData["on_value_changed"])
+        _callable.call(value)
 
 func _on_color_picker_color_changed(color: Color) -> void:
     value = color
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
     colorPicker.color = value
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
     menu.PlayClick()

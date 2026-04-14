@@ -9,6 +9,7 @@ var valueId: String
 var section: String
 var valueData
 var menu: MCMMenu
+var callbackObject: Object
 
 var value
 var defaultValue
@@ -39,12 +40,12 @@ func _ready():
     sliderInput.min_value = minRange
     sliderInput.max_value = maxRange
     sliderInput.rounded = isInt
-    sliderInput.value = value
+    sliderInput.set_value_no_signal(value)
     
     slider.min_value = minRange
     slider.max_value = maxRange
     slider.rounded = isInt
-    slider.value = value
+    slider.set_value_no_signal(value)
     
     if ("step" in valueData):
         sliderInput.step = valueData["step"]
@@ -53,28 +54,36 @@ func _ready():
         sliderInput.step = 1
         slider.step = 1
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
     
 func GetValueData():
     valueData["value"] = sliderInput.value
     return valueData
 
-func CheckHasChanged(checkValue):
+func CheckIsDefault(checkValue):
     hasChanged = defaultValue != checkValue
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
+func OnValueChanged(value):
+    if ("on_value_changed" in valueData && callbackObject):
+        var _callable = Callable(callbackObject, valueData["on_value_changed"])
+        _callable.call(value)
+
 func _on_slider_value_changed(newValue: float) -> void:
     sliderInput.value = newValue
-    CheckHasChanged(newValue)
+    CheckIsDefault(newValue)
+    OnValueChanged(newValue)
 
 func _on_input_value_changed(newValue: float) -> void:
     slider.value = newValue
-    CheckHasChanged(newValue)
+    CheckIsDefault(newValue)
+    OnValueChanged(newValue)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
     sliderInput.value = value
     slider.value = value
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
     menu.PlayClick()

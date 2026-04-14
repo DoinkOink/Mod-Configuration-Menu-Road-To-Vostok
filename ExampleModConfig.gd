@@ -14,7 +14,8 @@ func _ready():
         "default" = 5,
         "value" = 5,
         "minRange" = 0,
-        "maxRange" = 20
+        "maxRange" = 20,
+        "on_value_changed" = "IntCallback"
     })
     
     _config.set_value("Bool", "testBool1", {
@@ -91,7 +92,8 @@ func _ready():
             "A short description of the mod",
             {
                 "config.ini" = UpdateConfigProperties
-            }
+            },
+            self
         )
     else:
         var _notInstalledUI = MCMNotInstalledUI.instantiate()
@@ -110,6 +112,9 @@ func _ready():
 
 func UpdateConfigProperties(config: ConfigFile):
     print(config.get_value("String", "testString"))
+    
+func IntCallback(value):
+    print("Int Update: " + str(value))
     
 func _input(event):
     if (InputMap.has_action("testKeycode") && Input.is_action_pressed("testKeycode")):

@@ -8,6 +8,7 @@ var valueId: String
 var section: String
 var valueData
 var menu: MCMMenu
+var callbackObject: Object
 
 var value: String
 var defaultValue: String
@@ -27,23 +28,30 @@ func _ready():
     textInput.text = value
     textInput.text_changed.connect(_on_input_text_submitted)
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
     
 func GetValueData():
     valueData["value"] = value
     return valueData
     
-func CheckHasChanged(checkValue):
+func CheckIsDefault(checkValue):
     hasChanged = defaultValue != checkValue
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
+    
+func OnValueChanged(value):
+    if ("on_value_changed" in valueData && callbackObject):
+        var _callable = Callable(callbackObject, valueData["on_value_changed"])
+        _callable.call(value)
 
 func _on_input_text_submitted(newValue):
     value = newValue
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
     textInput.text = value
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
     menu.PlayClick()

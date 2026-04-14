@@ -22,52 +22,24 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
         for _key in newConfig.get_section_keys(_section):
             if !_tempConfig.has_section_key(_section, _key):
                 _tempConfig.set_value(_section, _key, newConfig.get_value(_section, _key))
-                #_newValue = true
             else:
                 var _newValues = newConfig.get_value(_section, _key)
                 var _currentValues = _tempConfig.get_value(_section, _key)
                 
                 var _valuesToCheck = ["default", "name", "tooltip", "minRange", "maxRange"]
-                var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type"]
+                var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed"]
                 
                 for _valueName in _valuesToCheck:
                     if (_newValues.has(_valueName)):
                         if (_newValues[_valueName] != _currentValues[_valueName]):
                             _currentValues[_valueName] = _newValues[_valueName]
-                            #_newValue = true
                         
                 for _optionalValueName in _optionalValuesToCheck:
                     if (_newValues.has(_optionalValueName)):
                         if (!_currentValues.has(_optionalValueName) || _newValues[_optionalValueName] != _currentValues[_optionalValueName]):
                             _currentValues[_optionalValueName] = _newValues[_optionalValueName]
-                            #_newValue = true
                     elif (_currentValues.has(_optionalValueName)):
                         _currentValues.erase(_optionalValueName)
-                        #_newValue = true
-                
-                #if (_newValues["default"] != _currentValues["default"]):
-                    #_currentValues["default"] = _newValues["default"]
-                    #_newValue = true
-                #if (_newValues["name"] != _currentValues["name"]):
-                    #_currentValues["name"] = _newValues["name"]
-                    #_newValue = true
-                #if (_newValues["tooltip"] != _currentValues["tooltip"]):
-                    #_currentValues["tooltip"] = _newValues["tooltip"]
-                    #_newValue = true
-                #if (_newValues.has("menu_pos")):
-                    #if (!_currentValues.has("menu_pos") || _newValues["menu_pos"] != _currentValues["menu_pos"]):
-                        #_currentValues["menu_pos"] = _newValues["menu_pos"]
-                        #_newValue = true
-                #if (_newValues.has("step")):
-                    #if (!_currentValues.has("step") || _newValues["step"] != _currentValues["menu_pos"]):
-                        #_currentValues["step"] = _newValues["step"]
-                #if (_newValues.has("allowAlpha")):
-                    #if (!_currentValues.has("allowAlpha") || _newValues["allowAlpha"] != _currentValues["allowAlpha"]):
-                        #_currentValues["allowAlpha"] = _newValues["allowAlpha"]
-                        #_newValue = true
-                #elif (_currentValues.has("allowAlpha")):
-                    #_currentValues.erase("allowAlpha")
-                    #_newValue = true
                     
                 _tempConfig.set_value(_section, _key, _currentValues)
                 
@@ -76,7 +48,6 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
         for _key in _tempConfig.get_section_keys(_section):
             if (!newConfig.has_section_key(_section, _key)):
                 _tempConfig.erase_section_key(_section, _key)
-                #_newValue = true
                 
     if ConfigHasChanged(_tempConfig, _currentConfig):
         print("[MCM] " + modId + " has updated its config file successfully.")
@@ -89,7 +60,7 @@ func ConfigHasChanged(newConfig: ConfigFile, initialConfig: ConfigFile):
                 return true
     return false
 
-func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: String, modDescription: String, fileOnSaveCallbacks: Dictionary):
+func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: String, modDescription: String, fileOnSaveCallbacks: Dictionary, callbackObject: Object = null):
     if !RegisteredMods.has(modId):
         if modFilePath.substr(-1) != '/':
             modFilePath += "/"
@@ -99,7 +70,8 @@ func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: 
             friendlyName = modFriendlyName,
             filePath = modFilePath,
             description = modDescription,
-            fileOnSaveCallbacks = fileOnSaveCallbacks
+            fileOnSaveCallbacks = fileOnSaveCallbacks,
+            callbackObject = callbackObject
         }
         
         print("[MCM] " + modId + " has been successfully registered")
@@ -111,7 +83,7 @@ func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: 
                 var _keycodes = _config.get_section_keys("Keycode")
                 for _action in _keycodes:
                     var _configValues = _config.get_value("Keycode", _action)
-                    if ("type" not in _configValues):
+                    if ("type" not in _configValues || _configValues["type"] == null):
                         _configValues["type"] = "Key"
                     
                     LoadInput(modId, _action, _configValues["value"], _configValues["type"])

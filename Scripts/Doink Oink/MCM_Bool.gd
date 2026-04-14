@@ -9,6 +9,7 @@ var valueId: String
 var section: String
 var valueData
 var menu: MCMMenu
+var callbackObject: Object
 
 var value = true
 var defaultValue: bool
@@ -31,7 +32,7 @@ func _ready():
     on.button_pressed = value
     off.button_pressed = !value
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
             
 func GetValueData():
     valueData["value"] = value
@@ -42,7 +43,8 @@ func _on_off_pressed() -> void:
     on.button_pressed = false
     off.button_pressed = true
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
     menu.PlayClick()
 
 func _on_on_pressed() -> void:
@@ -50,17 +52,24 @@ func _on_on_pressed() -> void:
     off.button_pressed = false
     on.button_pressed = true
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
     menu.PlayClick()
 
-func CheckHasChanged(checkValue):
+func CheckIsDefault(checkValue):
     hasChanged = defaultValue != checkValue
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
+    
+func OnValueChanged(value):
+    if ("on_value_changed" in valueData && callbackObject):
+        var _callable = Callable(callbackObject, valueData["on_value_changed"])
+        _callable.call(value)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
     on.button_pressed = value
     off.button_pressed = !value
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
     menu.PlayClick()

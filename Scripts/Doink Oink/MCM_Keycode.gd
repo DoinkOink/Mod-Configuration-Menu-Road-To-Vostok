@@ -10,6 +10,7 @@ var valueId: String
 var section: String
 var valueData
 var menu: MCMMenu
+var callbackObject: Object
 
 var value: InputEvent
 var defaultValue
@@ -27,7 +28,8 @@ func _ready():
     variableLabel.tooltip_text = valueData["tooltip"]
     
     if ("type" not in valueData):
-        valueData["type"] = "Key"
+        valueData["type"] = "Key"    
+    if ("default_type" not in valueData):
         valueData["default_type"] = "Key"
     
     if (valueData["type"] == "Mouse"):
@@ -41,7 +43,7 @@ func _ready():
     
     keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
     
 func _input(event):
     if isRemapping:
@@ -58,7 +60,8 @@ func _input(event):
                 
             value = event
             
-            CheckHasChanged(value)
+            CheckIsDefault(value)
+            OnValueChanged(value)
             
             Input.mouse_mode = Input.MOUSE_MODE_CONFINED
             isRemapping = false
@@ -92,7 +95,7 @@ func GetMouseButtonText(buttonIndex):
         _:
             return "Mouse " + buttonIndex
 
-func CheckHasChanged(checkValue):
+func CheckIsDefault(checkValue):
     if (valueData["type"] == "Mouse"):
         hasChanged = defaultValue != checkValue.button_index || valueData["default_type"] != valueData["type"]
     else:
@@ -100,6 +103,11 @@ func CheckHasChanged(checkValue):
         
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
+    
+func OnValueChanged(value):
+    if ("on_value_changed" in valueData && callbackObject):
+        var _callable = Callable(callbackObject, valueData["on_value_changed"])
+        _callable.call(value)
 
 func _on_keycode_pressed():
     if !isRemapping:
@@ -121,5 +129,6 @@ func _on_default_button_pressed() -> void:
         
     valueData["type"] = valueData["default_type"]
     
-    CheckHasChanged(value)
+    CheckIsDefault(value)
+    OnValueChanged(value)
     menu.PlayClick()
