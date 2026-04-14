@@ -22,10 +22,9 @@ var hasChanged = false
 var suppressNotify = false
 
 func _ready():
-    slider.value_changed.connect(_on_slider_value_changed)
-    sliderInput.value_changed.connect(_on_input_value_changed)
-
     if !valueId:
+        slider.value_changed.connect(_on_slider_value_changed)
+        sliderInput.value_changed.connect(_on_input_value_changed)
         return
 
     isInt = section == "Int"
@@ -56,6 +55,11 @@ func _ready():
         slider.step = 1
 
     CheckIsDefault(value)
+
+    # Connect signals after all values are set setting min_value can clamp
+    # the default (0) and fire value_changed, which triggers cascading callbacks.
+    slider.value_changed.connect(_on_slider_value_changed)
+    sliderInput.value_changed.connect(_on_input_value_changed)
 
 func GetValueData():
     valueData["value"] = sliderInput.value
