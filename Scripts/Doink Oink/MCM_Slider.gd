@@ -92,8 +92,8 @@ func _on_input_value_changed(newValue: float) -> void:
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
-    sliderInput.value = value
-    slider.value = value
+    sliderInput.set_value_no_signal(value)
+    slider.set_value_no_signal(value)
     CheckIsDefault(value)
     OnValueChanged(value)
     menu.PlayClick()

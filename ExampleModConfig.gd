@@ -15,21 +15,26 @@ func _ready():
         "value" = 5,
         "minRange" = 0,
         "maxRange" = 20,
-        "on_value_changed" = "IntCallback"
+        "on_value_changed" = "IntCallback",
+        "category" = "Test Category 1",
+        "menu_pos" = 1
     })
     
     _config.set_value("Bool", "testBool1", {
         "name" = "Test Bool 1",
         "tooltip" = "The first test bool",
         "default" = false,
-        "value" = false
+        "value" = false,
+        "category" = "Test Category 1"
     })
     
     _config.set_value("Bool", "testBool2", {
         "name" = "Test Bool 2",
         "tooltip" = "The second test bool",
         "default" = true,
-        "value" = true
+        "value" = true,
+        "category" = "Test Category 1",
+        "menu_pos" = 2
     })
     
     _config.set_value("Float", "testFloat", {
@@ -39,7 +44,8 @@ func _ready():
         "value" = 10.3,
         "minRange" = 0,
         "maxRange" = 50.5,
-        "step" = 0.1
+        "step" = 0.1,
+        "category" = "Test Category 1"
     })
     
     _config.set_value("Keycode", "testKeycode", {
@@ -48,21 +54,25 @@ func _ready():
         "default" = KEY_ALT,
         "default_type" = "Key",
         "value" = KEY_ALT,
-        "type" = "Key"
+        "type" = "Key",
+        "category" = "Test Category 2"
     })
     
     _config.set_value("String", "testString", {
         "name" = "Test String",
         "tooltip" = "A test string",
         "default" = "Hello World",
-        "value" = "Hello World"
+        "value" = "Hello World",
+        "category" = "Test Category 2",
+        "menu_pos" = 1
     })
     
     _config.set_value("Color", "testColor", {
         "name" = "Test Color",
         "tooltip" = "A test color",
         "default" = Color.WHITE,
-        "value" = Color.WHITE
+        "value" = Color.WHITE,
+        "category" = "Test Category 3"
     })
     
     _config.set_value("Dropdown", "testDropdown", {
@@ -75,6 +85,10 @@ func _ready():
             "Option 2",
 			"Option 3"
         ]
+    })
+    
+    _config.set_value("Category", "Test Category 2", {
+        "menu_pos" = 1
     })
         
     if McmHelpers:
@@ -90,9 +104,7 @@ func _ready():
             "Example Mod",
             FILE_PATH,
             "A short description of the mod",
-            {
-                "config.ini" = UpdateConfigProperties
-            },
+            UpdateConfigProperties,
             self
         )
     else:
@@ -113,8 +125,8 @@ func _ready():
 func UpdateConfigProperties(config: ConfigFile):
     print(config.get_value("String", "testString"))
     
-func IntCallback(value):
-    print("Int Update: " + str(value))
+func IntCallback(valueId, newValue, menu):
+    print("Int Update: " + str(valueId) + ", " + str(newValue) + ", " + str(menu))
     
 func _input(event):
     if (InputMap.has_action("testKeycode") && Input.is_action_pressed("testKeycode")):

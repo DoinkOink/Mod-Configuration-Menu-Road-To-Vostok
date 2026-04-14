@@ -42,8 +42,12 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
-### v2.6.0 (WIP)
+### v2.6.0
 * Added the ability for realtime individual value callbacks while the player is changing values within the MCM menu
+    * Thank you to tetrahydroc for contributing this addition to MCM
+* Added the Category setting for values
+    * This will allow mod authors to add category headers to their config menu to better layout settings for users
+    * Thank you to MJRamon for the category header UI
 ### v2.5.1
 * Actually fixed the slider issue this time
 * Fixed a crash when the player dies

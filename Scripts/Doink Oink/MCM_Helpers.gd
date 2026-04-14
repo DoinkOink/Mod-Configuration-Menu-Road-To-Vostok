@@ -12,7 +12,6 @@ var SettingsMenu
 const MCM_PATH = "user://MCM/"
 
 func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
-    #var _newValue = false
     var _currentConfig = ConfigFile.new()
     var _tempConfig = ConfigFile.new()
     _currentConfig.load(configPath)
@@ -27,7 +26,7 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                 var _currentValues = _tempConfig.get_value(_section, _key)
                 
                 var _valuesToCheck = ["default", "name", "tooltip", "minRange", "maxRange"]
-                var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed"]
+                var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed", "category"]
                 
                 for _valueName in _valuesToCheck:
                     if (_newValues.has(_valueName)):
@@ -60,7 +59,7 @@ func ConfigHasChanged(newConfig: ConfigFile, initialConfig: ConfigFile):
                 return true
     return false
 
-func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: String, modDescription: String, fileOnSaveCallbacks: Dictionary, callbackObject: Object = null):
+func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: String, modDescription: String, fileOnSaveCallbacks, callbackObject: Object = null):
     if !RegisteredMods.has(modId):
         if modFilePath.substr(-1) != '/':
             modFilePath += "/"
@@ -76,26 +75,30 @@ func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: 
         
         print("[MCM] " + modId + " has been successfully registered")
         
-        var _config = ConfigFile.new()
-        for _fileId in fileOnSaveCallbacks:
-            _config.load(modFilePath + _fileId)
-            if _config.has_section("Keycode"):
-                var _keycodes = _config.get_section_keys("Keycode")
-                for _action in _keycodes:
-                    var _configValues = _config.get_value("Keycode", _action)
-                    if ("type" not in _configValues || _configValues["type"] == null):
-                        _configValues["type"] = "Key"
-                    
-                    LoadInput(modId, _action, _configValues["value"], _configValues["type"])
+        var _config = GetModConfigFile(modId)
+        #for _fileId in fileOnSaveCallbacks:
+            #_config.load(modFilePath + _fileId)
+        if _config.has_section("Keycode"):
+            var _keycodes = _config.get_section_keys("Keycode")
+            for _action in _keycodes:
+                var _configValues = _config.get_value("Keycode", _action)
+                if ("type" not in _configValues || _configValues["type"] == null):
+                    _configValues["type"] = "Key"
+                
+                LoadInput(modId, _action, _configValues["value"], _configValues["type"])
                     
     else:
         push_warning("[MCM] " + modId + " has failed to register. This ID already exists.")
         
 func CallConfigCallback(modId: String, fileId: String, data: ConfigFile):
     if RegisteredMods.has(modId):
-        if RegisteredMods[modId].fileOnSaveCallbacks.has(fileId):
-            if (RegisteredMods[modId].fileOnSaveCallbacks[fileId] as Callable).is_valid():
-                RegisteredMods[modId].fileOnSaveCallbacks[fileId].call(data)
+        if (RegisteredMods[modId].fileOnSaveCallbacks is Dictionary):
+            if (RegisteredMods[modId].fileOnSaveCallbacks.has(fileId)):
+                if ((RegisteredMods[modId].fileOnSaveCallbacks[fileId] as Callable).is_valid()):
+                    RegisteredMods[modId].fileOnSaveCallbacks[fileId].call(data)
+        else:
+            if ((RegisteredMods[modId].fileOnSaveCallbacks as Callable).is_valid()):
+                    RegisteredMods[modId].fileOnSaveCallbacks.call(data)
 
 func LoadInputs():
     var _config = ConfigFile.new()
@@ -158,11 +161,20 @@ func UpdateInputs(modId: String, fileId):
                     InputMap.action_erase_events(_action)
                     InputMap.action_add_event(_action, _actionEvent)
 
-func GetModConfigFile(modId: String, fileId := "") -> ConfigFile:
-    var _fileName = RegisteredMods[modId].fileOnSaveCallbacks.keys()[0] if fileId == "" else fileId
+func GetModConfigFile(modId: String) -> ConfigFile:
+    var _fileName = GetModConfigFileName(modId)
+        
     var _config = ConfigFile.new()
     _config.load(RegisteredMods[modId].filePath + _fileName)
     return _config
+    
+func GetModConfigFileName(modId: String) -> String:
+    var _fileName = "config.ini"
+    
+    if (RegisteredMods[modId].fileOnSaveCallbacks is Dictionary):
+        _fileName = RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
+        
+    return _fileName
     
 func ToggleMCMMenu():
     if MCM_Menu.visible:

@@ -11,6 +11,7 @@ var audioInstance2D = preload("res://Resources/AudioInstance2D.tscn")
 @onready var SettingsLabel: Label = find_child("Settings_Label", true, false)
 
 var modListButton = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Mod_List_Button.tscn")
+var categoryHeader = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Header_String.tscn")
 
 var availableElements = {
     "Int": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn"),
@@ -28,7 +29,6 @@ var isRemapping = false
 
 var loadedModId: String = ""
 var loadedButton: Button
-var currentConfigFileId: String = ""
 var currentConfig: ConfigFile
 
 # Called when the node enters the scene tree for the first time.
@@ -80,75 +80,115 @@ func _on_mod_button_pressed(modId: String, button: Button):
 func LoadConfiguration(modId: String):
     ClearConfiguration()
     
-    currentConfig = MCMHelpers.GetModConfigFile(modId)
-    currentConfigFileId = MCMHelpers.RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
+    currentConfig = MCMHelpers.GetModConfigFile(modId)    
+    
     var _callbackObject = MCMHelpers.RegisteredMods[modId].callbackObject
     
     SettingsLabel.text = MCMHelpers.RegisteredMods[loadedModId].friendlyName + " Settings"
     
-    var _properties = SortModProperties(currentConfig)
+    var _sortedCategories = GetModCategoryData(currentConfig)    
+    var _noCategoriesSet = (_sortedCategories.size() == 1)
     
-    for _valueKey in _properties:
-        var _element: Control
-        var _property = _properties[_valueKey]
-        var _section = _property["section"]
-        
-        _property.erase("section")
-        _property.erase("key")
-        
-        if (availableElements.has(_section)):
-            _element = availableElements.get(_section).instantiate()
-        else:
-            push_warning("[MCM] " + modId + " has an unsupported value type [" + _section + "] in config file")
-            continue
+    for _categoryName in _sortedCategories:
+        if (!_noCategoriesSet):
+            var _header = categoryHeader.instantiate()
+            _header.headerText = _categoryName
+            ConfigPanel.add_child(_header)
             
-        _element.valueId = _valueKey
-        _element.section = _section
-        _element.valueData = _property
-        _element.menu = self
-        _element.callbackObject = _callbackObject
-        
-        ConfigPanel.add_child(_element)
+        for _property in _sortedCategories.get(_categoryName):
+            var _element: Control
+            var _section = _property["section"]
+            var _valueKey = _property["key"]
+            
+            _property.erase("section")
+            _property.erase("key")
+            
+            if (availableElements.has(_section)):
+                _element = availableElements.get(_section).instantiate()
+            else:
+                push_warning("[MCM] " + modId + " has an unsupported value type [" + _section + "] in config file")
+                continue
+                
+            _element.valueId = _valueKey
+            _element.section = _section
+            _element.valueData = _property
+            _element.menu = self
+            _element.callbackObject = _callbackObject
+            
+            ConfigPanel.add_child(_element)
     
 func SaveConfiguration(modId: String):
     for _element in ConfigPanel.get_children():
-        currentConfig.set_value(_element.section, _element.valueId, _element.GetValueData())
+        if (_element is not MCM_Header):
+            currentConfig.set_value(_element.section, _element.valueId, _element.GetValueData())
+            
+    var _fileName = MCMHelpers.GetModConfigFileName(modId)
         
-    if FileAccess.file_exists(MCMHelpers.RegisteredMods[modId].filePath + currentConfigFileId):
-        var _saveStatus = currentConfig.save(MCMHelpers.RegisteredMods[modId].filePath + currentConfigFileId)
+    if FileAccess.file_exists(MCMHelpers.RegisteredMods[modId].filePath + _fileName):
+        var _saveStatus = currentConfig.save(MCMHelpers.RegisteredMods[modId].filePath + _fileName)
         if _saveStatus == 0:
-            print("[MCM] " + modId + ": " + currentConfigFileId + " has been saved.")
-            MCMHelpers.CallConfigCallback(modId, currentConfigFileId, currentConfig)
+            print("[MCM] " + modId + ": " + _fileName + " has been saved.")
+            MCMHelpers.CallConfigCallback(modId, _fileName, currentConfig)
         else:
-            print("[MCM] The config file " + currentConfigFileId + " for mod " + modId + " has not been saved with the status code: " + _saveStatus)
+            print("[MCM] The config file " + _fileName + " for mod " + modId + " has not been saved with the status code: " + _saveStatus)
             
     if currentConfig.has_section("Keycode"):
-        MCMHelpers.UpdateInputs(modId, currentConfigFileId)
-    
-func SortModProperties(configFile):
-    var _values = []
-    var _properties: Dictionary = {}
-    
-    for _section in configFile.get_sections():
-        for _valueKey in configFile.get_section_keys(_section):
-            var _data = configFile.get_value(_section, _valueKey)
-            _data["section"] = _section
-            _data["key"] = _valueKey
-            _values.append(_data)
-            
-    _values.sort_custom(_sort_by_pos_and_name)
-    
-    for _value in _values:
-        _properties[_value["key"]] = _value
-            
-    return _properties
-    
+        MCMHelpers.UpdateInputs(modId, _fileName)
+
 func GetElements() -> Dictionary:
     var elements = {}
     for _element in ConfigPanel.get_children():
         if _element.has_method("SetValue"):
             elements[_element.valueId] = _element
     return elements
+
+    
+func GetModCategoryData(configFile):
+    var _sortedCategories: Dictionary = {}
+    var _categories: Dictionary = {"Uncategorized": []}
+    var _categoryData = [{
+        "name": "Uncategorized",
+        "menu_pos": 2000000
+    }]
+    
+    for _section in configFile.get_sections():
+        for _valueKey in configFile.get_section_keys(_section):
+            var _data = configFile.get_value(_section, _valueKey)
+            
+            if (_section == "Category"):
+                _data["name"] = _valueKey
+                _categoryData.append(_data)
+            else:
+                _data["section"] = _section
+                _data["key"] = _valueKey
+                
+                if ("category" in _data):
+                    if (_data["category"] not in _categories.keys()):
+                        _categories[_data["category"]] = []
+                        
+                    _categories[_data["category"]].append(_data)
+                else:
+                    _categories["Uncategorized"].append(_data)
+                    
+    for _categoryKey in _categories.keys():
+        var _isInArray = false
+        for _category in _categoryData:
+            if (_category["name"] == _categoryKey):
+                _isInArray = true
+                break
+                
+        if (!_isInArray):
+            _categoryData.append({ "name": _categoryKey })
+                    
+    _categoryData.sort_custom(_sort_by_pos_and_name)
+    
+    for _category in _categoryData:
+        var _categorySort = _categories.get(_category["name"])
+        _categorySort.sort_custom(_sort_by_pos_and_name)
+        
+        _sortedCategories[_category["name"]] = _categorySort
+        
+    return _sortedCategories
 
 func ClearConfiguration():
     for _element in ConfigPanel.get_children():
