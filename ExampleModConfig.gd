@@ -84,7 +84,8 @@ func _ready():
             "Option 1",
             "Option 2",
 			"Option 3"
-        ]
+        ],
+        "category" = "Test Category 3"
     })
     
     _config.set_value("Category", "Test Category 2", {
@@ -128,6 +129,6 @@ func UpdateConfigProperties(config: ConfigFile):
 func IntCallback(valueId, newValue, menu):
     print("Int Update: " + str(valueId) + ", " + str(newValue) + ", " + str(menu))
     
-func _input(event):
+func _input(_event):
     if (InputMap.has_action("testKeycode") && Input.is_action_pressed("testKeycode")):
         print("Test Keycode Pressed")

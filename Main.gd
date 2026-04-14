@@ -8,7 +8,7 @@ var MCMButtonIcon = load("res://ModConfigurationMenu/Sprites/UI/Doink Oink/MCM-L
 #	the button and menu in our main file and store all associated variables in MCM_Helpers.
 #	Between each scene the MCMButton is set to be freed so we can just check if
 #	it currently exists. If it doesn't then we go ahead and create it again.
-func _process(delta):
+func _process(_delta):
     if !MCMHelpers.MCMButton && get_tree().current_scene:
         CreateMCMButton()
 

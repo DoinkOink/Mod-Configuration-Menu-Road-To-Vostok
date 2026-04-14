@@ -188,6 +188,9 @@ func GetModCategoryData(configFile):
         
         _sortedCategories[_category["name"]] = _categorySort
         
+    if (_sortedCategories.get("Uncategorized").size() == 0):
+        _sortedCategories.erase("Uncategorized")
+        
     return _sortedCategories
 
 func ClearConfiguration():

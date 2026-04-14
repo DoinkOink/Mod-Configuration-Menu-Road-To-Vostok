@@ -42,6 +42,8 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.6.2
+* Removed the "Uncatagorized" category whenever there is no uncatagorized values in a mods config
 ### v2.6.1
 * Fixed a folder structure issue that was causing the mod to not load properly
 ### v2.6.0
