@@ -1,0 +1,17 @@
+Welcome to the Mod Configuration Menu (MCM) wiki! Please follow the below links to learn how to integrate MCM in your mod so players can start easily modifying used values!
+* [Initial Mod Setup](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Initial-Mod-Setup)
+* [Creating The Config File](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Creating-The-Config-File)
+    * [String Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/String-Value-Type)
+    * [Integer Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Integer-Value-Type)
+    * [Float Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Float-Value-Type)
+    * [Boolean Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Boolean-Value-Type)
+    * [Keycode Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Keycode-Value-Type)
+    * [Color Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
+    * [Dropdown Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
+* [Registering Your Mod With MCM](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Registering-Your-Mod-With-MCM)
+* [Updating Your Mods Configuration](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Updating-Your-Mods-Configuration)
+* [Handling Configuration Updates By The Player](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Handling-configuration-updates-by-the-player)
+* [Wrapping Up](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Wrapping-Up)
+### Extras
+* [MCM Not Installed Warning](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Extra:-MCM-Not-Installed-Warning)
+* [Custom Config Property Sorting](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
