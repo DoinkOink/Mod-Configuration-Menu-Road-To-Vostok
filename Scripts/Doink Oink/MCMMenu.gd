@@ -143,6 +143,13 @@ func SortModProperties(configFile):
             
     return _properties
     
+func GetElements() -> Dictionary:
+    var elements = {}
+    for _element in ConfigPanel.get_children():
+        if _element.has_method("SetValue"):
+            elements[_element.valueId] = _element
+    return elements
+
 func ClearConfiguration():
     for _element in ConfigPanel.get_children():
         _element.queue_free()

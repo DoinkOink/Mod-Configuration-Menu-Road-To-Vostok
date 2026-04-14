@@ -19,43 +19,44 @@ var maxRange: float
 var isInt = false
 
 var hasChanged = false
+var suppressNotify = false
 
-func _ready():	
+func _ready():
     slider.value_changed.connect(_on_slider_value_changed)
     sliderInput.value_changed.connect(_on_input_value_changed)
-    
+
     if !valueId:
         return
-        
+
     isInt = section == "Int"
-    
+
     nameLabel.text = valueData["name"]
     nameLabel.tooltip_text = valueData["tooltip"]
-    
+
     minRange = valueData["minRange"]
     maxRange = valueData["maxRange"]
     value = valueData["value"]
     defaultValue = valueData["default"]
-    
+
     sliderInput.min_value = minRange
     sliderInput.max_value = maxRange
     sliderInput.rounded = isInt
     sliderInput.set_value_no_signal(value)
-    
+
     slider.min_value = minRange
     slider.max_value = maxRange
     slider.rounded = isInt
     slider.set_value_no_signal(value)
-    
+
     if ("step" in valueData):
         sliderInput.step = valueData["step"]
         slider.step = valueData["step"]
     elif (isInt):
         sliderInput.step = 1
         slider.step = 1
-    
+
     CheckIsDefault(value)
-    
+
 func GetValueData():
     valueData["value"] = sliderInput.value
     return valueData
@@ -65,18 +66,27 @@ func CheckIsDefault(checkValue):
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
 
-func OnValueChanged(value):
+func SetValue(newValue) -> void:
+    suppressNotify = true
+    sliderInput.set_value_no_signal(newValue)
+    slider.set_value_no_signal(newValue)
+    CheckIsDefault(newValue)
+    suppressNotify = false
+
+func OnValueChanged(newValue):
+    if suppressNotify:
+        return
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
-        _callable.call(value)
+        _callable.call(valueId, newValue, menu)
 
 func _on_slider_value_changed(newValue: float) -> void:
-    sliderInput.value = newValue
+    sliderInput.set_value_no_signal(newValue)
     CheckIsDefault(newValue)
     OnValueChanged(newValue)
 
 func _on_input_value_changed(newValue: float) -> void:
-    slider.value = newValue
+    slider.set_value_no_signal(newValue)
     CheckIsDefault(newValue)
     OnValueChanged(newValue)
 

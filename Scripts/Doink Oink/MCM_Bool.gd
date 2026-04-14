@@ -61,10 +61,16 @@ func CheckIsDefault(checkValue):
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
     
-func OnValueChanged(value):
+func SetValue(newValue) -> void:
+    value = newValue
+    on.button_pressed = value
+    off.button_pressed = !value
+    CheckIsDefault(value)
+
+func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
-        _callable.call(value)
+        _callable.call(valueId, newValue, menu)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue

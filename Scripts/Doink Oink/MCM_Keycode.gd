@@ -104,10 +104,21 @@ func CheckIsDefault(checkValue):
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
     
-func OnValueChanged(value):
+func SetValue(newValue) -> void:
+    if valueData["type"] == "Mouse":
+        value = InputEventMouseButton.new()
+        value.button_index = newValue
+        keycodeInput.text = GetMouseButtonText(newValue)
+    else:
+        value = InputEventKey.new()
+        value.physical_keycode = newValue
+        keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
+    CheckIsDefault(value)
+
+func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
-        _callable.call(value)
+        _callable.call(valueId, newValue, menu)
 
 func _on_keycode_pressed():
     if !isRemapping:
