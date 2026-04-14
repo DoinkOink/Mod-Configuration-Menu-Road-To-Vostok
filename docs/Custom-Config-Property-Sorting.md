@@ -104,3 +104,53 @@ Now in the menu it will show up as:
 > Test Int
 > Test String
 ```
+
+# Adding Category Headers
+For further sorting you can assign each config value to a category and MCM will create a Heading seperator within the configuration menu. In order to do this you need to add "category" to your value dictionary and assign a string that will act as the displayed category's header name. 
+
+```gdscript
+...
+
+_config.set_value("Int", "testInt", {
+  "name" = "Test Int",
+  "tooltip" = "A test int",
+  "default" = 5,
+  "value" = 5,
+  "minRange" = 0,
+  "maxRange" = 20,
+  "category" = "Test Category 1"
+})
+
+...
+
+_config.set_value("Bool", "testBool2", {
+  "name" = "Test Bool 2",
+  "tooltip" = "The second test bool",
+  "default" = true,
+  "value" = true,
+  "category" = "Test Category 1"
+})
+```
+
+And here is what it will look like in the configuration menu:
+
+<img width="1394" height="151" alt="mcm category_cropped" src="https://github.com/user-attachments/assets/5588723a-0110-4eef-b6cd-ce38bb1e9fc8" />
+
+## Uncategorized Values
+If any values aren't assigned a category for whatever reason it will be assigned to a default "Uncategorized" category that will always be displayed at the bottom. If no values are assigned a category the "Uncategorized" category will be ignored and the header not display (the values will still display as normal).
+
+## Sorting Categories
+Just like with values, Categories are sorted alphabetically by default (with the exception for Uncategorized). And just like values you can apply a custom "menu_pos" value to categories. In order to do this you will need to add the Category to the config file just like a value. 
+
+Some things to remember:
+* Section must be set to "Category"
+* Key must be set to the exact value that was set in values "category"
+
+```gdscript
+_config.set_value("Category", "Test Category 1", {
+  "menu_pos" = 1
+})
+```
+
+### Sorting Values Within Categories
+Each category will sort their assigned values as normal, first with the values "menu_pos" if set then alphabetically.
