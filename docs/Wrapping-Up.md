@@ -103,4 +103,4 @@ func _input(event):
         print("Test Keycode Pressed")
 ```
 
-[Up Next: MCM Not Installed Warning >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Extra:-MCM-Not-Installed-Warning)
+[Up Next: MCM Not Installed Warning >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Extra-MCM-Not-Installed-Warning)
