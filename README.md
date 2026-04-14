@@ -45,7 +45,7 @@ None right now :)
 ### v2.6.0
 * Added the ability for realtime individual value callbacks while the player is changing values within the MCM menu
     * Thank you to tetrahydroc for contributing this addition to MCM
-* Added the Category setting for values
+* Added the Category setting for values [head over to the wiki to see how to add this](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/docs/Custom-Config-Property-Sorting.md#adding-category-headers)
     * This will allow mod authors to add category headers to their config menu to better layout settings for users
     * Thank you to MJRamon for the category header UI
 ### v2.5.1
