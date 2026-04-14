@@ -13,5 +13,5 @@ Welcome to the Mod Configuration Menu (MCM) wiki! Please follow the below links 
 * [Handling Configuration Updates By The Player](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Handling-configuration-updates-by-the-player)
 * [Wrapping Up](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Wrapping-Up)
 ### Extras
-* [MCM Not Installed Warning](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Extra:-MCM-Not-Installed-Warning)
+* [MCM Not Installed Warning](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Extra-MCM-Not-Installed-Warning)
 * [Custom Config Property Sorting](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
