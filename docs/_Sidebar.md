@@ -14,5 +14,5 @@
 * [Wrapping Up](Wrapping-Up)
 
 ### Extras
-* [MCM Not Installed Warning](Extra:-MCM-Not-Installed-Warning)
+* [MCM Not Installed Warning](Extra-MCM-Not-Installed-Warning)
 * [Custom Config Property Sorting](Custom-Config-Property-Sorting)
