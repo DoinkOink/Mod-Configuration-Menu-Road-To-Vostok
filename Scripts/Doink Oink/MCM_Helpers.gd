@@ -12,6 +12,7 @@ var SettingsMenu
 const MCM_PATH = "user://MCM/"
 
 func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
+    var _configUpdated = false
     var _currentConfig = ConfigFile.new()
     var _tempConfig = ConfigFile.new()
     _currentConfig.load(configPath)
@@ -21,6 +22,7 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
         for _key in newConfig.get_section_keys(_section):
             if !_tempConfig.has_section_key(_section, _key):
                 _tempConfig.set_value(_section, _key, newConfig.get_value(_section, _key))
+                _configUpdated = true
             else:
                 var _newValues = newConfig.get_value(_section, _key)
                 var _currentValues = _tempConfig.get_value(_section, _key)
@@ -32,13 +34,16 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                     if (_newValues.has(_valueName)):
                         if (_newValues[_valueName] != _currentValues[_valueName]):
                             _currentValues[_valueName] = _newValues[_valueName]
+                            _configUpdated = true
                         
                 for _optionalValueName in _optionalValuesToCheck:
                     if (_newValues.has(_optionalValueName)):
                         if (!_currentValues.has(_optionalValueName) || _newValues[_optionalValueName] != _currentValues[_optionalValueName]):
                             _currentValues[_optionalValueName] = _newValues[_optionalValueName]
+                            _configUpdated = true
                     elif (_currentValues.has(_optionalValueName)):
                         _currentValues.erase(_optionalValueName)
+                        _configUpdated = true
                     
                 _tempConfig.set_value(_section, _key, _currentValues)
                 
@@ -47,8 +52,9 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
         for _key in _tempConfig.get_section_keys(_section):
             if (!newConfig.has_section_key(_section, _key)):
                 _tempConfig.erase_section_key(_section, _key)
+                _configUpdated = true
                 
-    if ConfigHasChanged(_tempConfig, _currentConfig):
+    if _configUpdated:
         print("[MCM] " + modId + " has updated its config file successfully.")
         _tempConfig.save(configPath)
         
