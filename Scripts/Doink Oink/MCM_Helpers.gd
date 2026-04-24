@@ -38,7 +38,7 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                         
                 for _optionalValueName in _optionalValuesToCheck:
                     if (_newValues.has(_optionalValueName)):
-                        if (typeof(_newValues[_optionalValueName]) != typeof(_currentValues[_optionalValueName]) || !_currentValues.has(_optionalValueName) || _newValues[_optionalValueName] != _currentValues[_optionalValueName]):
+                        if (!_currentValues.has(_optionalValueName) || typeof(_newValues[_optionalValueName]) != typeof(_currentValues[_optionalValueName]) || _newValues[_optionalValueName] != _currentValues[_optionalValueName]):
                             _currentValues[_optionalValueName] = _newValues[_optionalValueName]
                             _configUpdated = true
                     elif (_currentValues.has(_optionalValueName)):
