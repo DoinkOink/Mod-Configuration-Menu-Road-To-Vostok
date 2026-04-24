@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://33nsgfalxfbr" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn" id="4_f8le3"]
 [ext_resource type="Texture2D" uid="uid://b8qehehfo6ee4" path="res://Editor/RTV_Dynamic.png" id="4_wd52j"]
 [ext_resource type="PackedScene" uid="uid://ccio7axqb4r3q" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn" id="5_iiujf"]
+[ext_resource type="PackedScene" uid="uid://ba1armg3os37p" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Header_String.tscn" id="7_wd52j"]
 [ext_resource type="PackedScene" uid="uid://cfkvwghmbu1b0" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn" id="8_w012w"]
 [ext_resource type="PackedScene" uid="uid://cg7bdpjwt3mrv" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Dropdown_Value.tscn" id="11_1qods"]
 
@@ -20,14 +21,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1qods"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wd52j"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl1s1"]
-bg_color = Color(0.1705, 0.24025, 0.31, 0)
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6dxo"]
-bg_color = Color(0.172549, 0.243137, 0.313726, 1)
-corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnjx8"]
 
@@ -70,7 +63,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eo6k8")
 color = Color(0, 0, 0, 0.80784315)
 
 [node name="Header" type="Panel" parent="." unique_id=2122593540]
@@ -110,7 +102,6 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Header/MarginContainer/HFlowContainer" unique_id=1551031649]
 layout_mode = 2
-theme = ExtResource("1_eo6k8")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 24
 text = "Mod Configuration Menu"
@@ -120,7 +111,6 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(256, 40)
 layout_mode = 2
 size_flags_horizontal = 8
-theme = ExtResource("1_eo6k8")
 text = "← Return"
 expand_icon = true
 
@@ -137,7 +127,6 @@ offset_right = 880.0
 offset_bottom = 460.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eo6k8")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_eo6k8")
 
 [node name="Margin_Panel" type="MarginContainer" parent="Settings_Panel" unique_id=462283364]
@@ -147,18 +136,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eo6k8")
 
 [node name="Box_Container" type="HBoxContainer" parent="Settings_Panel/Margin_Panel" unique_id=511302993]
 layout_mode = 2
-theme = ExtResource("1_eo6k8")
 theme_override_constants/separation = 32
 
 [node name="Mod_List_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container" unique_id=1493730462]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_eo6k8")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1qods")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel" unique_id=1242224031]
@@ -168,14 +154,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eo6k8")
 theme_override_constants/separation = 0
 
 [node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=1706176933]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme = ExtResource("1_eo6k8")
 
 [node name="Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Panel" unique_id=981146510]
 layout_mode = 1
@@ -184,7 +168,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eo6k8")
 text = "Mods"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -202,473 +185,93 @@ theme_override_constants/margin_top = 16
 [node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer" unique_id=1624359536]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_eo6k8")
 
 [node name="Mods" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer" unique_id=671517203]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_eo6k8")
 
-[node name="ModListButton" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=313994797 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1038402848 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_2" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1038402848 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_2" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=2114539945 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_3" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=559455510 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_3" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1308437606 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_4" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=556240364 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_4" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=803821561 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_5" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=2143201445 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_5" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=63380404 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_6" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=81566941 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_6" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=738489492 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_7" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=204253927 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_7" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1079725772 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_8" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=2139279087 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_8" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1452319002 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_9" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1114939768 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_9" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=477577898 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_10" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1768768718 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_10" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1249300587 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_11" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=2112931525 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_11" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=251692170 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_12" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=71737466 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_12" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1003207276 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_13" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=983279354 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_13" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=566288199 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_14" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1574861155 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_14" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=2042953690 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_15" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=854840596 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_15" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=275082636 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_16" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=429649011 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_16" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1939116297 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_17" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1722697576 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_17" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=858952258 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_18" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=747133089 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_18" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=361462616 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_19" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=657751659 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_19" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=937997291 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_20" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1222682424 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_20" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1346560890 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_21" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1899769420 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_21" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1244381988 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_22" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1232938532 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_22" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=988617519 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_23" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=339130490 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_23" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1140782874 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_24" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1981366419 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_24" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1158131816 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_25" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1935233201 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_25" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1739676503 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
-[node name="ModListButton_26" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1211867655 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
+[node name="ModListButton_26" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=2081695536 instance=ExtResource("2_jxbuv")]
 layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_27" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=536821955 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_28" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=499600426 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_29" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=114826762 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_30" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=1405998212 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_31" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=2090448460 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_32" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=683381737 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_33" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=762723999 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_34" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=88337071 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
-
-[node name="ModListButton_35" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/Mods" unique_id=974983465 instance=ExtResource("2_jxbuv")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_horizontal = 1
-theme = null
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl1s1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_o6dxo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_o6dxo")
-text = "    Mod Name"
 
 [node name="Config_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container" unique_id=1967957978]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
-theme = ExtResource("1_eo6k8")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qnjx8")
 
 [node name="Logo" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel" unique_id=954286995]
@@ -688,14 +291,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eo6k8")
 theme_override_constants/separation = 0
 
 [node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=2135819949]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme = ExtResource("1_eo6k8")
 
 [node name="Settings_Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/Panel" unique_id=1544020867]
 layout_mode = 1
@@ -704,7 +305,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eo6k8")
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -717,13 +317,11 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_q5ye3")
 [node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=490590795]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_eo6k8")
 
 [node name="MarginContainer" type="MarginContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer" unique_id=1036896201]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_eo6k8")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -732,43 +330,27 @@ theme_override_constants/margin_bottom = 10
 [node name="Settings" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer" unique_id=2010114482]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_eo6k8")
 theme_override_constants/separation = 10
 
-[node name="String Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1398248616 instance=ExtResource("2_v70ib")]
+[node name="Header String" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=610194201 instance=ExtResource("7_wd52j")]
 layout_mode = 2
-theme = null
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
 
-[node name="Bool Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1971904018 instance=ExtResource("3_x5oih")]
+[node name="Bool Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=882903359 instance=ExtResource("3_x5oih")]
 layout_mode = 2
-theme = null
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
 
-[node name="Int Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=837745039 instance=ExtResource("4_f8le3")]
+[node name="Color Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=71822911 instance=ExtResource("8_w012w")]
 layout_mode = 2
-theme = null
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-
-[node name="Keycode" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=790381881 instance=ExtResource("5_iiujf")]
-layout_mode = 2
-theme = null
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-
-[node name="String Value_2" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1953046466 instance=ExtResource("8_w012w")]
-layout_mode = 2
-theme = null
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
 
 [node name="Dropdown Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1584880875 instance=ExtResource("11_1qods")]
 layout_mode = 2
-theme = null
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
+
+[node name="Keycode" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=190023062 instance=ExtResource("5_iiujf")]
+layout_mode = 2
+
+[node name="Slider Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1914209537 instance=ExtResource("4_f8le3")]
+layout_mode = 2
+
+[node name="String Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1852979968 instance=ExtResource("2_v70ib")]
+layout_mode = 2
 
 [connection signal="pressed" from="Header/MarginContainer/Back" to="." method="_on_back_pressed"]

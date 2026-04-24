@@ -24,10 +24,17 @@ func _ready():
     variableLabel.text = valueData["name"]
     variableLabel.tooltip_text = valueData["tooltip"]
     
-    value = valueData["value"]
-    defaultValue = valueData["default"]
-    
-    options = valueData["options"]
+    var _tempOptions = valueData["options"]
+
+    if (_tempOptions is Dictionary):
+        value = _tempOptions.keys().find(valueData["value"])
+        defaultValue = _tempOptions.keys().find(valueData["default"])
+        options = _tempOptions.values()
+    else:
+        value = valueData["value"]
+        defaultValue = valueData["default"]
+        options = _tempOptions
+
     for _option in options:
         dropdown.add_item(_option)
     
@@ -36,8 +43,17 @@ func _ready():
     CheckIsDefault(value)
     
 func GetValueData():
-    valueData["value"] = value
+    valueData["value"] = GetValue()    
     return valueData
+
+func GetValue(tempValue = -1):
+    if (tempValue == -1):
+        tempValue = value
+
+    if (valueData["options"] is Dictionary):
+        tempValue = valueData["options"].keys()[tempValue]
+
+    return tempValue
     
 func CheckIsDefault(checkValue):
     hasChanged = defaultValue != checkValue
@@ -52,7 +68,7 @@ func SetValue(newValue) -> void:
 func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
-        _callable.call(valueId, newValue, menu)
+        _callable.call(valueId, GetValue(newValue), menu)
 
 func _on_input_text_submitted(newValue):
     value = newValue

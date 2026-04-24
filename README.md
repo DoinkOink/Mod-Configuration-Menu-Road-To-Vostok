@@ -42,6 +42,15 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.7.0
+* Changed the Dropdown value to accept a dictionary of options
+    * Thank you to MJRamon for this request
+    * This will allow mod authors to assign Key IDs to their options for easier use in code
+    * To see how to integrate this into your mod [check out the Dropdown WiKi page for an example](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
+        * Any mods that use the old Array options will still work and will not be required to change to a dictionary
+* UI changes by MJRamon
+    * Theme styling cleanup
+    * Minor adjustments to elements
 ### v2.6.3
 * Fixed an issue where values weren't updating correctly if changed by the mod author
     * Thank you to MJRamon for finding and pointing this out

@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bv78xlueq2qym"]
+[gd_scene format=3 uid="uid://ba1armg3os37p"]
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_hq7v8"]
-[ext_resource type="Script" uid="uid://s787byv22jn1" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Header.gd" id="2_wni7n"]
+[ext_resource type="Script" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Header.gd" id="2_wni7n"]
 
 [node name="Header String" type="MarginContainer" unique_id=610194201]
 offset_right = 476.0
@@ -13,14 +13,12 @@ script = ExtResource("2_wni7n")
 [node name="Container" type="HBoxContainer" parent="." unique_id=1584008255]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-theme = ExtResource("1_hq7v8")
 theme_override_constants/separation = 16
 
 [node name="Header_Label" type="Label" parent="Container" unique_id=1222319174]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
-theme = ExtResource("1_hq7v8")
 theme_override_colors/font_color = Color(1, 1, 1, 0.47058824)
 theme_override_font_sizes/font_size = 24
 text = "Header String"

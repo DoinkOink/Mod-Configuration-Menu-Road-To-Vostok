@@ -32,18 +32,28 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                 
                 for _valueName in _valuesToCheck:
                     if (_newValues.has(_valueName)):
-                        if (_newValues[_valueName] != _currentValues[_valueName]):
+                        if (typeof(_newValues[_valueName]) != typeof(_currentValues[_valueName]) || _newValues[_valueName] != _currentValues[_valueName]):
                             _currentValues[_valueName] = _newValues[_valueName]
                             _configUpdated = true
                         
                 for _optionalValueName in _optionalValuesToCheck:
                     if (_newValues.has(_optionalValueName)):
-                        if (!_currentValues.has(_optionalValueName) || _newValues[_optionalValueName] != _currentValues[_optionalValueName]):
+                        if (typeof(_newValues[_optionalValueName]) != typeof(_currentValues[_optionalValueName]) || !_currentValues.has(_optionalValueName) || _newValues[_optionalValueName] != _currentValues[_optionalValueName]):
                             _currentValues[_optionalValueName] = _newValues[_optionalValueName]
                             _configUpdated = true
                     elif (_currentValues.has(_optionalValueName)):
                         _currentValues.erase(_optionalValueName)
                         _configUpdated = true
+
+                if (_section == "Dropdown"):
+                    if (_newValues["options"] is Dictionary):
+                        if (!_newValues["options"].has(_currentValues["value"])):
+                            _currentValues["value"] = _newValues["default"]
+                            _configUpdated = true
+                    else:
+                        if (typeof(_newValues["value"]) != typeof(_currentValues["value"]) || _currentValues["value"] > _newValues["options"].size()):
+                            _currentValues["value"] = _newValues["default"]
+                            _configUpdated = true
                     
                 _tempConfig.set_value(_section, _key, _currentValues)
                 

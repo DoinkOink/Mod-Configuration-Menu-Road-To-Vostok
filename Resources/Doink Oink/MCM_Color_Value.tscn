@@ -4,27 +4,24 @@
 [ext_resource type="Script" uid="uid://c0qke58tpma3h" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Color.gd" id="1_hvhxg"]
 [ext_resource type="Texture2D" uid="uid://bl21dxqpc5dcb" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/revert.png" id="2_4ppp6"]
 
-[node name="String Value" type="MarginContainer" unique_id=71822911]
+[node name="Color Value" type="MarginContainer" unique_id=71822911]
 theme = ExtResource("1_3aof7")
 script = ExtResource("1_hvhxg")
 
 [node name="Container" type="HBoxContainer" parent="." unique_id=659258127]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-theme = ExtResource("1_3aof7")
 
 [node name="Label" type="Label" parent="Container" unique_id=2054875259]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
-theme = ExtResource("1_3aof7")
-text = "Variable Name"
+text = "Color Variable Name"
 vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="Container" unique_id=1119624246]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_3aof7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container" unique_id=124004888]
 custom_minimum_size = Vector2(320, 0)
@@ -35,14 +32,12 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 10
-theme = ExtResource("1_3aof7")
 color = Color(1, 1, 1, 1)
 
 [node name="Default Button" type="Button" parent="Container" unique_id=1520624909]
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 tooltip_text = "Revert to default value."
-theme = ExtResource("1_3aof7")
 disabled = true
 icon = ExtResource("2_4ppp6")
 icon_alignment = 1

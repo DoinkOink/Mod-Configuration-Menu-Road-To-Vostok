@@ -78,13 +78,13 @@ func _ready():
     _config.set_value("Dropdown", "testDropdown", {
         "name" = "Test Dropdown",
         "tooltip" = "A test dropdown",
-        "default" = 1,
-        "value" = 1,
-        "options" = [
-            "Option 1",
-            "Option 2",
-            "Option 3"
-        ],
+        "default" = "opt_1",
+        "value" = "opt_1",
+        "options" = {
+            "opt_1": "Option 1",
+            "opt_2": "Option 2",
+            "opt_3": "Option 3"
+        },
         "category" = "Test Category 3"
     })
     
