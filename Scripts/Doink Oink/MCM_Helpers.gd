@@ -2,6 +2,7 @@ extends Resource
 class_name MCM_Helpers
 
 var RegisteredMods = {}
+var RegisteredModKeybinds = {}
 
 var isRemapping = false
 
@@ -130,9 +131,21 @@ func LoadInputs():
                     if ("type" not in _configValues):
                         _configValues["type"] = "Key"
                     
+                    # Check to see if the keybind has either been added by another mod or already added to
+                    #   the input map already. Give a warning if a different mod already added it
+                    #   and just skip if the same mod has already added it to the inputmap already.
+                    if (RegisteredModKeybinds.has(_action)):
+                        if (RegisteredModKeybinds.get(_action) != _modId):
+                            push_warning("[MCM] " + _modId + " has tried registering the action " + _action + " and failed. This action name is already being used by the mod: " + RegisteredModKeybinds.get(_action))
+                            continue
+                        elif (InputMap.has_action(_action)):
+                            continue
+                        elif (!InputMap.has_action(_action)):
+                            RegisteredModKeybinds.erase(_action)
+                    
                     LoadInput(_modId, _action, _configValues["value"], _configValues["type"])
                     
-func LoadInput(modId: String, action: String, keycode, type: String):
+func LoadInput(modId: String, action: String, keycode, type: String):    
     var _actionEvent
     
     if (type == "Mouse"):
@@ -144,6 +157,8 @@ func LoadInput(modId: String, action: String, keycode, type: String):
     
     InputMap.add_action(action)
     InputMap.action_add_event(action, _actionEvent)
+    
+    RegisteredModKeybinds[action] = modId
     
     print("[MCM] " + modId + " Has successfully added the Input Action: " + action)
                 
