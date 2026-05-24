@@ -83,8 +83,11 @@ func CreateAllModButtons():
         item.queue_free()
 
     modButtons.clear()
+    
+    var _modIds = MCMHelpers.RegisteredMods.keys()
+    _modIds.sort_custom(func(a,b): return MCMHelpers.RegisteredMods[a]["friendlyName"] < MCMHelpers.RegisteredMods[b]["friendlyName"])
 
-    for _modId in MCMHelpers.RegisteredMods:
+    for _modId in _modIds:
         CreateModButton(MCMHelpers.RegisteredMods[_modId])
         
 func CreateModButton(mod):
