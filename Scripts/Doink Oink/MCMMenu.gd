@@ -30,6 +30,7 @@ var isRemapping = false
 var loadedModId: String = ""
 var loadedButton: Button
 var currentConfig: ConfigFile
+var modButtons: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,20 +41,48 @@ func _ready() -> void:
     self.visibility_changed.connect(_on_visibility_changed)
         
 func _on_visibility_changed():
-    if loadedModId != "":
-        SaveConfiguration(loadedModId)
-        loadedModId = ""
-        
+    if !visible:
+        if loadedModId != "":
+            MCMHelpers.LastOpenedModId = loadedModId
+            SaveConfiguration(loadedModId)
+        PlayClick()
+        return
+
+    loadedModId = ""
+    loadedButton = null
+
     ClearConfiguration()
     CreateAllModButtons()
+    RestoreLastOpenedMod()
     PlayClick()
-    #Logo.show()
     #MCMHelpers.MCMMenu.get_children()[2].pressed.get_connections()[0].callable.call()
+
+func RestoreLastOpenedMod():
+    if MCMHelpers.LastOpenedModId == "":
+        MCMHelpers.LastOpenedModId = ""
+        SettingsLabel.text = "Settings"
+        Logo.show()
+        return
+
+    if !MCMHelpers.RegisteredMods.has(MCMHelpers.LastOpenedModId):
+        SettingsLabel.text = "Settings"
+        Logo.show()
+        return
+
+    var _button = modButtons.get(MCMHelpers.LastOpenedModId) as Button
+    if !_button:
+        SettingsLabel.text = "Settings"
+        Logo.show()
+        return
+
+    SelectMod(MCMHelpers.LastOpenedModId, _button, false)
 
 func CreateAllModButtons():
     for item in ModListPanel.get_children():
         item.queue_free()
-        
+
+    modButtons.clear()
+
     for _modId in MCMHelpers.RegisteredMods:
         CreateModButton(MCMHelpers.RegisteredMods[_modId])
         
@@ -62,20 +91,28 @@ func CreateModButton(mod):
     _button.text = "    " + mod.friendlyName
     _button.pressed.connect(_on_mod_button_pressed.bind(mod.id, _button))
     
+    modButtons[mod.id] = _button
     ModListPanel.add_child(_button)
     
 func _on_mod_button_pressed(modId: String, button: Button):
+    SelectMod(modId, button, true)
+
+func SelectMod(modId: String, button: Button, playClick: bool):
     if loadedModId != "":
         SaveConfiguration(loadedModId)
-        loadedButton.button_pressed = false
+        if loadedButton:
+            loadedButton.button_pressed = false
     else:
         Logo.hide()
         
     loadedModId = modId
+    MCMHelpers.LastOpenedModId = modId
     loadedButton = button
     loadedButton.button_pressed = true
     LoadConfiguration(loadedModId)
-    PlayClick()
+
+    if playClick:
+        PlayClick()
     
 func LoadConfiguration(modId: String):
     ClearConfiguration()
@@ -118,6 +155,9 @@ func LoadConfiguration(modId: String):
             ConfigPanel.add_child(_element)
     
 func SaveConfiguration(modId: String):
+    if !currentConfig || !MCMHelpers.RegisteredMods.has(modId):
+        return
+
     for _element in ConfigPanel.get_children():
         if (_element is not MCM_Header):
             currentConfig.set_value(_element.section, _element.valueId, _element.GetValueData())

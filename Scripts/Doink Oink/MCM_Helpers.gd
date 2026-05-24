@@ -8,6 +8,7 @@ var isRemapping = false
 var MCMButton
 var MCM_Menu
 var SettingsMenu
+var LastOpenedModId: String = ""
 
 const MCM_PATH = "user://MCM/"
 
