@@ -88,6 +88,18 @@ func _ready():
         "category" = "Test Category 3"
     })
     
+    _config.set_value("Vector2", "testVector2", {
+        "name": "Test Vector2",
+        "tooltip": "A test vector2",
+        "default": Vector2(10, 10),
+        "value": Vector2(10, 10),
+        "minRange": Vector2(0, 2),
+        "maxRange": Vector2(50, 40),
+        "step": 1,
+        "category": "Test Category 4",
+        "on_value_changed": "Vector2Callback"
+    });
+    
     _config.set_value("Category", "Test Category 2", {
         "menu_pos" = 1
     })
@@ -128,6 +140,9 @@ func UpdateConfigProperties(config: ConfigFile):
     
 func IntCallback(valueId, newValue, menu):
     print("Int Update: " + str(valueId) + ", " + str(newValue) + ", " + str(menu))
+    
+func Vector2Callback(valueId, newValue, menu):
+    print(str(newValue.x) + " " + str(newValue.y))
     
 func _input(_event):
     if (InputMap.has_action("testKeycode") && Input.is_action_pressed("testKeycode")):
