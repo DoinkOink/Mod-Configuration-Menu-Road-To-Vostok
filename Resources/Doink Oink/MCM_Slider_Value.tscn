@@ -24,7 +24,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Container" type="HBoxContainer" parent="Container" unique_id=490845904]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
 [node name="Slider" type="HSlider" parent="Container/Container" unique_id=101262292]

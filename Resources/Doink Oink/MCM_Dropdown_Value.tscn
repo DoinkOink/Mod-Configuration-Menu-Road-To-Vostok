@@ -24,13 +24,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container" unique_id=505667935]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
 [node name="Dropdown" type="OptionButton" parent="Container/HBoxContainer" unique_id=2029830425]
 layout_mode = 2
 size_flags_horizontal = 3
+selected = 0
 allow_reselect = true
+item_count = 1
+popup/item_0/text = "Add Items Here..."
+popup/item_0/id = 0
 
 [node name="Default Button" type="Button" parent="Container" unique_id=878591790]
 custom_minimum_size = Vector2(36, 0)

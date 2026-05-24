@@ -22,7 +22,8 @@ var availableElements = {
     "Keycode": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn"),
     "Color": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn"),
     "Dropdown": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Dropdown_Value.tscn"),
-    "Vector2": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector2_Value.tscn")
+    "Vector2": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector2_Value.tscn"),
+    "Vector3": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector3_Value.tscn")
 }
 
 var uiManager

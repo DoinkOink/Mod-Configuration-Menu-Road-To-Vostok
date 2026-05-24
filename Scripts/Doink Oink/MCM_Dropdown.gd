@@ -21,6 +21,8 @@ func _ready():
     if !valueId:
         return
         
+    dropdown.clear()
+        
     variableLabel.text = valueData["name"]
     variableLabel.tooltip_text = valueData["tooltip"]
     

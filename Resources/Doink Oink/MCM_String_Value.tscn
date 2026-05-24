@@ -24,7 +24,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container" unique_id=246983127]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
 [node name="Input" type="LineEdit" parent="Container/HBoxContainer" unique_id=1228000370]

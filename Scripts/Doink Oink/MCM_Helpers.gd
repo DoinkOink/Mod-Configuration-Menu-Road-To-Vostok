@@ -30,7 +30,7 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                 var _currentValues = _tempConfig.get_value(_section, _key)
                 
                 var _valuesToCheck = ["default", "name", "tooltip", "minRange", "maxRange", "options"]
-                var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed", "category"]
+                var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed", "category", "isInt"]
                 
                 for _valueName in _valuesToCheck:
                     if (_newValues.has(_valueName)):
