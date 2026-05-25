@@ -34,6 +34,24 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # {#3498db}(Changelog)
+### v2.8.0
+* Remember last opened MCM mod settings by @Joaoha in https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/pull/6
+    * Also added Joaoha's changes to the spinner boxes so they keep the SpinnerBox width the same size as the inputted value and removed trailing .0 from the value
+* Added the Vector2 and Vector3 value types
+    * Thank you Theta90 for the suggestion on Github
+    * These value types combine 2/3 spinner boxes to input x/y/z values
+* Added the Array value type
+    * Thank you to MJRamon for the suggestion
+    * This value type allows the creation of an array input of a single supported given type which include
+        * String
+        * Int
+        * Float
+        * Bool
+        * Color
+        * Vector2
+        * Vector3
+        * More may be added but would require significant work to get working
+* The input mapping spam should hopefully be fixed now
 ### v2.7.0
 * Changed the Dropdown value to accept a dictionary of options
     * Thank you to MJRamon for this request
