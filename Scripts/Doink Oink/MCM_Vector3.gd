@@ -12,11 +12,11 @@ var valueData
 var menu: MCMMenu
 var callbackObject: Object
 
-var value: Vector3
-var defaultValue: Vector3
+var value: Vector3 = Vector3.ZERO
+var defaultValue: Vector3 = Vector3.ZERO
 
-var minRange: Vector3
-var maxRange: Vector3
+var minRange: Vector3 = Vector3.ZERO
+var maxRange: Vector3 = Vector3.ZERO
 var isInt = false
 
 var hasChanged = false
@@ -109,6 +109,9 @@ func OnValueChanged(newValue: Vector3):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
+        
+func UpdateNameLabel():
+    nameLabel.text = valueData["name"]
 
 func _on_x_input_value_changed(newValue: float) -> void:
     var newVector = Vector3(newValue, yInput.value, zInput.value)

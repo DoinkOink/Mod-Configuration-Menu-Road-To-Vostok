@@ -23,11 +23,11 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container" unique_id=1020464370]
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=1020464370]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="Input" type="Button" parent="Container/HBoxContainer" unique_id=202209999]
+[node name="Input" type="Button" parent="Container/Input Container" unique_id=202209999]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Press key to bind..."

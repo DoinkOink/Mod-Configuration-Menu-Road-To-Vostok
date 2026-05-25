@@ -24,11 +24,11 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Container" type="HBoxContainer" parent="Container" unique_id=490845904]
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=490845904]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="Slider" type="HSlider" parent="Container/Container" unique_id=101262292]
+[node name="Slider" type="HSlider" parent="Container/Input Container" unique_id=101262292]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -36,11 +36,11 @@ size_flags_stretch_ratio = 4.0
 step = 0.001
 scrollable = false
 
-[node name="Spacer" type="Control" parent="Container/Container" unique_id=85697658]
+[node name="Spacer" type="Control" parent="Container/Input Container" unique_id=85697658]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="Input" type="SpinBox" parent="Container/Container" unique_id=1467379017]
+[node name="Input" type="SpinBox" parent="Container/Input Container" unique_id=1467379017]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001

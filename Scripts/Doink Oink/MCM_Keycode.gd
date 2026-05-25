@@ -119,6 +119,9 @@ func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
+        
+func UpdateNameLabel():
+    variableLabel.text = valueData["name"]
 
 func _on_keycode_pressed():
     if !isRemapping:

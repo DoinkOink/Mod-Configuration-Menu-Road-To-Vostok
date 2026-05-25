@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cg7bdpjwt3mrv" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Dropdown_Value.tscn" id="11_1qods"]
 [ext_resource type="PackedScene" uid="uid://cvfqkiyc0puhq" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector2_Value.tscn" id="14_q5ye3"]
 [ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector3_Value.tscn" id="15_hr6il"]
+[ext_resource type="PackedScene" uid="uid://b56uh4tdnp8v" path="res://ModConfigurationMenu/Resources/Doink Oink/MCM_Array_Value.tscn" id="16_o7i10"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3gea"]
 
@@ -359,6 +360,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Vector 3 Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1441468210 instance=ExtResource("15_hr6il")]
+layout_mode = 2
+
+[node name="Array Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=505336327 instance=ExtResource("16_o7i10")]
 layout_mode = 2
 
 [connection signal="pressed" from="Header/MarginContainer/Back" to="." method="_on_back_pressed"]

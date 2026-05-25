@@ -10,8 +10,8 @@ var valueData
 var menu: MCMMenu
 var callbackObject: Object
 
-var value: String
-var defaultValue: String
+var value: String = ""
+var defaultValue: String = ""
 
 var hasChanged = false
 
@@ -48,6 +48,9 @@ func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
+        
+func UpdateNameLabel():
+    variableLabel.text = valueData["name"]
 
 func _on_input_text_submitted(newValue):
     value = newValue

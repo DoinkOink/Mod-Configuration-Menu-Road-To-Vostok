@@ -23,7 +23,8 @@ var availableElements = {
     "Color": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn"),
     "Dropdown": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Dropdown_Value.tscn"),
     "Vector2": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector2_Value.tscn"),
-    "Vector3": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector3_Value.tscn")
+    "Vector3": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector3_Value.tscn"),
+    "Array": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Array_Value.tscn")
 }
 
 var uiManager
@@ -150,9 +151,6 @@ func LoadConfiguration(modId: String):
             else:
                 push_warning("[MCM] " + modId + " has an unsupported value type [" + _section + "] in config file")
                 continue
-                
-            if("step" in _property):
-                print(_property["step"])
                 
             _element.valueId = _valueKey
             _element.section = _section

@@ -24,45 +24,45 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Container" type="HBoxContainer" parent="Container" unique_id=490845904]
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=490845904]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="ContainerX" type="HBoxContainer" parent="Container/Container" unique_id=451045933]
+[node name="ContainerX" type="HBoxContainer" parent="Container/Input Container" unique_id=451045933]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LabelX" type="Label" parent="Container/Container/ContainerX" unique_id=712620]
+[node name="LabelX" type="Label" parent="Container/Input Container/ContainerX" unique_id=712620]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
 text = "X:"
 vertical_alignment = 1
 
-[node name="InputX" type="SpinBox" parent="Container/Container/ContainerX" unique_id=732592586]
+[node name="InputX" type="SpinBox" parent="Container/Input Container/ContainerX" unique_id=732592586]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001
 script = ExtResource("3_22o42")
 metadata/_custom_type_script = "uid://bkqi3o5cys5uf"
 
-[node name="Spacer" type="Control" parent="Container/Container" unique_id=1313985747]
+[node name="Spacer" type="Control" parent="Container/Input Container" unique_id=1313985747]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ContainerY" type="HBoxContainer" parent="Container/Container" unique_id=472956504]
+[node name="ContainerY" type="HBoxContainer" parent="Container/Input Container" unique_id=472956504]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LabelY" type="Label" parent="Container/Container/ContainerY" unique_id=1290818867]
+[node name="LabelY" type="Label" parent="Container/Input Container/ContainerY" unique_id=1290818867]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
 text = "Y:"
 vertical_alignment = 1
 
-[node name="InputY" type="SpinBox" parent="Container/Container/ContainerY" unique_id=1785775848]
+[node name="InputY" type="SpinBox" parent="Container/Input Container/ContainerY" unique_id=1785775848]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001

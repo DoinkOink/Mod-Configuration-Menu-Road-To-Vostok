@@ -23,11 +23,11 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container" unique_id=505667935]
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=505667935]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="Dropdown" type="OptionButton" parent="Container/HBoxContainer" unique_id=2029830425]
+[node name="Dropdown" type="OptionButton" parent="Container/Input Container" unique_id=2029830425]
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
@@ -45,5 +45,5 @@ icon = ExtResource("2_8rek5")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="item_selected" from="Container/HBoxContainer/Dropdown" to="." method="_on_dropdown_item_selected"]
+[connection signal="item_selected" from="Container/Input Container/Dropdown" to="." method="_on_dropdown_item_selected"]
 [connection signal="pressed" from="Container/Default Button" to="." method="_on_default_button_pressed"]

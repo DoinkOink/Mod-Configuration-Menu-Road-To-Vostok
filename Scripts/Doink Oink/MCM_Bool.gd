@@ -11,8 +11,8 @@ var valueData
 var menu: MCMMenu
 var callbackObject: Object
 
-var value = true
-var defaultValue: bool
+var value = false
+var defaultValue: bool = false
 
 var hasChanged = false
 
@@ -71,6 +71,9 @@ func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
+        
+func UpdateNameLabel():
+    nameLabel.text = valueData["name"]
 
 func _on_default_button_pressed() -> void:
     value = defaultValue

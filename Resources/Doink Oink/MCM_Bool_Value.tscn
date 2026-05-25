@@ -25,17 +25,17 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Options" type="HBoxContainer" parent="Container" unique_id=857397452]
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=857397452]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="Off" type="Button" parent="Container/Options" unique_id=1731269765]
+[node name="Off" type="Button" parent="Container/Input Container" unique_id=1731269765]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Off"
 
-[node name="On" type="Button" parent="Container/Options" unique_id=2088548705]
+[node name="On" type="Button" parent="Container/Input Container" unique_id=2088548705]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true

@@ -11,11 +11,11 @@ var valueData
 var menu: MCMMenu
 var callbackObject: Object
 
-var value
-var defaultValue
+var value = 0
+var defaultValue = 0
 
-var minRange: float
-var maxRange: float
+var minRange: float = 0
+var maxRange: float = 0
 var isInt = false
 
 var hasChanged = false
@@ -89,6 +89,9 @@ func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
+        
+func UpdateNameLabel():
+    nameLabel.text = valueData["name"]
 
 func _on_slider_value_changed(wasChanged: bool) -> void:
     sliderInput.set_value_no_signal(slider.value)

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://k0x0p6juc0ex"]
+
+[ext_resource type="Script" uid="uid://c6qnf04l6aas2" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Array_Delete_button.gd" id="1_0beap"]
+[ext_resource type="Texture2D" uid="uid://br84xq2q7awak" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/trash-2.png" id="1_vugvw"]
+
+[node name="McmArrayDeleteButton" type="Control" unique_id=36535515]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1884.0
+offset_bottom = -1044.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_0beap")
+
+[node name="Delete Button" type="Button" parent="." unique_id=1739304720]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 0
+offset_right = 36.0
+offset_bottom = 36.0
+tooltip_text = "Revert to default value."
+icon = ExtResource("1_vugvw")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Delete Button" to="." method="_on_delete_button_pressed"]

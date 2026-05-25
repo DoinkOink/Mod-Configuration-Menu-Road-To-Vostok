@@ -99,7 +99,7 @@ func _ready():
         "category": "Test Category 4",
         "on_value_changed": "Vector2Callback",
         "isInt": false
-    });
+    })
     
     _config.set_value("Vector3", "testVector3", {
         "name": "Test Vector3",
@@ -111,7 +111,20 @@ func _ready():
         "step": 1,
         "category": "Test Category 4",
         "isInt": true
-    });
+    })
+    
+    _config.set_value("Array", "testVector3Array", {
+        "name": "Test Array",
+        "tooltip": "A test array",
+        "arrayType": "Vector3",
+        "default": [],
+        "value": [],
+        "defaultItemValue": Vector3.FORWARD,
+        "minRange": Vector3.ZERO,
+        "maxRange": Vector3(40,50,10),
+        "category": "Test Category 4",
+        "maxItems": 5
+    })
     
     _config.set_value("Category", "Test Category 2", {
         "menu_pos" = 1

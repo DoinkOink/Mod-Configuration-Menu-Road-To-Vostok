@@ -10,8 +10,8 @@ var valueData
 var menu: MCMMenu
 var callbackObject: Object
 
-var value : Color
-var defaultValue : Color
+var value : Color = Color.WHITE
+var defaultValue : Color = Color.WHITE
 
 var hasChanged = false
 
@@ -50,6 +50,9 @@ func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
+        
+func UpdateNameLabel():
+    nameLabel.text = valueData["name"]
 
 func _on_color_picker_color_changed(color: Color) -> void:
     value = color
