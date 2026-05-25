@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ccnh0q8le7s2q" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Slider.gd" id="1_lxfp6"]
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_ux4u5"]
 [ext_resource type="Texture2D" uid="uid://bl21dxqpc5dcb" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/revert.png" id="2_38l3q"]
+[ext_resource type="Script" uid="uid://bkqi3o5cys5uf" path="res://ModConfigurationMenu/Scripts/FormatSpinBox.gd" id="3_kdcyj"]
 
 [node name="Slider Value" type="MarginContainer" unique_id=1914209537]
 theme = ExtResource("1_ux4u5")
@@ -39,10 +40,12 @@ scrollable = false
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="Input" type="SpinBox" parent="Container/Container" unique_id=1309216393]
+[node name="Input" type="SpinBox" parent="Container/Container" unique_id=1467379017]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001
+script = ExtResource("3_kdcyj")
+metadata/_custom_type_script = "uid://bkqi3o5cys5uf"
 
 [node name="Default Button" type="Button" parent="Container" unique_id=845644917]
 custom_minimum_size = Vector2(36, 0)

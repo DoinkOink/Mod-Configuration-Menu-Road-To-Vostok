@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_e23on"]
 [ext_resource type="Script" uid="uid://wd2ccm67jtk3" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Vector2.gd" id="2_e23on"]
+[ext_resource type="Script" uid="uid://bkqi3o5cys5uf" path="res://ModConfigurationMenu/Scripts/FormatSpinBox.gd" id="3_22o42"]
 [ext_resource type="Texture2D" uid="uid://bl21dxqpc5dcb" path="res://ModConfigurationMenu/Sprites/UI/Doink Oink/revert.png" id="3_uuyya"]
 
 [node name="Vector 2 Value" type="MarginContainer" unique_id=1914209537]
@@ -38,10 +39,12 @@ mouse_filter = 1
 text = "X:"
 vertical_alignment = 1
 
-[node name="InputX" type="SpinBox" parent="Container/Container/ContainerX" unique_id=1309216393]
+[node name="InputX" type="SpinBox" parent="Container/Container/ContainerX" unique_id=732592586]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001
+script = ExtResource("3_22o42")
+metadata/_custom_type_script = "uid://bkqi3o5cys5uf"
 
 [node name="Spacer" type="Control" parent="Container/Container" unique_id=1313985747]
 custom_minimum_size = Vector2(30, 0)
@@ -59,10 +62,12 @@ mouse_filter = 1
 text = "Y:"
 vertical_alignment = 1
 
-[node name="InputY" type="SpinBox" parent="Container/Container/ContainerY" unique_id=24350775]
+[node name="InputY" type="SpinBox" parent="Container/Container/ContainerY" unique_id=1785775848]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001
+script = ExtResource("3_22o42")
+metadata/_custom_type_script = "uid://bkqi3o5cys5uf"
 
 [node name="Default Button" type="Button" parent="Container" unique_id=845644917]
 custom_minimum_size = Vector2(36, 0)

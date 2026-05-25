@@ -2,7 +2,7 @@ extends Node
 
 @onready var nameLabel : Label = find_child("Label")
 @onready var slider : HSlider = find_child("Slider")
-@onready var sliderInput : SpinBox = find_child("Input")
+@onready var sliderInput : FormatSpinBox = find_child("Input")
 @onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
@@ -23,7 +23,8 @@ var suppressNotify = false
 
 func _ready():
     if !valueId:
-        slider.value_changed.connect(_on_slider_value_changed)
+        slider.drag_ended.connect(_on_slider_value_changed)
+        slider.value_changed.connect(_on_slider_value_changed_no_width_change)
         sliderInput.value_changed.connect(_on_input_value_changed)
         return
 
@@ -53,12 +54,16 @@ func _ready():
     elif (isInt):
         sliderInput.step = 1
         slider.step = 1
+        
+    sliderInput.UpdatePrecision()
+    sliderInput.UpdateWidth()
 
     CheckIsDefault(value)
 
     # Connect signals after all values are set setting min_value can clamp
     # the default (0) and fire value_changed, which triggers cascading callbacks.
-    slider.value_changed.connect(_on_slider_value_changed)
+    slider.drag_ended.connect(_on_slider_value_changed)
+    slider.value_changed.connect(_on_slider_value_changed_no_width_change)
     sliderInput.value_changed.connect(_on_input_value_changed)
 
 func GetValueData():
@@ -73,6 +78,7 @@ func CheckIsDefault(checkValue):
 func SetValue(newValue) -> void:
     suppressNotify = true
     sliderInput.set_value_no_signal(newValue)
+    sliderInput.UpdateWidth()
     slider.set_value_no_signal(newValue)
     CheckIsDefault(newValue)
     suppressNotify = false
@@ -84,19 +90,30 @@ func OnValueChanged(newValue):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
 
-func _on_slider_value_changed(newValue: float) -> void:
+func _on_slider_value_changed(wasChanged: bool) -> void:
+    sliderInput.set_value_no_signal(slider.value)
+    sliderInput.UpdatePrecision()
+    sliderInput.UpdateWidth()
+    sliderInput.UpdateCarret()
+    CheckIsDefault(slider.value)
+    OnValueChanged(slider.value)
+    
+func _on_slider_value_changed_no_width_change(newValue: float) -> void:
     sliderInput.set_value_no_signal(newValue)
     CheckIsDefault(newValue)
-    OnValueChanged(newValue)
 
 func _on_input_value_changed(newValue: float) -> void:
     slider.set_value_no_signal(newValue)
+    sliderInput.UpdateWidth()
     CheckIsDefault(newValue)
     OnValueChanged(newValue)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
     sliderInput.set_value_no_signal(value)
+    sliderInput.UpdatePrecision()
+    sliderInput.UpdateWidth()
+    sliderInput.UpdateCarret()
     slider.set_value_no_signal(value)
     CheckIsDefault(value)
     OnValueChanged(value)

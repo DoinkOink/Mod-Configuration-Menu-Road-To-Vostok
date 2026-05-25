@@ -44,7 +44,7 @@ func _ready():
         "value" = 10.3,
         "minRange" = 0,
         "maxRange" = 50.5,
-        "step" = 0.1,
+        "step" = 0.000001,
         "category" = "Test Category 1"
     })
     
@@ -110,7 +110,6 @@ func _ready():
         "maxRange": Vector3(50, 40, 20),
         "step": 1,
         "category": "Test Category 4",
-        "on_value_changed": "Vector2Callback",
         "isInt": true
     });
     

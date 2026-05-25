@@ -1,9 +1,9 @@
 extends Node
 
 @onready var nameLabel : Label = find_child("Label")
-@onready var xInput : SpinBox = find_child("InputX")
-@onready var yInput : SpinBox = find_child("InputY")
-@onready var zInput : SpinBox = find_child("InputZ")
+@onready var xInput : FormatSpinBox = find_child("InputX")
+@onready var yInput : FormatSpinBox = find_child("InputY")
+@onready var zInput : FormatSpinBox = find_child("InputZ")
 @onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
@@ -61,6 +61,14 @@ func _ready():
         xInput.step = 1
         yInput.step = 1
         zInput.step = 1
+        
+    xInput.UpdatePrecision()
+    yInput.UpdatePrecision()
+    zInput.UpdatePrecision()
+    
+    xInput.UpdateWidth()
+    yInput.UpdateWidth()
+    zInput.UpdateWidth()
 
     CheckIsDefault(value)
 
@@ -83,9 +91,15 @@ func CheckIsDefault(checkValue: Vector3):
 
 func SetValue(newValue: Vector3) -> void:
     suppressNotify = true
+    
     xInput.set_value_no_signal(newValue.x)
     yInput.set_value_no_signal(newValue.y)
     zInput.set_value_no_signal(newValue.z)
+    
+    xInput.UpdateWidth()
+    yInput.UpdateWidth()
+    zInput.UpdateWidth()
+    
     CheckIsDefault(newValue)
     suppressNotify = false
 
@@ -98,24 +112,33 @@ func OnValueChanged(newValue: Vector3):
 
 func _on_x_input_value_changed(newValue: float) -> void:
     var newVector = Vector3(newValue, yInput.value, zInput.value)
+    xInput.UpdateWidth()
     CheckIsDefault(newVector)
     OnValueChanged(newVector)
 
 func _on_y_input_value_changed(newValue: float) -> void:
     var newVector = Vector3(xInput.value, newValue, zInput.value)
+    yInput.UpdateWidth()
     CheckIsDefault(newVector)
     OnValueChanged(newVector)
     
 func _on_z_input_value_changed(newValue: float) -> void:
     var newVector = Vector3(xInput.value, yInput.value, newValue)
+    zInput.UpdateWidth()
     CheckIsDefault(newVector)
     OnValueChanged(newVector)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
+    
     xInput.set_value_no_signal(value.x)
     yInput.set_value_no_signal(value.y)
     zInput.set_value_no_signal(value.z)
+    
+    xInput.UpdateWidth()
+    yInput.UpdateWidth()
+    zInput.UpdateWidth()
+    
     CheckIsDefault(value)
     OnValueChanged(value)
     menu.PlayClick()

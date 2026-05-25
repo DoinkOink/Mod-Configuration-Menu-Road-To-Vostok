@@ -1,8 +1,8 @@
 extends Node
 
 @onready var nameLabel : Label = find_child("Label")
-@onready var xInput : SpinBox = find_child("InputX")
-@onready var yInput : SpinBox = find_child("InputY")
+@onready var xInput : FormatSpinBox = find_child("InputX")
+@onready var yInput : FormatSpinBox = find_child("InputY")
 @onready var defaultRevertButton : Button = find_child("Default Button")
 
 var valueId: String
@@ -53,6 +53,12 @@ func _ready():
     elif (isInt):
         xInput.step = 1
         yInput.step = 1
+        
+    xInput.UpdatePrecision()
+    yInput.UpdatePrecision()
+    
+    xInput.UpdateWidth()
+    yInput.UpdateWidth()
 
     CheckIsDefault(value)
 
@@ -73,8 +79,13 @@ func CheckIsDefault(checkValue: Vector2):
 
 func SetValue(newValue: Vector2) -> void:
     suppressNotify = true
+    
     xInput.set_value_no_signal(newValue.x)
     yInput.set_value_no_signal(newValue.y)
+    
+    xInput.UpdateWidth()
+    yInput.UpdateWidth()
+    
     CheckIsDefault(newValue)
     suppressNotify = false
 
@@ -87,18 +98,25 @@ func OnValueChanged(newValue: Vector2):
 
 func _on_x_input_value_changed(newValue: float) -> void:
     var newVector = Vector2(newValue, yInput.value)
+    xInput.UpdateWidth()
     CheckIsDefault(newVector)
     OnValueChanged(newVector)
 
 func _on_y_input_value_changed(newValue: float) -> void:
     var newVector = Vector2(xInput.value, newValue)
+    yInput.UpdateWidth()
     CheckIsDefault(newVector)
     OnValueChanged(newVector)
 
 func _on_default_button_pressed() -> void:
     value = defaultValue
+    
     xInput.set_value_no_signal(value.x)
     yInput.set_value_no_signal(value.y)
+    
+    xInput.UpdateWidth()
+    yInput.UpdateWidth()
+    
     CheckIsDefault(value)
     OnValueChanged(value)
     menu.PlayClick()
