@@ -174,8 +174,8 @@ func _on_new_item_button_pressed() -> void:
     UpdateCountLabel()
     menu.PlayClick()
     
-func _on_list_item_updated(valueId, newValue, _menu):
-    value[int(valueId)] = newValue
+func _on_list_item_updated(updatedValueId, newValue, _menu):
+    value[int(updatedValueId)] = newValue
     CheckIsDefault(value)
     OnValueChanged(value)
     UpdateAddItemButton()

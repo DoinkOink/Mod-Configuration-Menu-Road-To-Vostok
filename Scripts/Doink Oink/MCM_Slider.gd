@@ -93,7 +93,7 @@ func OnValueChanged(newValue):
 func UpdateNameLabel():
     nameLabel.text = valueData["name"]
 
-func _on_slider_value_changed(wasChanged: bool) -> void:
+func _on_slider_value_changed(_wasChanged: bool) -> void:
     sliderInput.set_value_no_signal(slider.value)
     sliderInput.UpdatePrecision()
     sliderInput.UpdateWidth()

@@ -97,7 +97,6 @@ func _ready():
         "maxRange": Vector2(50, 40),
         "step": 0.5,
         "category": "Test Category 4",
-        "on_value_changed": "Vector2Callback",
         "isInt": false
     })
     
@@ -166,9 +165,6 @@ func UpdateConfigProperties(config: ConfigFile):
     
 func IntCallback(valueId, newValue, menu):
     print("Int Update: " + str(valueId) + ", " + str(newValue) + ", " + str(menu))
-    
-func Vector2Callback(valueId, newValue, menu):
-    print(str(newValue.x) + " " + str(newValue.y))
     
 func _input(_event):
     if (InputMap.has_action("testKeycode") && Input.is_action_pressed("testKeycode")):

@@ -37,9 +37,7 @@ func CreateMCMButton():
         MCMHelpers.MCM_Menu.queue_free()
         
     var _sceneName = get_tree().current_scene.name    
-    var _settings = get_tree().root.find_child("UI_Settings", true, false)   
-    
-    print(_sceneName) 
+    var _settings = get_tree().root.find_child("UI_Settings", true, false)
     
     if (_sceneName == "Death"):
         return

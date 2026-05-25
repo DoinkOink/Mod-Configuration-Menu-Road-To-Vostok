@@ -19,8 +19,8 @@ func _ready() -> void:
     UpdatePrecision()
 
 # This handler ensures the format is maintained while editing the field.
-func _on_value_changed(value: float) -> void:
-    get_line_edit().text = Formatter.format_slider_value_for_display(value, precision)
+func _on_value_changed(newValue: float) -> void:
+    get_line_edit().text = Formatter.format_slider_value_for_display(newValue, precision)
 
 # This handler ensures the format is retained when entering the field.
 func _on_focus_entered() -> void:
