@@ -8,6 +8,8 @@ Welcome to the Mod Configuration Menu (MCM) wiki! Please follow the below links 
     * [Keycode Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Keycode-Value-Type)
     * [Color Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
     * [Dropdown Value Type](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
+    * [Vector2](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Vector2-Value-Type)
+    * [Vector3](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Vector3-Value-Type)
 * [Registering Your Mod With MCM](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Registering-Your-Mod-With-MCM)
 * [Updating Your Mods Configuration](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Updating-Your-Mods-Configuration)
 * [Handling Configuration Updates By The Player](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Handling-configuration-updates-by-the-player)
