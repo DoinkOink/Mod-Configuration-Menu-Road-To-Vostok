@@ -14,7 +14,6 @@ _config.set_value("Dropdown", "testDropdown", {
 })
 ```
 
-# Setup
 ## Properties
 ### Section Name: `Dropdown`
 ### Required

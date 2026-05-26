@@ -12,7 +12,7 @@ _config.set_value("Int", "testInt", {
 })
 ```
 
-# Setup
+
 ## Properties
 ### Section Name: `Int`
 ### Required

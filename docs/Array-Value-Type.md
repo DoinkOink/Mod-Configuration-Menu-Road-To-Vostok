@@ -11,7 +11,7 @@ _config.set_value("Array", "testStringArray", {
 	"maxItems": 5
 })
 ```
-# Setup
+
 ## Properties
 ### Section Name: `Array`
 ### Required

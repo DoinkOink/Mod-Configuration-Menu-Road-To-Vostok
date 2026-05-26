@@ -11,7 +11,6 @@ _config.set_value("Keycode", "testKeycode", {
 })
 ```
 
-# Setup
 ## Properties
 ### Section Name: `Keycode`
 ### Required

@@ -12,7 +12,6 @@ _config.set_value("Float", "testFloat", {
 })
 ```
 
-# Setup
 ## Properties
 ### Section Name: `Float`
 ### Required

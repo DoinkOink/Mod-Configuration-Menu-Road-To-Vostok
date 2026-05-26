@@ -10,7 +10,6 @@ _config.set_value("Bool", "testBool", {
 })
 ```
 
-# Setup
 ## Properties
 ### Section Name: `Bool`
 ### Required

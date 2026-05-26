@@ -8,7 +8,7 @@ _config.set_value("String", "testString", {
 	"value" = "Hello World"
 })
 ```
-# Setup
+
 ## Properties
 ### Section Name: `String`
 ### Required

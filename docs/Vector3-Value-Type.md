@@ -13,7 +13,7 @@ _config.set_value("Vector3", "testVector3", {
     "isInt": true
 })
 ```
-# Setup
+
 ## Properties
 ### Section Name: `Vector3`
 ### Required

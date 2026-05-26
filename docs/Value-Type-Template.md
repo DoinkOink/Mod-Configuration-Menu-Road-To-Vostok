@@ -9,7 +9,6 @@ _config.set_value("{Section Name}", "", {
 })
 ```
 
-# Setup
 ## Properties
 ### Section Name: `{Section Name}`
 ### Required

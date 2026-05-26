@@ -10,7 +10,6 @@ _config.set_value("Color", "testColor", {
 })
 ```
 
-# Setup
 ## Properties
 ### Section Name: `Color`
 ### Required
