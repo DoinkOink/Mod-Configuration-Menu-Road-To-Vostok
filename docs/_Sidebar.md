@@ -9,6 +9,7 @@
     * [Dropdown Value Type](Dropdown-Value-Type)
     * [Vector2](Vector2-Value-Type)
     * [Vector3](Vector3-Value-Type)
+    * [Array](Array-Value-Type)
 * [Registering Your Mod With MCM](Registering-Your-Mod-With-MCM)
 * [Updating Your Mods Configuration](Updating-Your-Mods-Configuration)
 * [Handling Configuration Updates By The Player](Handling-configuration-updates-by-the-player)
