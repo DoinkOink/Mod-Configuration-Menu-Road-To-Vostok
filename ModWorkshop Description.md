@@ -37,10 +37,18 @@ None right now :)
 ### v2.8.0
 * Remember last opened MCM mod settings by @Joaoha in https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/pull/6
     * Also added Joaoha's changes to the spinner boxes so they keep the SpinnerBox width the same size as the inputted value and removed trailing .0 from the value
+* Added Value Property validation
+    * Now when configs are being registered to MCM it will check to make sure all required properties are present. If not MCM will log a warning and skip the value
+    * The `value` property is now an optional property
+        * If it's not present it will be automatically set to whatever the `default` property is set to
 * Added the Vector2 and Vector3 value types
+    * Check out the Wiki page for implementation
+        * [Vector2](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Vector2-Value-Type)
+        * [Vector3](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Vector3-Value-Type)
     * Thank you Theta90 for the suggestion on Github
     * These value types combine 2/3 spinner boxes to input x/y/z values
 * Added the Array value type
+    * [Check out the Wiki page for implementation](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Array-Value-Type)
     * Thank you to MJRamon for the suggestion
     * This value type allows the creation of an array input of a single supported given type which include
         * String
