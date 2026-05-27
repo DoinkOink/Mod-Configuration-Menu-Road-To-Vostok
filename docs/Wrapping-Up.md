@@ -81,7 +81,6 @@ func _ready():
 		"minRange": Vector2(0, 2),
 		"maxRange": Vector2(50, 40),
 		"step": 0.5,
-		"category": "Test Category 4",
 		"isInt": false
 	})
 
@@ -93,7 +92,6 @@ func _ready():
 		"minRange": Vector3(0, 2, -10),
 		"maxRange": Vector3(50, 40, 20),
 		"step": 1,
-		"category": "Test Category 4",
 		"isInt": true
 	})
 

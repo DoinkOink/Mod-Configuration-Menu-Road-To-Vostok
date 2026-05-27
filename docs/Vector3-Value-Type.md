@@ -9,7 +9,6 @@ _config.set_value("Vector3", "testVector3", {
     "minRange": Vector3(0, 2, -10),
     "maxRange": Vector3(50, 40, 20),
     "step": 1,
-    "category": "Test Category 4",
     "isInt": true
 })
 ```
