@@ -1,6 +1,6 @@
 extends "res://Scripts/Menu.gd"
 
-var mcmMenuScene = preload("res://ModConfigurationMenu/UI/Doink Oink/UI_MCM.tscn")
+var mcmMenuScene = preload("res://ModConfigurationMenu/UI/MCMMenu.tscn")
 var mcmMenu: Control = null
 
 func ToggleMCMMenu():

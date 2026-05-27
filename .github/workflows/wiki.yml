@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'docs/**'
+      - 'docs/pages/**'
 
 jobs:
   sync-wiki:
@@ -18,5 +18,5 @@ jobs:
       - name: Sync docs to wiki
         uses: Andrew-Chen-Wang/github-wiki-action@v4
         with:
-          path: docs/
+          path: docs/pages/
           token: ${{ secrets.GITHUB_TOKEN }}

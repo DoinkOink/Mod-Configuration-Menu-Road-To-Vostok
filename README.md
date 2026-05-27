@@ -1,8 +1,8 @@
 <p align="center">
     <picture>
-    <source width="600px" media="(prefers-color-scheme: dark)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
-    <source width="600px" media="(prefers-color-scheme: light)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent_light-bg.png?raw=true">
-    <img width="600px" alt="Fallback image description" src="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/Sprites/UI/Doink%20Oink/MCM-Poster-transparent.png?raw=true">
+    <source width="600px" media="(prefers-color-scheme: dark)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/docs/assets/images/mcm_poster_transparent_white.png?raw=true">
+    <source width="600px" media="(prefers-color-scheme: light)" srcset="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/docs/assets/images/mcm_poster_transparent_black.png?raw=true">
+    <img width="600px" alt="Fallback image description" src="https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/docs/assets/images/mcm_poster_transparent_white.png?raw=true">
     </picture>
 </p>
 
@@ -88,7 +88,7 @@ None right now :)
 ### v2.6.0
 * Added the ability for realtime individual value callbacks while the player is changing values within the MCM menu
     * Thank you to tetrahydroc for contributing this addition to MCM
-* Added the Category setting for values [head over to the wiki to see how to add this](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/docs/Custom-Config-Property-Sorting.md#adding-category-headers)
+* Added the Category setting for values [head over to the wiki to see how to add this](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting#adding-category-headers)
     * This will allow mod authors to add category headers to their config menu to better layout settings for users
     * Thank you to MJRamon for the category header UI
 ### v2.5.1

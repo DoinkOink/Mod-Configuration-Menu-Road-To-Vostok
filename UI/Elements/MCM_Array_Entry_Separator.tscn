@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c8bfg0xicg0jh"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_svaf8"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.12955853, 0.12955844, 0.12955844, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[node name="MCM_Array_Entry_Separator" type="MarginContainer" unique_id=1440540080]
+mouse_filter = 2
+theme_override_constants/margin_bottom = -5
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=727127613]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_svaf8")

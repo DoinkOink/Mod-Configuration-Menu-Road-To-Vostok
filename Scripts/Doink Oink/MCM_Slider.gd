@@ -3,7 +3,7 @@ extends Node
 @onready var nameLabel : Label = find_child("Label")
 @onready var slider : HSlider = find_child("Slider")
 @onready var sliderInput : FormatSpinBox = find_child("Input")
-@onready var defaultRevertButton : Button = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
 var valueId: String
 var section: String
@@ -111,7 +111,7 @@ func _on_input_value_changed(newValue: float) -> void:
     CheckIsDefault(newValue)
     OnValueChanged(newValue)
 
-func _on_default_button_pressed() -> void:
+func _on_revert_button_pressed() -> void:
     value = defaultValue
     sliderInput.set_value_no_signal(value)
     sliderInput.UpdatePrecision()

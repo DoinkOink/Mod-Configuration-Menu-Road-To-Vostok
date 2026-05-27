@@ -2,20 +2,18 @@ extends Node
 class_name MCM_Array_Value
 
 @onready var variableLabel : Label = find_child("Name Label")
-@onready var columnSpacer : Control = find_child("Column Spacer")
-@onready var columnHeaders : HBoxContainer = find_child("Column Headers")
 @onready var countLabel : Label = find_child("Count Label")
 @onready var itemContainer : HBoxContainer = find_child("Item Container")
 @onready var panelDivider : Panel = find_child("Panel Divider")
 @onready var valueContainer : VBoxContainer = find_child("Value Container")
-@onready var leadingSpacer : Control = find_child("Leading Spacer")
 @onready var expandButton : Button = find_child("Expand Button")
 @onready var newItemButton : Button = find_child("New Item Button")
-@onready var defaultRevertButton : Button = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
-const deleteButtonElement = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Array_Delete_Button.tscn")
-const expandButtonIcon = preload("res://ModConfigurationMenu/Sprites/UI/Doink Oink/chevron-down.png")
-const collapseButtonIcon = preload("res://ModConfigurationMenu/Sprites/UI/Doink Oink/chevron-up.png")
+const deleteButtonElement = preload("res://ModConfigurationMenu/UI/Elements/MCM_Array_Delete_Button.tscn")
+const elementSeparatorScene = preload("res://ModConfigurationMenu/UI/Elements/MCM_Array_Entry_Separator.tscn")
+const expandButtonIcon = preload("res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Keyboard_Arrow_Down.svg")
+const collapseButtonIcon = preload("res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Keyboard_Arrow_Up.svg")
 
 var valueId: String
 var section: String
@@ -38,22 +36,31 @@ func _ready():
     arrayType = valueData["arrayType"]
     defaultItemValue = valueData["defaultItemValue"]
         
-    expandButton.pivot_offset_ratio = Vector2(0.5, 0.5)
-        
     variableLabel.text = valueData["name"]
     variableLabel.tooltip_text = valueData["tooltip"]
-    
-    variableLabel.resized.connect(_on_name_label_resized)
     
     value = valueData["value"]
     defaultValue = valueData["default"]
     
+    ResetLayout()
+
     CreateElementsFromValue()
     
     CheckIsDefault(value)
     UpdateAddItemButton()
     UpdateCountLabel()
-    
+
+func ResetLayout() -> void:
+    itemContainer.visible = false
+    panelDivider.visible = false
+    expandButton.icon = expandButtonIcon
+    expandButton.text = "Expand"
+    expandButton.tooltip_text = "Expand array list"
+
+    for child in valueContainer.get_children().duplicate():
+        if not child is Button:
+            child.queue_free()
+
 func GetValueData():
     valueData["value"] = value
     return valueData
@@ -123,12 +130,18 @@ func CreateNewElement(valueToAdd, index):
     _element.menu = menu
     _element.callbackObject = self
     _element.find_child("Input Container").add_sibling(_deleteButtonElement)
+
+    AddElementSeparator(_element)
     
     elementArray.append(_element)
     
     var _childCount = valueContainer.get_child_count()
     valueContainer.add_child(_element)
     valueContainer.move_child(_element, _childCount-1)
+
+func AddElementSeparator(element) -> void:
+    var separator: HSeparator = elementSeparatorScene.instantiate()
+    element.add_child(separator)
     
 func DeleteItem(index):
     value.pop_at(index)
@@ -158,7 +171,7 @@ func UpdateCountLabel():
     if ("maxItems" in valueData):
         countLabel.text += "/" + str(valueData["maxItems"])
 
-func _on_default_button_pressed() -> void:
+func _on_revert_button_pressed() -> void:
     value = defaultValue
     CreateElementsFromValue()
     CheckIsDefault(value)
@@ -170,9 +183,9 @@ func _on_default_button_pressed() -> void:
 func _on_expand_button_pressed() -> void:
     itemContainer.visible = !itemContainer.visible
     panelDivider.visible = itemContainer.visible
-    columnHeaders.visible = itemContainer.visible
     expandButton.icon = collapseButtonIcon if itemContainer.visible else expandButtonIcon
-    expandButton.tooltip_text = "Collapse array list." if itemContainer.visible else "Expand array list."
+    expandButton.text = "Collapse" if itemContainer.visible else "Expand"
+    expandButton.tooltip_text = "Collapse array list" if itemContainer.visible else "Expand array list"
     menu.PlayClick()
 
 func _on_new_item_button_pressed() -> void:
@@ -190,6 +203,3 @@ func _on_list_item_updated(updatedValueId, newValue, _menu):
     OnValueChanged(value)
     UpdateAddItemButton()
     UpdateCountLabel()
-    
-func _on_name_label_resized():
-    leadingSpacer.custom_minimum_size.x = variableLabel.size.x + columnSpacer.size.x

@@ -2,7 +2,7 @@ extends Node
 
 @onready var variableLabel : Label = find_child("Label")
 @onready var dropdown : OptionButton = find_child("Dropdown")
-@onready var defaultRevertButton : Button = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
 var valueId: String
 var section: String
@@ -80,7 +80,7 @@ func _on_input_text_submitted(newValue):
     CheckIsDefault(value)
     OnValueChanged(value)
 
-func _on_default_button_pressed() -> void:
+func _on_revert_button_pressed() -> void:
     value = defaultValue
     dropdown.selected = value
     CheckIsDefault(value)

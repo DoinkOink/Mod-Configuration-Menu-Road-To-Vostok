@@ -2,7 +2,7 @@ extends Node
 
 @onready var variableLabel : Label = find_child("Label")
 @onready var keycodeInput : Button = find_child("Input")
-@onready var defaultRevertButton : Button = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
 var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 
@@ -131,7 +131,7 @@ func _on_keycode_pressed():
         Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
         menu.PlayClick()
 
-func _on_default_button_pressed() -> void:
+func _on_revert_button_pressed() -> void:
     if (valueData["default_type"] == "Mouse"):
         value = InputEventMouseButton.new()
         value.button_index = defaultValue

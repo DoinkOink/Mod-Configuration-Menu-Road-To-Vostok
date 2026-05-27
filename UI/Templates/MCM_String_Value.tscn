@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dfu35yank8jbg"]
+
+[ext_resource type="Script" uid="uid://bb486wqreeeu4" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_String.gd" id="1_2toi2"]
+[ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_trew3"]
+[ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="3_m6nek"]
+
+[node name="MCM_String_Value" type="MarginContainer" unique_id=1852979968]
+custom_minimum_size = Vector2(0, 36)
+theme = ExtResource("1_trew3")
+script = ExtResource("1_2toi2")
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=1943885712]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container" unique_id=149899844]
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+text = "String Variable Name"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Container" unique_id=1429419928]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=246983127]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="Input" type="LineEdit" parent="Container/Input Container" unique_id=1228000370]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter Value..."
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="MCM_Revert_Button" parent="Container" unique_id=219514080 instance=ExtResource("3_m6nek")]
+layout_mode = 2
+
+[connection signal="pressed" from="Container/MCM_Revert_Button" to="." method="_on_revert_button_pressed"]

@@ -10,21 +10,21 @@ var audioInstance2D = preload("res://Resources/AudioInstance2D.tscn")
 @onready var Logo: Control = find_child("Logo")
 @onready var SettingsLabel: Label = find_child("Settings_Label", true, false)
 
-var modListButton = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Mod_List_Button.tscn")
-var categoryHeader = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Header_String.tscn")
+var modListButton = preload("res://ModConfigurationMenu/UI/Elements/MCM_Mod_List_Button.tscn")
+var categoryHeader = preload("res://ModConfigurationMenu/UI/Elements/MCM_Header_String.tscn")
 
 var availableElements = {
-    "Int": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn"),
+    "Int": preload("res://ModConfigurationMenu/UI/Templates/MCM_Slider_Value.tscn"),
     # The float element will be added in _ready() since it is the same as int
-    # "FLoat": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Slider_Value.tscn"),
-    "Bool": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Bool_Value.tscn"),
-    "String": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_String_Value.tscn"),
-    "Keycode": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Keycode_Value.tscn"),
-    "Color": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Color_Value.tscn"),
-    "Dropdown": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Dropdown_Value.tscn"),
-    "Vector2": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector2_Value.tscn"),
-    "Vector3": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Vector3_Value.tscn"),
-    "Array": preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Array_Value.tscn")
+    # "FLoat": preload("res://ModConfigurationMenu/UI/Templates/MCM_Slider_Value.tscn"),
+    "Bool": preload("res://ModConfigurationMenu/UI/Templates/MCM_Bool_Value.tscn"),
+    "String": preload("res://ModConfigurationMenu/UI/Templates/MCM_String_Value.tscn"),
+    "Keycode": preload("res://ModConfigurationMenu/UI/Templates/MCM_Keycode_Value.tscn"),
+    "Color": preload("res://ModConfigurationMenu/UI/Templates/MCM_Color_Value.tscn"),
+    "Dropdown": preload("res://ModConfigurationMenu/UI/Templates/MCM_Dropdown_Value.tscn"),
+    "Vector2": preload("res://ModConfigurationMenu/UI/Templates/MCM_Vector2_Value.tscn"),
+    "Vector3": preload("res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn"),
+    "Array": preload("res://ModConfigurationMenu/UI/Templates/MCM_Array_Value.tscn")
 }
 
 var uiManager
@@ -94,7 +94,9 @@ func CreateAllModButtons():
         
 func CreateModButton(mod):
     var _button: Button = modListButton.instantiate()
-    _button.text = "    " + mod.friendlyName
+    var _mod_name_label: Label = _button.get_node_or_null("MarginContainer/ModNameLabel")
+    if _mod_name_label != null:
+        _mod_name_label.text = mod.friendlyName
     _button.pressed.connect(_on_mod_button_pressed.bind(mod.id, _button))
     
     modButtons[mod.id] = _button

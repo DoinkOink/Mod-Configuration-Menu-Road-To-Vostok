@@ -3,7 +3,7 @@ extends Node
 @onready var nameLabel : Label = find_child("Label")
 @onready var off : Button = find_child("Off")
 @onready var on : Button = find_child("On")
-@onready var defaultRevertButton : Button = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
 var valueId: String
 var section: String
@@ -75,7 +75,7 @@ func OnValueChanged(newValue):
 func UpdateNameLabel():
     nameLabel.text = valueData["name"]
 
-func _on_default_button_pressed() -> void:
+func _on_revert_button_pressed() -> void:
     value = defaultValue
     on.button_pressed = value
     off.button_pressed = !value
