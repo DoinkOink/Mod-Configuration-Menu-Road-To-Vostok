@@ -1,15 +1,21 @@
 extends Node
 class_name MCM_Array_Value
 
-@onready var variableLabel : Label = find_child("Label")
+@onready var variableLabel : Label = find_child("Name Label")
+@onready var columnSpacer : Control = find_child("Column Spacer")
+@onready var columnHeaders : HBoxContainer = find_child("Column Headers")
 @onready var countLabel : Label = find_child("Count Label")
 @onready var itemContainer : HBoxContainer = find_child("Item Container")
+@onready var panelDivider : Panel = find_child("Panel Divider")
 @onready var valueContainer : VBoxContainer = find_child("Value Container")
+@onready var leadingSpacer : Control = find_child("Leading Spacer")
 @onready var expandButton : Button = find_child("Expand Button")
 @onready var newItemButton : Button = find_child("New Item Button")
 @onready var defaultRevertButton : Button = find_child("Default Button")
 
 const deleteButtonElement = preload("res://ModConfigurationMenu/Resources/Doink Oink/MCM_Array_Delete_Button.tscn")
+const expandButtonIcon = preload("res://ModConfigurationMenu/Sprites/UI/Doink Oink/chevron-down.png")
+const collapseButtonIcon = preload("res://ModConfigurationMenu/Sprites/UI/Doink Oink/chevron-up.png")
 
 var valueId: String
 var section: String
@@ -36,6 +42,8 @@ func _ready():
         
     variableLabel.text = valueData["name"]
     variableLabel.tooltip_text = valueData["tooltip"]
+    
+    variableLabel.resized.connect(_on_name_label_resized)
     
     value = valueData["value"]
     defaultValue = valueData["default"]
@@ -161,7 +169,9 @@ func _on_default_button_pressed() -> void:
 
 func _on_expand_button_pressed() -> void:
     itemContainer.visible = !itemContainer.visible
-    expandButton.rotation_degrees = 180 if itemContainer.visible else 0
+    panelDivider.visible = itemContainer.visible
+    columnHeaders.visible = itemContainer.visible
+    expandButton.icon = collapseButtonIcon if itemContainer.visible else expandButtonIcon
     expandButton.tooltip_text = "Collapse array list." if itemContainer.visible else "Expand array list."
     menu.PlayClick()
 
@@ -180,3 +190,6 @@ func _on_list_item_updated(updatedValueId, newValue, _menu):
     OnValueChanged(value)
     UpdateAddItemButton()
     UpdateCountLabel()
+    
+func _on_name_label_resized():
+    leadingSpacer.custom_minimum_size.x = variableLabel.size.x + columnSpacer.size.x
