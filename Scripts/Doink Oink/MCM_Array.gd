@@ -110,6 +110,7 @@ func CreateNewElement(valueToAdd, index):
     
     var _element = menu.availableElements.get(arrayType).instantiate()
     var _deleteButtonElement = deleteButtonElement.instantiate()
+    _deleteButtonElement.tooltip_text = "Delete entry"
     
     _deleteButtonElement.arrayIndex = index
     _deleteButtonElement.arrayCallback = self
