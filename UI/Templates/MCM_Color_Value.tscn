@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cfkvwghmbu1b0"]
+
+[ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_3aof7"]
+[ext_resource type="Script" uid="uid://c0qke58tpma3h" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Color.gd" id="1_hvhxg"]
+[ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="3_wo4xy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wo4xy"]
+
+[node name="MCM_Color_Value" type="MarginContainer" unique_id=71822911]
+custom_minimum_size = Vector2(0, 36)
+theme = ExtResource("1_3aof7")
+script = ExtResource("1_hvhxg")
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=659258127]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container" unique_id=2054875259]
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+text = "Color Variable Name"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Container" unique_id=1119624246]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=124004888]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Container/Input Container" unique_id=1005904466]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wo4xy")
+
+[node name="ColorPicker" type="ColorPickerButton" parent="Container/Input Container" unique_id=1619335039]
+custom_minimum_size = Vector2(173, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 1)
+
+[node name="MCM_Revert_Button" parent="Container" unique_id=219514080 instance=ExtResource("3_wo4xy")]
+layout_mode = 2
+
+[connection signal="color_changed" from="Container/Input Container/ColorPicker" to="." method="_on_color_picker_color_changed"]
+[connection signal="pressed" from="Container/MCM_Revert_Button" to="." method="_on_revert_button_pressed"]

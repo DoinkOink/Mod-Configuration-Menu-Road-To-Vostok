@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cg7bdpjwt3mrv"]
+
+[ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_84kag"]
+[ext_resource type="Script" uid="uid://b6rlgwpcoyw4a" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Dropdown.gd" id="1_wh4rw"]
+[ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="3_5ni0t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ni0t"]
+content_margin_left = 4.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.25098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5hlc"]
+content_margin_left = 4.0
+bg_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05cuf"]
+content_margin_left = 4.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r556q"]
+content_margin_left = 4.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.25098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyc7e"]
+content_margin_left = 4.0
+bg_color = Color(0, 0, 0, 0)
+
+[node name="MCM_Dropdown_Value" type="MarginContainer" unique_id=1584880875]
+custom_minimum_size = Vector2(0, 36)
+theme = ExtResource("1_84kag")
+script = ExtResource("1_wh4rw")
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=1949581297]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container" unique_id=1747136709]
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+text = "Dropdown Variable Name"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Container" unique_id=2098919667]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Input Container" type="HBoxContainer" parent="Container" unique_id=505667935]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="Dropdown" type="OptionButton" parent="Container/Input Container" unique_id=2029830425]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_5ni0t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p5hlc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_05cuf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_r556q")
+theme_override_styles/focus = SubResource("StyleBoxFlat_lyc7e")
+selected = 0
+allow_reselect = true
+item_count = 1
+popup/item_0/text = "Add Items Here..."
+popup/item_0/id = 0
+
+[node name="MCM_Revert_Button" parent="Container" unique_id=219514080 instance=ExtResource("3_5ni0t")]
+layout_mode = 2
+
+[connection signal="item_selected" from="Container/Input Container/Dropdown" to="." method="_on_dropdown_item_selected"]
+[connection signal="pressed" from="Container/MCM_Revert_Button" to="." method="_on_revert_button_pressed"]

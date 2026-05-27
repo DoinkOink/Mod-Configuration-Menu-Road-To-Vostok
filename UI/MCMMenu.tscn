@@ -1,0 +1,374 @@
+[gd_scene format=3 uid="uid://cpllxwxucrfr1"]
+
+[ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_5wsc0"]
+[ext_resource type="Script" uid="uid://bb2ho30bbe4pu" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCMMenu.gd" id="2_o2vcv"]
+[ext_resource type="Material" uid="uid://cv8raxpmbb48a" path="res://UI/Effects/MT_Menu.tres" id="3_gucg0"]
+[ext_resource type="Texture2D" uid="uid://b8qehehfo6ee4" path="res://Editor/RTV_Dynamic.png" id="4_t0fdo"]
+[ext_resource type="Texture2D" uid="uid://828yfc1f880u" path="res://ModConfigurationMenu/UI/Sprites/Logo_MCM.png" id="5_58edf"]
+[ext_resource type="PackedScene" uid="uid://cmpb147ohg32n" path="res://ModConfigurationMenu/UI/Elements/MCM_Mod_List_Button.tscn" id="6_6ftbm"]
+[ext_resource type="PackedScene" uid="uid://ba1armg3os37p" path="res://ModConfigurationMenu/UI/Elements/MCM_Header_String.tscn" id="7_qcy1k"]
+[ext_resource type="PackedScene" uid="uid://7lg0l3h8unnq" path="res://ModConfigurationMenu/UI/Templates/MCM_Bool_Value.tscn" id="8_b4gw8"]
+[ext_resource type="PackedScene" uid="uid://cfkvwghmbu1b0" path="res://ModConfigurationMenu/UI/Templates/MCM_Color_Value.tscn" id="9_qvno0"]
+[ext_resource type="PackedScene" uid="uid://cg7bdpjwt3mrv" path="res://ModConfigurationMenu/UI/Templates/MCM_Dropdown_Value.tscn" id="10_cob11"]
+[ext_resource type="PackedScene" uid="uid://ccio7axqb4r3q" path="res://ModConfigurationMenu/UI/Templates/MCM_Keycode_Value.tscn" id="11_fny3e"]
+[ext_resource type="PackedScene" uid="uid://33nsgfalxfbr" path="res://ModConfigurationMenu/UI/Templates/MCM_Slider_Value.tscn" id="12_mmk3h"]
+[ext_resource type="PackedScene" uid="uid://dfu35yank8jbg" path="res://ModConfigurationMenu/UI/Templates/MCM_String_Value.tscn" id="13_lcey6"]
+[ext_resource type="PackedScene" uid="uid://cvfqkiyc0puhq" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector2_Value.tscn" id="14_c0ttn"]
+[ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn" id="15_i0dgn"]
+[ext_resource type="PackedScene" uid="uid://b56uh4tdnp8v" path="res://ModConfigurationMenu/UI/Templates/MCM_Array_Value.tscn" id="16_8o33l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3gea"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo6k8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1qods"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wd52j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnjx8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5ye3"]
+
+[node name="MCMMenu" type="Control" unique_id=794088200]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5wsc0")
+script = ExtResource("2_o2vcv")
+
+[node name="Screen" type="Control" parent="." unique_id=224796746]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Screen" unique_id=1385197045]
+material = ExtResource("3_gucg0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_t0fdo")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Background" type="ColorRect" parent="." unique_id=867349826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="Header" type="Panel" parent="." unique_id=2122593540]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x3gea")
+
+[node name="MarginContainer" type="MarginContainer" parent="Header" unique_id=1805693948]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 50
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Header/MarginContainer" unique_id=956545549]
+custom_minimum_size = Vector2(1080, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect_2" type="TextureRect" parent="Header/MarginContainer/HFlowContainer" unique_id=903611828]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_58edf")
+expand_mode = 5
+
+[node name="Panel" type="Panel" parent="Header/MarginContainer/HFlowContainer" unique_id=1199583020]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Header/MarginContainer/HFlowContainer" unique_id=1551031649]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 24
+text = "Mod Configuration Menu"
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="Header/MarginContainer" unique_id=1749737548]
+custom_minimum_size = Vector2(256, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "← Return"
+expand_icon = true
+
+[node name="Settings_Panel" type="Panel" parent="." unique_id=643974054]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -880.0
+offset_top = -390.0
+offset_right = 880.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eo6k8")
+
+[node name="Margin_Panel" type="MarginContainer" parent="Settings_Panel" unique_id=462283364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box_Container" type="HBoxContainer" parent="Settings_Panel/Margin_Panel" unique_id=511302993]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Mod_List_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container" unique_id=1493730462]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1qods")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel" unique_id=1242224031]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=1706176933]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Panel" unique_id=981146510]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mods"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=738126004]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wd52j")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=713058264]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer" unique_id=1624359536]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer" unique_id=1454152798]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 4
+
+[node name="Mods" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=671517203]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ModListButton" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1038402848 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_2" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2114539945 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_3" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1308437606 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_4" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=803821561 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_5" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=63380404 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_6" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=738489492 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_7" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1079725772 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_8" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1452319002 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_9" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=477577898 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_10" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1249300587 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_11" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=251692170 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_12" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1003207276 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_13" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=566288199 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_14" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2042953690 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_15" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=275082636 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_16" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1939116297 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_17" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=858952258 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_18" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=361462616 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_19" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=937997291 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_20" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1346560890 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_21" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1244381988 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_22" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=988617519 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_23" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1140782874 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_24" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1158131816 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_25" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1739676503 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="ModListButton_26" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2081695536 instance=ExtResource("6_6ftbm")]
+layout_mode = 2
+
+[node name="Config_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container" unique_id=1967957978]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qnjx8")
+
+[node name="Logo" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel" unique_id=954286995]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel" unique_id=586767344]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=2135819949]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Settings_Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/Panel" unique_id=1544020867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=336354577]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q5ye3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=490590795]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer" unique_id=1036896201]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Settings" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer" unique_id=2010114482]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Header String" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=610194201 instance=ExtResource("7_qcy1k")]
+layout_mode = 2
+
+[node name="Bool Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=882903359 instance=ExtResource("8_b4gw8")]
+layout_mode = 2
+
+[node name="Color Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=71822911 instance=ExtResource("9_qvno0")]
+layout_mode = 2
+
+[node name="Dropdown Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1584880875 instance=ExtResource("10_cob11")]
+layout_mode = 2
+
+[node name="Keycode" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=190023062 instance=ExtResource("11_fny3e")]
+layout_mode = 2
+
+[node name="Slider Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1914209537 instance=ExtResource("12_mmk3h")]
+layout_mode = 2
+
+[node name="String Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1852979968 instance=ExtResource("13_lcey6")]
+layout_mode = 2
+
+[node name="Vector 2 Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1965773547 instance=ExtResource("14_c0ttn")]
+layout_mode = 2
+
+[node name="Vector 3 Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1441468210 instance=ExtResource("15_i0dgn")]
+layout_mode = 2
+
+[node name="Array Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=505336327 instance=ExtResource("16_8o33l")]
+layout_mode = 2
+
+[connection signal="pressed" from="Header/MarginContainer/Back" to="." method="_on_back_pressed"]

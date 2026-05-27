@@ -3,7 +3,7 @@ extends Node
 @onready var nameLabel : Label = find_child("Label")
 @onready var xInput : FormatSpinBox = find_child("InputX")
 @onready var yInput : FormatSpinBox = find_child("InputY")
-@onready var defaultRevertButton : Button = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
 var valueId: String
 var section: String
@@ -111,7 +111,7 @@ func _on_y_input_value_changed(newValue: float) -> void:
     CheckIsDefault(newVector)
     OnValueChanged(newVector)
 
-func _on_default_button_pressed() -> void:
+func _on_revert_button_pressed() -> void:
     value = defaultValue
     
     xInput.set_value_no_signal(value.x)

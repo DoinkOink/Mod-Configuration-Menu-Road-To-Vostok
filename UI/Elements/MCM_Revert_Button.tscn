@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cjii2p3tbjskl"]
+
+[ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_h1m4r"]
+[ext_resource type="Texture2D" uid="uid://cxyuqsybsgbqf" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Undo.svg" id="1_j3d01"]
+
+[node name="MCM_Revert_Button" type="Button" unique_id=219514080]
+custom_minimum_size = Vector2(36, 36)
+tooltip_text = "Revert to default value"
+theme = ExtResource("1_h1m4r")
+theme_override_constants/icon_max_width = 24
+disabled = true
+icon = ExtResource("1_j3d01")
+icon_alignment = 1

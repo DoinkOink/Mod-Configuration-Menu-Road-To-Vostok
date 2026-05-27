@@ -2,7 +2,7 @@ extends Node
 
 @onready var nameLabel : Label = find_child("Label")
 @onready var colorPicker : ColorPickerButton = find_child("ColorPicker")
-@onready var defaultRevertButton : Button = find_child("Default Button")
+@onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
 var valueId: String
 var section: String
@@ -59,7 +59,7 @@ func _on_color_picker_color_changed(color: Color) -> void:
     CheckIsDefault(value)
     OnValueChanged(value)
 
-func _on_default_button_pressed() -> void:
+func _on_revert_button_pressed() -> void:
     value = defaultValue
     colorPicker.color = value
     CheckIsDefault(value)

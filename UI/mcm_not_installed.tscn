@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_wwtwp"]
 
-[node name="MCM Not installed" type="Control" unique_id=1971083334]
+[node name="mcm_not_installed" type="Control" unique_id=1971083334]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

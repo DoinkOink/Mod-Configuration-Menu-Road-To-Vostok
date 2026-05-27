@@ -1,8 +1,8 @@
 extends Node
 
-var mcmMenuScene = preload("res://ModConfigurationMenu/UI/Doink Oink/UI_MCM.tscn")
+var mcmMenuScene = preload("res://ModConfigurationMenu/UI/MCMMenu.tscn")
 var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
-var MCMButtonIcon = load("res://ModConfigurationMenu/Sprites/UI/Doink Oink/MCM-Logo.png")
+var MCMButtonIcon = load("res://ModConfigurationMenu/UI/Sprites/Logo_MCM.png")
 
 # In order to not override Settings.gd, which can only be overridden once, we create
 #	the button and menu in our main file and store all associated variables in MCM_Helpers.
