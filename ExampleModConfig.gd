@@ -7,7 +7,7 @@ const FILE_PATH = "user://MCM/ExampleMod"
 const MOD_ID = "ExampleMod"
 
 func _ready():
-    var _config = ConfigFile.new()
+    var _config = ConfigFile.new()    
     _config.set_value("Int", "testInt", {
         "name" = "Test Int",
         "tooltip" = "A test int",

@@ -1,6 +1,8 @@
 extends Resource
 class_name MCM_Helpers
 
+const ValidationData = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Validation.gd")
+
 var RegisteredMods = {}
 var RegisteredModKeybinds = {}
 
@@ -21,24 +23,45 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
     _tempConfig.load(configPath)
     
     for _section in newConfig.get_sections():
+        var _requiredValueProperties = ValidationData.GetRequiredProperties(_section)
+        var _optionalValueProperties = ValidationData.GetOptionalProperties(_section)
+        
         for _key in newConfig.get_section_keys(_section):
+            var _newValues = newConfig.get_value(_section, _key)
+            
             if !_tempConfig.has_section_key(_section, _key):
-                _tempConfig.set_value(_section, _key, newConfig.get_value(_section, _key))
+                # First let's make sure the value type has all the required properties
+                var _missingProperty = false
+                for _property in _requiredValueProperties:
+                    if(_property not in _newValues.keys()):
+                        push_warning("[MCM] " + modId + " tried creating a " + _section + " value with the id " + _key + " but is missing the required '" + _property + "' property. Value has been skipped.")
+                        _missingProperty = true
+                        break
+                        
+                if(_missingProperty):
+                    continue
+                    
+                # Lastly let's check if the dev has set the 'value' property. If not set it to the defaultValue
+                if('value' not in _newValues.keys()):
+                    _newValues['value'] = _newValues['default']
+                
+                # Finally insert the new values in the config that will be saved
+                _tempConfig.set_value(_section, _key, _newValues)
                 _configUpdated = true
             else:
-                var _newValues = newConfig.get_value(_section, _key)
+                #var _newValues = newConfig.get_value(_section, _key)
                 var _currentValues = _tempConfig.get_value(_section, _key)
                 
-                var _valuesToCheck = ["default", "name", "tooltip", "minRange", "maxRange", "options", "arrayType", "defaultItemValue"]
-                var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed", "category", "isInt", "maxItems"]
+                #var _valuesToCheck = ["default", "name", "tooltip", "minRange", "maxRange", "options", "arrayType", "defaultItemValue"]
+                #var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed", "category", "isInt", "maxItems"]
                 
-                for _valueName in _valuesToCheck:
+                for _valueName in _requiredValueProperties:
                     if (_newValues.has(_valueName)):
                         if (typeof(_newValues[_valueName]) != typeof(_currentValues[_valueName]) || _newValues[_valueName] != _currentValues[_valueName]):
                             _currentValues[_valueName] = _newValues[_valueName]
                             _configUpdated = true
                         
-                for _optionalValueName in _optionalValuesToCheck:
+                for _optionalValueName in _optionalValueProperties:
                     if (_newValues.has(_optionalValueName)):
                         if (!_currentValues.has(_optionalValueName) || typeof(_newValues[_optionalValueName]) != typeof(_currentValues[_optionalValueName]) || _newValues[_optionalValueName] != _currentValues[_optionalValueName]):
                             _currentValues[_optionalValueName] = _newValues[_optionalValueName]
