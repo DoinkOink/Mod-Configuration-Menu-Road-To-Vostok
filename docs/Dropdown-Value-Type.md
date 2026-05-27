@@ -1,4 +1,4 @@
-<img width="628" height="50" alt="mcm_dropdown" src="https://github.com/user-attachments/assets/1cb22d98-1517-47cc-8ce8-3533ca0e777c" />
+<!-- <img width="628" height="50" alt="mcm_dropdown" src="https://github.com/user-attachments/assets/1cb22d98-1517-47cc-8ce8-3533ca0e777c" /> -->
 
 ```gdscript
 _config.set_value("Dropdown", "testDropdown", {

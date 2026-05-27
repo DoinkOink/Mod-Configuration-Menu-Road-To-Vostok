@@ -1,4 +1,4 @@
-<img width="628" height="50" alt="mcm_color" src="https://github.com/user-attachments/assets/03714f54-bdc8-404f-ba5d-911a4f07f9cd" />
+<!-- <img width="628" height="50" alt="mcm_color" src="https://github.com/user-attachments/assets/03714f54-bdc8-404f-ba5d-911a4f07f9cd" /> -->
 
 
 ```gdscript

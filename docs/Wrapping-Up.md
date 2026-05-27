@@ -11,36 +11,38 @@ const FILE_PATH = "user://MCM/ExampleMod"
 
 func _ready():
 	var _config = ConfigFile.new()
+	_config.set_value("String", "testString", {
+		"name" = "Test String",
+		"tooltip" = "A test string",
+		"default" = "Hello World",
+		"value" = "Hello World"
+	})
+
 	_config.set_value("Int", "testInt", {
 		"name" = "Test Int",
 		"tooltip" = "A test int",
 		"default" = 5,
 		"value" = 5,
 		"minRange" = 0,
-		"maxRange" = 20
+		"maxRange" = 20,
+		"step" = 1
 	})
-	
-	_config.set_value("Bool", "testBool1", {
-		"name" = "Test Bool 1",
-		"tooltip" = "The first test bool",
-		"default" = false,
-		"value" = false
-	})
-	
-	_config.set_value("Bool", "testBool2", {
-		"name" = "Test Bool 2",
-		"tooltip" = "The first test bool",
-		"default" = true,
-		"value" = true
-	})
-	
+
 	_config.set_value("Float", "testFloat", {
 		"name" = "Test Float",
 		"tooltip" = "A test float",
 		"default" = 10.3,
 		"value" = 10.3,
 		"minRange" = 0,
-		"maxRange" = 50.5
+		"maxRange" = 50.5,
+		"step" = 0.001
+	})
+	
+	_config.set_value("Bool", "testBool", {
+		"name" = "Test Bool",
+		"tooltip" = "The first test bool",
+		"default" = false,
+		"value" = false
 	})
 	
 	_config.set_value("Keycode", "testKeycode", {
@@ -51,21 +53,14 @@ func _ready():
 		"value" = KEY_ALT,
 		"type" = "Key"
 	})
-	
-	_config.set_value("String", "testString", {
-		"name" = "Test String",
-		"tooltip" = "A test string",
-		"default" = "Hello World",
-		"value" = "Hello World"
-	})
-	
+
 	_config.set_value("Color", "testColor", {
 		"name" = "Test Color",
 		"tooltip" = "A test color",
 		"default" = Color.WHITE,
 		"value" = Color.WHITE
 	})
-	
+
 	_config.set_value("Dropdown", "testDropdown", {
 		"name" = "Test Dropdown",
 		"tooltip" = "A test dropdown",
@@ -76,6 +71,40 @@ func _ready():
 			"opt_2": "Option 2",
 			"opt_3": "Option 3"
 		}
+	})
+
+	_config.set_value("Vector2", "testVector2", {
+		"name": "Test Vector2",
+		"tooltip": "A test vector2",
+		"default": Vector2(10, 10),
+		"value": Vector2(10, 10),
+		"minRange": Vector2(0, 2),
+		"maxRange": Vector2(50, 40),
+		"step": 0.5,
+		"category": "Test Category 4",
+		"isInt": false
+	})
+
+	_config.set_value("Vector3", "testVector3", {
+		"name": "Test Vector3",
+		"tooltip": "A test vector3",
+		"default": Vector3(10, 10, 10),
+		"value": Vector3(10, 10, 10),
+		"minRange": Vector3(0, 2, -10),
+		"maxRange": Vector3(50, 40, 20),
+		"step": 1,
+		"category": "Test Category 4",
+		"isInt": true
+	})
+
+	_config.set_value("Array", "testStringArray", {
+		"name": "Test Array",
+		"tooltip": "A test array",
+		"arrayType": "String",
+		"default": ["Hello World!"],
+		"value": ["Hello World!"],
+		"defaultItemValue": "",
+		"maxItems": 5
 	})
 		
 	if !FileAccess.file_exists(FILE_PATH + "/config.ini"):

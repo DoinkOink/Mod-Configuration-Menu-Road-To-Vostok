@@ -1,4 +1,4 @@
-<img width="628" height="50" alt="mcm_keycode" src="https://github.com/user-attachments/assets/6faf7c3c-c660-47b4-86d1-7f92842a0ebf" />
+<!-- <img width="628" height="50" alt="mcm_keycode" src="https://github.com/user-attachments/assets/6faf7c3c-c660-47b4-86d1-7f92842a0ebf" /> -->
 
 ```gdscript
 _config.set_value("Keycode", "testKeycode", {

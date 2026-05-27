@@ -1,4 +1,4 @@
-<img width="628" height="50" alt="mcm_string" src="https://github.com/user-attachments/assets/afd685c0-d2c9-4aed-8994-0b511775eb03" />
+<!-- <img width="628" height="50" alt="mcm_string" src="https://github.com/user-attachments/assets/afd685c0-d2c9-4aed-8994-0b511775eb03" /> -->
 
 ```gdscript
 _config.set_value("String", "testString", {

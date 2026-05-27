@@ -1,5 +1,4 @@
-# Bool
-<img width="628" height="50" alt="mcm_bool" src="https://github.com/user-attachments/assets/2f65e7a7-3639-4348-9733-26e7e4ec034a" />
+<!-- <img width="628" height="50" alt="mcm_bool" src="https://github.com/user-attachments/assets/2f65e7a7-3639-4348-9733-26e7e4ec034a" /> -->
 
 ```gdscript
 _config.set_value("Bool", "testBool", {

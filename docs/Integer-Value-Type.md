@@ -1,4 +1,4 @@
-<img width="628" height="50" alt="mcm_int" src="https://github.com/user-attachments/assets/aea4ffe1-f483-453e-8f56-aed4c8e7a13c" />
+<!-- <img width="628" height="50" alt="mcm_int" src="https://github.com/user-attachments/assets/aea4ffe1-f483-453e-8f56-aed4c8e7a13c" /> -->
 
 ```gdscript
 _config.set_value("Int", "testInt", {

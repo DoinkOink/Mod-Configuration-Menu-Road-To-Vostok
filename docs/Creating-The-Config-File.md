@@ -28,7 +28,8 @@ func _ready():
 		"default" = 5,
 		"value" = 5,
 		"minRange" = 0,
-		"maxRange" = 20
+		"maxRange" = 20,
+		"step" = 1
 	})
 
 	_config.set_value("Float", "testFloat", {
@@ -37,12 +38,13 @@ func _ready():
 		"default" = 10.3,
 		"value" = 10.3,
 		"minRange" = 0,
-		"maxRange" = 50.5
+		"maxRange" = 50.5,
+		"step" = 0.001
 	})
 	
 	_config.set_value("Bool", "testBool", {
 		"name" = "Test Bool",
-		"tooltip" = "A test bool",
+		"tooltip" = "The first test bool",
 		"default" = false,
 		"value" = false
 	})
@@ -74,6 +76,40 @@ func _ready():
 			"opt_3": "Option 3"
 		}
 	})
+
+	_config.set_value("Vector2", "testVector2", {
+		"name": "Test Vector2",
+		"tooltip": "A test vector2",
+		"default": Vector2(10, 10),
+		"value": Vector2(10, 10),
+		"minRange": Vector2(0, 2),
+		"maxRange": Vector2(50, 40),
+		"step": 0.5,
+		"category": "Test Category 4",
+		"isInt": false
+	})
+
+	_config.set_value("Vector3", "testVector3", {
+		"name": "Test Vector3",
+		"tooltip": "A test vector3",
+		"default": Vector3(10, 10, 10),
+		"value": Vector3(10, 10, 10),
+		"minRange": Vector3(0, 2, -10),
+		"maxRange": Vector3(50, 40, 20),
+		"step": 1,
+		"category": "Test Category 4",
+		"isInt": true
+	})
+
+	_config.set_value("Array", "testStringArray", {
+		"name": "Test Array",
+		"tooltip": "A test array",
+		"arrayType": "String",
+		"default": ["Hello World!"],
+		"value": ["Hello World!"],
+		"defaultItemValue": "",
+		"maxItems": 5
+	})
 		
 	if !FileAccess.file_exists(FILE_PATH + "/config.ini"):
 		DirAccess.open("user://").make_dir(FILE_PATH)
@@ -85,15 +121,18 @@ func _ready():
 
 # The available config values
 MCM Supports 5 different types of values 
-* [String](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/String-Value-Type)
-* [Int](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Integer-Value-Type)
-* [Float](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Float-Value-Type)
-* [Bool](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Boolean-Value-Type)
-* [Keycode](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Keycode-Value-Type)
-* [Color](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
-* [Dropdown](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
+* [String](String-Value-Type)
+* [Int](Integer-Value-Type)
+* [Float](Float-Value-Type)
+* [Bool](Boolean-Value-Type)
+* [Keycode*](Keycode-Value-Type)
+* [Color](Color-Picker-Value-Type)
+* [Dropdown*](Dropdown-Value-Type)
+* [Vector2](Vector2-Value-Type)
+* [Vector3](Vector3-Value-Type)
+* [Array*](Array-Value-Type)
 
-**Array's of these types are not currently supported.**
+***Array's of these types are not currently supported.**
 
 Instead of just storing a value in a normal variable we create a Dictionary for every value. This allows MCM to store control variables that is used in the GUI aspect of the mod and allows the author to set default values to be reset if the player wishes.
 
@@ -107,6 +146,9 @@ Because of this it is **VERY** important that the sections are written exactly a
 * Keycode
 * Color
 * Dropdown
+* Vector2
+* Vector3
+* Array
 
 Let's go over the different types and how they should be set up.
 

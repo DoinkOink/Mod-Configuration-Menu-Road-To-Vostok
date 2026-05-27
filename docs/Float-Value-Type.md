@@ -1,4 +1,4 @@
-<img width="628" height="50" alt="mcm_float" src="https://github.com/user-attachments/assets/935689af-321a-4a9b-9cd3-a941228b24e2" />
+<!-- <img width="628" height="50" alt="mcm_float" src="https://github.com/user-attachments/assets/935689af-321a-4a9b-9cd3-a941228b24e2" /> -->
 
 ```gdscript
 _config.set_value("Float", "testFloat", {
