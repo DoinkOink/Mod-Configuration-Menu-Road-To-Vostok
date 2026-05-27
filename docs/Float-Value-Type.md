@@ -20,11 +20,11 @@ _config.set_value("Float", "testFloat", {
 | `name` |`String` | The friendly name of the value that will be displayed in the configuration menu. |
 | `toolitp` |`String` | A short description of the value that will be displayed when hovering over the name in the configuration menu. |
 | `default` | `Float` | The default value that the player can revert back to in the configuration menu. |
-| `value` | `Float` | The current value that is set. |
 
 ### Optional
 | Name | Value Type | Description |
 |---|---|---|
+| `value` | `Float` | The current value that is set. If this property is not present on creation it will automatically be set to the `default` value. |
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `minRange` | `Float` | The minimum value the player is able to set the value to in the configuration menu. |

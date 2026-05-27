@@ -20,13 +20,13 @@ _config.set_value("Array", "testStringArray", {
 | `name` | `String` | The friendly name of the value that will be displayed in the configuration menu. |
 | `toolitp` | `String` | A short description of the value that will be displayed when hovering over the name in the configuration menu. |
 | `default` | `Array` | The default value that the player can revert back to in the configuration menu. |
-| `value` | `Array` | The current value that is set. |
 | `arrayType` | `String` | This sets the type of inputs to be displayed to the player when adding items to the array. See below in Additional Information for the available array types. |
 | `defaultItemValue` | Based on Array type | The default value assigned when the player creates a new item in the array. |
 
 ### Optional
 | Name | Value Type | Description |
 |---|---|---|
+| `value` | `Array` | The current value that is set. If this property is not present on creation it will automatically be set to the `default` value. |
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `maxItems` | `Int` | How many items the player is able to add to the array. If this property is not set it allows the player to add as many as they wish. |

@@ -20,12 +20,12 @@ _config.set_value("Keycode", "testKeycode", {
 | `tooltip` | `String` | A short description of the value that will be displayed when hovering over the name in the configuration menu. |
 | `default` | `Keycode` | The default value that the player can revert back to in the configuration menu. |
 | `default_type` | `"Key"` - Any key on the keyboard.<br><br>`"Mouse"` - Any button on the mouse | The input type the default key is set to. |
-| `value` | `Keycode` | The current value that is set. |
 | `type` | `"Key"` - Any key on the keyboard.<br><br>`"Mouse"` - Any button on the mouse | The input type of the current value that is set. |
 
 ### Optional
 | Name | Value Type | Description |
 |---|---|---|
+| `value` | `Keycode` | The current value that is set. If this property is not present on creation it will automatically be set to the `default` value. |
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 
