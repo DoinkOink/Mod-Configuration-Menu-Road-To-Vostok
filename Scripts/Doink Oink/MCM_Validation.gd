@@ -1,3 +1,7 @@
+# Value is intentionally left out of both the required and optional objects.
+#   If it wasn't the player set value would be overwritten whenever the game
+#   loads.
+
 const REQUIRED_PROPERTIES : Dictionary = {
     "Generic": [ "name", "tooltip", "default" ],
     "Keycode": [ "default_type", "type" ],
