@@ -1,0 +1,15 @@
+* Config setting Import/Export
+    * Got this idea after seeing the Rostov Community Mods List https://www.nexusmods.com/roadtovostok/mods/6
+    * This would allow community made mod lists to offer a one file config preset 
+        solution and wouldn't require the player to manually find the config folder
+        and place the presets themselves.
+    * Add an import/export button on the main screen that opens a file explorer to
+        select the preset file.
+        
+* Config creation through functions
+    * Got the idea after revewing the code in Peter4Master's mods where they 
+        use helper functions to easily setup config values.
+        
+* Create a Wiki page to show how you can create configs by creating your own .ini
+    file and loading it through the ConfigFile functions and just passing the
+    loaded file into MCM.
