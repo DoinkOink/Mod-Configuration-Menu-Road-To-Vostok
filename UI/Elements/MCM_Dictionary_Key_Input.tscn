@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://7146dola8kmd"]
+
+[ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_drfv1"]
+[ext_resource type="Script" uid="uid://bbbdevvuyq1ji" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Dictionary_Key_Input.gd" id="2_ksqy3"]
+[ext_resource type="Texture2D" uid="uid://cakb1w6owlktk" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Error.svg" id="3_drfv1"]
+
+[node name="MCM_Dictionary_Key_Input" type="HBoxContainer" unique_id=509066329]
+custom_minimum_size = Vector2(36, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1849.0
+offset_bottom = -1044.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_drfv1")
+script = ExtResource("2_ksqy3")
+
+[node name="Key Input" type="LineEdit" parent="." unique_id=537521538]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Enter Key"
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Error Icon" type="TextureRect" parent="." unique_id=40522864]
+visible = false
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Key must be unique"
+texture = ExtResource("3_drfv1")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="focus_exited" from="Key Input" to="." method="_on_key_input_focus_exited"]
+[connection signal="text_submitted" from="Key Input" to="." method="_on_key_input_text_submitted"]

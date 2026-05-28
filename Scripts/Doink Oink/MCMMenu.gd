@@ -14,17 +14,18 @@ var modListButton = preload("res://ModConfigurationMenu/UI/Elements/MCM_Mod_List
 var categoryHeader = preload("res://ModConfigurationMenu/UI/Elements/MCM_Header_String.tscn")
 
 var availableElements = {
-    "Int": preload("res://ModConfigurationMenu/UI/Templates/MCM_Slider_Value.tscn"),
+    "Int": load("res://ModConfigurationMenu/UI/Templates/MCM_Slider_Value.tscn"),
     # The float element will be added in _ready() since it is the same as int
-    # "FLoat": preload("res://ModConfigurationMenu/UI/Templates/MCM_Slider_Value.tscn"),
-    "Bool": preload("res://ModConfigurationMenu/UI/Templates/MCM_Bool_Value.tscn"),
-    "String": preload("res://ModConfigurationMenu/UI/Templates/MCM_String_Value.tscn"),
-    "Keycode": preload("res://ModConfigurationMenu/UI/Templates/MCM_Keycode_Value.tscn"),
-    "Color": preload("res://ModConfigurationMenu/UI/Templates/MCM_Color_Value.tscn"),
-    "Dropdown": preload("res://ModConfigurationMenu/UI/Templates/MCM_Dropdown_Value.tscn"),
-    "Vector2": preload("res://ModConfigurationMenu/UI/Templates/MCM_Vector2_Value.tscn"),
-    "Vector3": preload("res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn"),
-    "Array": preload("res://ModConfigurationMenu/UI/Templates/MCM_Array_Value.tscn")
+    # "FLoat": load("res://ModConfigurationMenu/UI/Templates/MCM_Slider_Value.tscn"),
+    "Bool": load("res://ModConfigurationMenu/UI/Templates/MCM_Bool_Value.tscn"),
+    "String": load("res://ModConfigurationMenu/UI/Templates/MCM_String_Value.tscn"),
+    "Keycode": load("res://ModConfigurationMenu/UI/Templates/MCM_Keycode_Value.tscn"),
+    "Color": load("res://ModConfigurationMenu/UI/Templates/MCM_Color_Value.tscn"),
+    "Dropdown": load("res://ModConfigurationMenu/UI/Templates/MCM_Dropdown_Value.tscn"),
+    "Vector2": load("res://ModConfigurationMenu/UI/Templates/MCM_Vector2_Value.tscn"),
+    "Vector3": load("res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn"),
+    "Array": load("res://ModConfigurationMenu/UI/Templates/MCM_Array_Value.tscn"),
+    "Dictionary": load("res://ModConfigurationMenu/UI/Templates/MCM_Dictionary_Value.tscn")
 }
 
 var uiManager
@@ -147,6 +148,9 @@ func LoadConfiguration(modId: String):
             
             _property.erase("section")
             _property.erase("key")
+            
+            if (_section == "Dictionary"):
+                print("Hello")
             
             if (availableElements.has(_section)):
                 _element = availableElements.get(_section).instantiate()

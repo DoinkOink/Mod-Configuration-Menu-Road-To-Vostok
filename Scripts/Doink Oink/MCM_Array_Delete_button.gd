@@ -1,9 +1,8 @@
 extends Node
 
-var arrayIndex: int
-var arrayCallback: MCM_Array_Value
-
+var valueKey
+var callback
 
 func _on_delete_button_pressed() -> void:
-    arrayCallback.menu.PlayClick()
-    arrayCallback.DeleteItem(arrayIndex)
+    callback.menu.PlayClick()
+    callback.DeleteItem(valueKey)

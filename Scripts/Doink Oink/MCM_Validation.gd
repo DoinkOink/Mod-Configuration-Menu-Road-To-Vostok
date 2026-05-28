@@ -6,22 +6,28 @@ const REQUIRED_PROPERTIES : Dictionary = {
     "Generic": [ "name", "tooltip", "default" ],
     "Keycode": [ "default_type", "type" ],
     "Dropdown": [ "options" ],
-    "Array": [ "arrayType", "defaultItemValue" ]
+    "Object": [ "valueType", "defaultItemValue" ]
 }
 
 const OPTIONAL_PROPERTIES : Dictionary = {
     "Generic": [ "category", "menu_pos" ],
     "Number": [ "minRange", "maxRange", "step" ],
     "Vector": [ "isInt" ],
-    "Array": [ "maxItems" ]
+    "Object": [ "maxItems" ]
 }
 
 const NUMBER_TYPES : Array = [ "Int", "Float", "Vector2", "Vector3" ]
 const VECTOR_TYPES : Array = [ "Vector2", "Vector3" ]
+const OBJECT_TYPES : Array = [ "Array", "Dictionary" ]
 
 static func GetRequiredProperties(valueType: String):
     var _tempArray = []
-    _tempArray.append_array(REQUIRED_PROPERTIES["Generic"])
+    
+    if(valueType != "Category"):
+        _tempArray.append_array(REQUIRED_PROPERTIES["Generic"])
+    
+    if(OBJECT_TYPES.has(valueType)):
+        _tempArray.append_array(REQUIRED_PROPERTIES["Object"])
     
     if(REQUIRED_PROPERTIES.has(valueType)):
         _tempArray.append_array(REQUIRED_PROPERTIES[valueType])
@@ -32,11 +38,14 @@ static func GetOptionalProperties(valueType: String):
     var _tempArray = []
     _tempArray.append_array(OPTIONAL_PROPERTIES["Generic"])
     
-    if (NUMBER_TYPES.has(valueType)):
+    if(NUMBER_TYPES.has(valueType)):
         _tempArray.append_array(OPTIONAL_PROPERTIES["Number"])
         
-    if (VECTOR_TYPES.has(valueType)):
+    if(VECTOR_TYPES.has(valueType)):
         _tempArray.append_array(OPTIONAL_PROPERTIES["Vector"])
+        
+    if(OBJECT_TYPES.has(valueType)):
+        _tempArray.append_array(OPTIONAL_PROPERTIES["Object"])
     
     if(OPTIONAL_PROPERTIES.has(valueType)):
         _tempArray.append_array(OPTIONAL_PROPERTIES[valueType])

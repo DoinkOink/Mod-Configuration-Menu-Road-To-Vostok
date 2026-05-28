@@ -1,6 +1,6 @@
 extends Node
 
-@onready var nameLabel : Label = find_child("Label")
+@onready var nameLabel : Label = find_child("Name Label")
 @onready var off : Button = find_child("Off")
 @onready var on : Button = find_child("On")
 @onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")

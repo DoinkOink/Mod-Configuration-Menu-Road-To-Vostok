@@ -42,7 +42,7 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                     continue
                     
                 # Lastly let's check if the dev has set the 'value' property. If not set it to the defaultValue
-                if('value' not in _newValues.keys()):
+                if('value' not in _newValues.keys() && 'default' in _newValues.keys()):
                     _newValues['value'] = _newValues['default']
                 
                 # Finally insert the new values in the config that will be saved

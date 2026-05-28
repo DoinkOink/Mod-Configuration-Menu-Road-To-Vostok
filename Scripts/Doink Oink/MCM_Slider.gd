@@ -1,6 +1,6 @@
 extends Node
 
-@onready var nameLabel : Label = find_child("Label")
+@onready var nameLabel : Label = find_child("Name Label")
 @onready var slider : HSlider = find_child("Slider")
 @onready var sliderInput : FormatSpinBox = find_child("Input")
 @onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")

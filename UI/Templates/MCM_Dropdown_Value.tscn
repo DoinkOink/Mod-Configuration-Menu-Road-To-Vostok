@@ -32,7 +32,7 @@ script = ExtResource("1_wh4rw")
 [node name="Container" type="HBoxContainer" parent="." unique_id=1949581297]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container" unique_id=1747136709]
+[node name="Name Label" type="Label" parent="Container" unique_id=1747136709]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1

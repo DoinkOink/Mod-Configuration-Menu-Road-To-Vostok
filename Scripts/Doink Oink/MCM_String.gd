@@ -1,6 +1,6 @@
 extends Node
 
-@onready var variableLabel : Label = find_child("Label")
+@onready var nameLabel : Label = find_child("Name Label")
 @onready var textInput : LineEdit = find_child("Input")
 @onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
@@ -19,8 +19,8 @@ func _ready():
     if !valueId:
         return
         
-    variableLabel.text = valueData["name"]
-    variableLabel.tooltip_text = valueData["tooltip"]
+    nameLabel.text = valueData["name"]
+    nameLabel.tooltip_text = valueData["tooltip"]
     
     value = valueData["value"]
     defaultValue = valueData["default"]
@@ -50,7 +50,7 @@ func OnValueChanged(newValue):
         _callable.call(valueId, newValue, menu)
         
 func UpdateNameLabel():
-    variableLabel.text = valueData["name"]
+    nameLabel.text = valueData["name"]
 
 func _on_input_text_submitted(newValue):
     value = newValue

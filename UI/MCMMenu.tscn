@@ -15,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://dfu35yank8jbg" path="res://ModConfigurationMenu/UI/Templates/MCM_String_Value.tscn" id="13_lcey6"]
 [ext_resource type="PackedScene" uid="uid://cvfqkiyc0puhq" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector2_Value.tscn" id="14_c0ttn"]
 [ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn" id="15_i0dgn"]
-[ext_resource type="PackedScene" uid="uid://b56uh4tdnp8v" path="res://ModConfigurationMenu/UI/Templates/MCM_Array_Value.tscn" id="16_8o33l"]
+[ext_resource type="PackedScene" uid="uid://b56uh4tdnp8v" path="res://ModConfigurationMenu/UI/Templates/MCM_Object_Value.tscn" id="16_8o33l"]
+[ext_resource type="Script" uid="uid://daonqt6rl6nta" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Array.gd" id="17_gucg0"]
+[ext_resource type="PackedScene" uid="uid://bto3cqmvkp38c" path="res://ModConfigurationMenu/UI/Templates/MCM_Dictionary_Value.tscn" id="18_t0fdo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3gea"]
 
@@ -369,6 +371,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Array Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=505336327 instance=ExtResource("16_8o33l")]
+layout_mode = 2
+script = ExtResource("17_gucg0")
+
+[node name="MCM_Array_Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1354449043 instance=ExtResource("18_t0fdo")]
 layout_mode = 2
 
 [connection signal="pressed" from="Header/MarginContainer/Back" to="." method="_on_back_pressed"]

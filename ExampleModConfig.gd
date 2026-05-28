@@ -115,13 +115,22 @@ func _ready():
     _config.set_value("Array", "testVector3Array", {
         "name": "Test Array",
         "tooltip": "A test array",
-        "arrayType": "Vector3",
+        "valueType": "Vector3",
         "default": [],
         "value": [],
         "defaultItemValue": Vector3.FORWARD,
         "minRange": Vector3.ZERO,
         "maxRange": Vector3(40,50,10),
         "category": "Test Category 4",
+        "maxItems": 5
+    })
+    
+    _config.set_value("Dictionary", "testStringDictionary", {
+        "name": "Test Dictionary",
+        "tooltip": "A test dictionary",
+        "valueType": "String",
+        "default": { "Test Key": "Test Value" },
+        "defaultItemValue": { "Key": "Value" },
         "maxItems": 5
     })
     

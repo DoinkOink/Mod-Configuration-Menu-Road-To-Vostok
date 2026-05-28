@@ -1,6 +1,6 @@
 extends Node
 
-@onready var nameLabel : Label = find_child("Name Label")
+@onready var variableLabel : Label = find_child("Name Label")
 @onready var countLabel : Label = find_child("Count Label")
 @onready var itemContainer : HBoxContainer = find_child("Item Container")
 @onready var panelDivider : Panel = find_child("Panel Divider")
@@ -20,26 +20,24 @@ var valueData
 var menu: MCMMenu
 var callbackObject: Object
 
-var value: Array
-var defaultValue: Array
-var arrayType: String
+var value: Dictionary
+var defaultValue: Dictionary
+var valueType: String
 var defaultItemValue
-var elementArray: Array
+var elements: Dictionary
 
 var hasChanged = false
+var isArray = true
 
 func _ready():	
     if !valueId:
         return
         
-    arrayType = valueData["valueType"]
+    valueType = valueData["valueType"]
     defaultItemValue = valueData["defaultItemValue"]
         
-    nameLabel.text = valueData["name"]
-    nameLabel.tooltip_text = valueData["tooltip"]
-    
-    value = valueData["value"]
-    defaultValue = valueData["default"]
+    variableLabel.text = valueData["name"]
+    variableLabel.tooltip_text = valueData["tooltip"]
     
     ResetLayout()
 
@@ -84,7 +82,10 @@ func SetValue(newValue) -> void:
 func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
-        _callable.call(valueId, newValue, menu)
+        if(isArray):
+            _callable.call(valueId, newValue.values(), menu)
+        else:
+            _callable.call(valueId, newValue, menu)
         
 func CreateElementsFromValue():
     if("maxItems" in valueData):
@@ -92,32 +93,34 @@ func CreateElementsFromValue():
             push_warning("[MCM] There were too many items being added to " + menu.loadedModId + " " + valueId + " Array. Reverting to default.")
             value = defaultValue
             
-    if(!elementArray.is_empty()):
-        for _element in elementArray:
+    if(!elements.is_empty()):
+        for _element in elements:
             valueContainer.remove_child(_element)
             _element.queue_free()
             
-        elementArray.clear()
+        elements.clear()
     
+    var _keys = value.keys()
     for _index in value.size():
-        CreateNewElement(value[_index], _index)
+        var _key = _keys[_index]
+        CreateNewElement(value[_key], _key, _index)
     
-func CreateNewElement(valueToAdd, index):
+func CreateNewElement(valueToAdd, size, key):
     if("maxItems" in valueData):
-        if (index+1 > valueData["maxItems"]):
+        if (size+1 > valueData["maxItems"]):
             return
     
-    var _element = menu.availableElements.get(arrayType).instantiate()
+    var _element = menu.availableElements.get(valueType).instantiate()
     var _deleteButtonElement = deleteButtonElement.instantiate()
     
-    _deleteButtonElement.valueKey = index
-    _deleteButtonElement.callback = self
+    _deleteButtonElement.valueKey = key
+    _deleteButtonElement.arrayCallback = self
     
-    _element.valueId = str(index)
+    _element.valueId = key
     _element.valueData = {
-        "name": str(index),
+        "name": key,
         "tooltip": "",
-        "value": valueToAdd,
+        "value": valueToAdd[key],
         "default": defaultItemValue,
         "on_value_changed": "_on_list_item_updated",
         "deleteButton": _deleteButtonElement,
@@ -132,7 +135,7 @@ func CreateNewElement(valueToAdd, index):
 
     AddElementSeparator(_element)
     
-    elementArray.append(_element)
+    elements[key] = _element
     
     var _childCount = valueContainer.get_child_count()
     valueContainer.add_child(_element)
@@ -142,19 +145,34 @@ func AddElementSeparator(element) -> void:
     var separator: MarginContainer = elementSeparatorScene.instantiate()
     element.add_child(separator)
     
-func DeleteItem(index):
-    value.pop_at(index)
-    var _removedElement: Node = elementArray.pop_at(index)
+func DeleteItem(key):
+    value.erase(key)
+    var _removedElement: Node = elements[key]
     
     valueContainer.remove_child(_removedElement)
     _removedElement.queue_free()
     
-    for _elementIndex in elementArray.size():
-        var _element: Node = elementArray[_elementIndex]
-        _element.valueData["deleteButton"].valueKey = _elementIndex
-        _element.valueId = str(_elementIndex)
-        _element.valueData["name"] = str(_elementIndex)
-        _element.UpdateNameLabel()
+    if(isArray):
+        var _tempValues = {}
+        var _tempElements = {}
+        
+        for _index in value.size():
+            var _oldKey = value.keys()[_index]
+            _tempValues[str(_index)] = value[_oldKey]
+            _tempElements[str(_index)] = elements[_oldKey]
+        
+        for _elementIndex in _tempElements.size():
+            var _element: Node = _tempElements[_elementIndex]
+            _element.valueData["deleteButton"].arrayIndex = _elementIndex
+            _element.valueId = str(_elementIndex)
+            _element.valueData["name"] = str(_elementIndex)
+            _element.UpdateNameLabel()
+            
+        elements.clear()
+        value.clear()
+        
+        elements = _tempElements.duplicate()
+        value = _tempValues.duplicate()
         
     CheckIsDefault(value)
     OnValueChanged(value)
@@ -169,6 +187,21 @@ func UpdateCountLabel():
     countLabel.text = "Size: " + str(value.size())
     if ("maxItems" in valueData):
         countLabel.text += "/" + str(valueData["maxItems"])
+        
+func AddItemToValue(valueToAdd, key = ""):
+    if(key.is_empty()):
+        key = "" if isArray else "Value Key "
+        key += str(value.size()-1)
+        
+        if(!isArray):
+            var _duplicateRecord = 1
+            var _origKey = key
+            while(value.has(key)):
+                key = _origKey + "(" + str(_duplicateRecord) + ")"
+                _duplicateRecord += 1
+        
+    value[key] = valueToAdd
+    return key
 
 func _on_revert_button_pressed() -> void:
     value = defaultValue
@@ -188,8 +221,8 @@ func _on_expand_button_pressed() -> void:
     menu.PlayClick()
 
 func _on_new_item_button_pressed() -> void:
-    value.append(defaultItemValue)
-    CreateNewElement(defaultItemValue, value.size()-1)
+    var _key = AddItemToValue(defaultItemValue)
+    CreateNewElement(defaultItemValue, value.size(), _key)
     CheckIsDefault(value)
     OnValueChanged(value)
     UpdateAddItemButton()
@@ -197,7 +230,7 @@ func _on_new_item_button_pressed() -> void:
     menu.PlayClick()
     
 func _on_list_item_updated(updatedValueId, newValue, _menu):
-    value[int(updatedValueId)] = newValue
+    value[updatedValueId] = newValue
     CheckIsDefault(value)
     OnValueChanged(value)
     UpdateAddItemButton()

@@ -1,6 +1,6 @@
 extends Node
 
-@onready var variableLabel : Label = find_child("Label")
+@onready var nameLabel : Label = find_child("Name Label")
 @onready var dropdown : OptionButton = find_child("Dropdown")
 @onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
 
@@ -23,8 +23,8 @@ func _ready():
         
     dropdown.clear()
         
-    variableLabel.text = valueData["name"]
-    variableLabel.tooltip_text = valueData["tooltip"]
+    nameLabel.text = valueData["name"]
+    nameLabel.tooltip_text = valueData["tooltip"]
     
     var _tempOptions = valueData["options"]
 
@@ -73,7 +73,7 @@ func OnValueChanged(newValue):
         _callable.call(valueId, GetValue(newValue), menu)
         
 func UpdateNameLabel():
-    variableLabel.text = valueData["name"]
+    nameLabel.text = valueData["name"]
 
 func _on_input_text_submitted(newValue):
     value = newValue
