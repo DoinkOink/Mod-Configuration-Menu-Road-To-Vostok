@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpllxwxucrfr1"]
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_5wsc0"]
-[ext_resource type="Script" uid="uid://bb2ho30bbe4pu" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCMMenu.gd" id="2_o2vcv"]
+[ext_resource type="Script" uid="uid://bb2ho30bbe4pu" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Menu.gd" id="2_o2vcv"]
 [ext_resource type="Material" uid="uid://cv8raxpmbb48a" path="res://UI/Effects/MT_Menu.tres" id="3_gucg0"]
 [ext_resource type="Texture2D" uid="uid://b8qehehfo6ee4" path="res://Editor/RTV_Dynamic.png" id="4_t0fdo"]
 [ext_resource type="Texture2D" uid="uid://828yfc1f880u" path="res://ModConfigurationMenu/UI/Sprites/Logo_MCM.png" id="5_58edf"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cvfqkiyc0puhq" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector2_Value.tscn" id="14_c0ttn"]
 [ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn" id="15_i0dgn"]
 [ext_resource type="PackedScene" uid="uid://b56uh4tdnp8v" path="res://ModConfigurationMenu/UI/Templates/MCM_Object_Value.tscn" id="16_8o33l"]
-[ext_resource type="Script" uid="uid://daonqt6rl6nta" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Array.gd" id="17_gucg0"]
+[ext_resource type="Script" uid="uid://daonqt6rl6nta" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_Array.gd" id="17_gucg0"]
 [ext_resource type="PackedScene" uid="uid://bto3cqmvkp38c" path="res://ModConfigurationMenu/UI/Templates/MCM_Dictionary_Value.tscn" id="18_t0fdo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3gea"]

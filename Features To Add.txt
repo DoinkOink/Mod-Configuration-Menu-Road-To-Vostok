@@ -14,3 +14,5 @@
 * Create a Wiki page to show how you can create configs by creating your own .ini
     file and loading it through the ConfigFile functions and just passing the
     loaded file into MCM.
+    
+* Per character configs

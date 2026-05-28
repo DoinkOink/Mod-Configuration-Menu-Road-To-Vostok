@@ -1,6 +1,11 @@
 # Value is intentionally left out of both the required and optional objects.
 #   If it wasn't the player set value would be overwritten whenever the game
 #   loads.
+const GROUPED_TYPES : Dictionary = {
+    "Number" : [ "Int", "Float", "Vector2", "Vector3" ],
+    "Vector" : [ "Vector2", "Vector3" ],
+    "Object" : [ "Array", "Dictionary" ]
+}
 
 const REQUIRED_PROPERTIES : Dictionary = {
     "Generic": [ "name", "tooltip", "default" ],
@@ -10,44 +15,47 @@ const REQUIRED_PROPERTIES : Dictionary = {
 }
 
 const OPTIONAL_PROPERTIES : Dictionary = {
-    "Generic": [ "category", "menu_pos" ],
+    "Generic": [ "category", "menu_pos", "on_value_changed" ],
     "Number": [ "minRange", "maxRange", "step" ],
     "Vector": [ "isInt" ],
     "Object": [ "maxItems" ]
 }
 
-const NUMBER_TYPES : Array = [ "Int", "Float", "Vector2", "Vector3" ]
-const VECTOR_TYPES : Array = [ "Vector2", "Vector3" ]
-const OBJECT_TYPES : Array = [ "Array", "Dictionary" ]
-
 static func GetRequiredProperties(valueType: String):
     var _tempArray = []
     
+    # Get the generic requirements that all values share
+    # The Category type is the only exception that doesn't use
+    #   the generic required properties so skip adding those
     if(valueType != "Category"):
         _tempArray.append_array(REQUIRED_PROPERTIES["Generic"])
-    
-    if(OBJECT_TYPES.has(valueType)):
-        _tempArray.append_array(REQUIRED_PROPERTIES["Object"])
-    
+        
+    # Check for any requirements for the passed value type
     if(REQUIRED_PROPERTIES.has(valueType)):
         _tempArray.append_array(REQUIRED_PROPERTIES[valueType])
+        
+    # Finally check for any grouped requirements
+    for _group in GROUPED_TYPES.keys():
+        if(REQUIRED_PROPERTIES.has(_group)):
+            if(GROUPED_TYPES[_group].has(valueType)):
+                _tempArray.append_array(REQUIRED_PROPERTIES[_group])
 
     return _tempArray
     
 static func GetOptionalProperties(valueType: String):
     var _tempArray = []
+    
+    # Get the generic requirements that all values share
     _tempArray.append_array(OPTIONAL_PROPERTIES["Generic"])
     
-    if(NUMBER_TYPES.has(valueType)):
-        _tempArray.append_array(OPTIONAL_PROPERTIES["Number"])
-        
-    if(VECTOR_TYPES.has(valueType)):
-        _tempArray.append_array(OPTIONAL_PROPERTIES["Vector"])
-        
-    if(OBJECT_TYPES.has(valueType)):
-        _tempArray.append_array(OPTIONAL_PROPERTIES["Object"])
-    
+    # Check for any requirements for the passed value type
     if(OPTIONAL_PROPERTIES.has(valueType)):
         _tempArray.append_array(OPTIONAL_PROPERTIES[valueType])
+    
+    # Finally check for any grouped requirements
+    for _group in GROUPED_TYPES.keys():
+        if(OPTIONAL_PROPERTIES.has(_group)):
+            if(GROUPED_TYPES[_group].has(valueType)):
+                _tempArray.append_array(OPTIONAL_PROPERTIES[_group])
 
     return _tempArray

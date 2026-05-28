@@ -7,7 +7,7 @@ extends Node
 var valueId: String
 var section: String
 var valueData
-var menu: MCMMenu
+var menu: MCM_Menu
 var callbackObject: Object
 
 var value: String = ""

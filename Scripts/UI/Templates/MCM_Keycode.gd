@@ -9,7 +9,7 @@ var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Help
 var valueId: String
 var section: String
 var valueData
-var menu: MCMMenu
+var menu: MCM_Menu
 var callbackObject: Object
 
 var value: InputEvent
@@ -65,7 +65,7 @@ func _input(event):
             
             Input.mouse_mode = Input.MOUSE_MODE_CONFINED
             isRemapping = false
-    elif MCMHelpers.MCM_Menu && MCMHelpers.MCM_Menu.visible:
+    elif MCMHelpers.MCMMenu && MCMHelpers.MCMMenu.visible:
         MCMHelpers.isRemapping = false
             
 func GetValueData():

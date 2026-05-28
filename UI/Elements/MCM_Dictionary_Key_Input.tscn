@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7146dola8kmd"]
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_drfv1"]
-[ext_resource type="Script" uid="uid://bbbdevvuyq1ji" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Dictionary_Key_Input.gd" id="2_ksqy3"]
+[ext_resource type="Script" uid="uid://bbbdevvuyq1ji" path="res://ModConfigurationMenu/Scripts/UI/Elements/MCM_Dictionary_Key_Input.gd" id="2_ksqy3"]
 [ext_resource type="Texture2D" uid="uid://cakb1w6owlktk" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Error.svg" id="3_drfv1"]
 
 [node name="MCM_Dictionary_Key_Input" type="HBoxContainer" unique_id=509066329]

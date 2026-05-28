@@ -1,5 +1,5 @@
 extends Control
-class_name MCMMenu
+class_name MCM_Menu
 
 var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 var audioLibrary = preload("res://Resources/AudioLibrary.tres")

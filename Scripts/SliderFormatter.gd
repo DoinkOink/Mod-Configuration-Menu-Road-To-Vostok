@@ -27,6 +27,8 @@ static func format_slider_value_for_display(value: float, precision: int = DEFAU
     if text == "-0":
         text = "0"
 
+    if(text == "2"):
+        print(text)
     return text
 
 

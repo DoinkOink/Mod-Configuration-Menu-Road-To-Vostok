@@ -33,8 +33,8 @@ func CreateMCMButton():
     # Even though the menu travels between each scene the menu for whatever reason
     #	loses all inputs and buttons can't be pressed. So we have to free the menu
     #	and then instantiate it again.
-    if MCMHelpers.MCM_Menu:
-        MCMHelpers.MCM_Menu.queue_free()
+    if MCMHelpers.MCMMenu:
+        MCMHelpers.MCMMenu.queue_free()
         
     var _sceneName = get_tree().current_scene.name    
     var _settings = get_tree().root.find_child("UI_Settings", true, false)
@@ -51,15 +51,15 @@ func CreateMCMButton():
     if (!MCMHelpers.SettingsMenu):
         return
         
-    MCMHelpers.MCM_Menu = mcmMenuScene.instantiate()
-    MCMHelpers.MCM_Menu.uiManager = self
-    MCMHelpers.MCM_Menu.hide()
+    MCMHelpers.MCMMenu = mcmMenuScene.instantiate()
+    MCMHelpers.MCMMenu.uiManager = self
+    MCMHelpers.MCMMenu.hide()
     
     if _sceneName == "Menu":
         MCMHelpers.SettingsMenu.get_parent().visibility_changed.connect(_on_settings_visibility_changed)
-        get_tree().root.add_child(MCMHelpers.MCM_Menu)
+        get_tree().root.add_child(MCMHelpers.MCMMenu)
     else:
-        MCMHelpers.SettingsMenu.get_parent().add_child(MCMHelpers.MCM_Menu)
+        MCMHelpers.SettingsMenu.get_parent().add_child(MCMHelpers.MCMMenu)
 
     var _button = Button.new()
     _button.tooltip_text = "Mod Configuration Menu"

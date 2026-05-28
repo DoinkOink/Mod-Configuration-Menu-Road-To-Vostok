@@ -18,7 +18,7 @@ const collapseButtonIcon = preload("res://ModConfigurationMenu/UI/Sprites/Icons/
 var valueId: String
 var section: String
 var valueData
-var menu: MCMMenu
+var menu: MCM_Menu
 var callbackObject: Object
 
 var value: Dictionary

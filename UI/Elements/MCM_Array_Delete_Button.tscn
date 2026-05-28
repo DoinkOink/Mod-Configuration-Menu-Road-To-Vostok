@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://k0x0p6juc0ex"]
 
-[ext_resource type="Script" uid="uid://c6qnf04l6aas2" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Array_Delete_button.gd" id="1_76y57"]
+[ext_resource type="Script" uid="uid://c6qnf04l6aas2" path="res://ModConfigurationMenu/Scripts/UI/Elements/MCM_Array_Delete_button.gd" id="1_76y57"]
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_mrtia"]
 [ext_resource type="Texture2D" uid="uid://da7isr4g5ximv" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Delete.svg" id="2_76y57"]
 

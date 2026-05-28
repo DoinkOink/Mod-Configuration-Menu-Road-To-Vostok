@@ -8,7 +8,7 @@ extends Node
 var valueId: String
 var section: String
 var valueData
-var menu: MCMMenu
+var menu: MCM_Menu
 var callbackObject: Object
 
 var value = 0
@@ -62,7 +62,7 @@ func _ready():
 
     # Connect signals after all values are set setting min_value can clamp
     # the default (0) and fire value_changed, which triggers cascading callbacks.
-    slider.drag_ended.connect(_on_slider_value_changed)
+    #slider.drag_ended.connect(_on_slider_value_changed)
     slider.value_changed.connect(_on_slider_value_changed_no_width_change)
     sliderInput.value_changed.connect(_on_input_value_changed)
 

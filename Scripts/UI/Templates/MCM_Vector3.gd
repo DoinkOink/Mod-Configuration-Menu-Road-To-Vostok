@@ -9,7 +9,7 @@ extends Node
 var valueId: String
 var section: String
 var valueData
-var menu: MCMMenu
+var menu: MCM_Menu
 var callbackObject: Object
 
 var value: Vector3 = Vector3.ZERO

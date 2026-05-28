@@ -16,10 +16,16 @@ func _ready() -> void:
     
     originalSize = Vector2(get_line_edit().size.x, get_line_edit().size.y)
     
-    UpdatePrecision()
+    #UpdatePrecision()
 
 # This handler ensures the format is maintained while editing the field.
 func _on_value_changed(newValue: float) -> void:
+    # For some reason the Vector2 and Vector3 y fields will switch to their
+    #   minimum values on init. This stops it from doing that. ¯\_(ツ)_/¯
+    if (newValue != value):
+        return
+        
+    var _text = Formatter.format_slider_value_for_display(newValue, precision)
     get_line_edit().text = Formatter.format_slider_value_for_display(newValue, precision)
 
 # This handler ensures the format is retained when entering the field.

@@ -9,7 +9,7 @@ var RegisteredModKeybinds = {}
 var isRemapping = false
 
 var MCMButton
-var MCM_Menu
+var MCMMenu
 var SettingsMenu
 var LastOpenedModId: String = ""
 
@@ -142,31 +142,28 @@ func CallConfigCallback(modId: String, fileId: String, data: ConfigFile):
                     RegisteredMods[modId].fileOnSaveCallbacks.call(data)
 
 func LoadInputs():
-    var _config = ConfigFile.new()
     for _modId in RegisteredMods:
-        for _fileName in RegisteredMods[_modId].fileOnSaveCallbacks:
-            _config.load(RegisteredMods[_modId].filePath + _fileName)
-            
-            if _config.has_section("Keycode"):
-                var _keycodes = _config.get_section_keys("Keycode")
-                for _action in _keycodes:
-                    var _configValues = _config.get_value("Keycode", _action)
-                    if ("type" not in _configValues):
-                        _configValues["type"] = "Key"
-                    
-                    # Check to see if the keybind has either been added by another mod or already added to
-                    #   the input map already. Give a warning if a different mod already added it
-                    #   and just skip if the same mod has already added it to the inputmap already.
-                    if (RegisteredModKeybinds.has(_action)):
-                        if (RegisteredModKeybinds.get(_action) != _modId):
-                            push_warning("[MCM] " + _modId + " has tried registering the action " + _action + " and failed. This action name is already being used by the mod: " + RegisteredModKeybinds.get(_action))
-                            continue
-                        elif (InputMap.has_action(_action)):
-                            continue
-                        elif (!InputMap.has_action(_action)):
-                            RegisteredModKeybinds.erase(_action)
-                    
-                    LoadInput(_modId, _action, _configValues["value"], _configValues["type"])
+        var _config = GetModConfigFile(_modId)            
+        if _config.has_section("Keycode"):
+            var _keycodes = _config.get_section_keys("Keycode")
+            for _action in _keycodes:
+                var _configValues = _config.get_value("Keycode", _action)
+                if ("type" not in _configValues):
+                    _configValues["type"] = "Key"
+                
+                # Check to see if the keybind has either been added by another mod or already added to
+                #   the input map already. Give a warning if a different mod already added it
+                #   and just skip if the same mod has already added it to the inputmap already.
+                if (RegisteredModKeybinds.has(_action)):
+                    if (RegisteredModKeybinds.get(_action) != _modId):
+                        push_warning("[MCM] " + _modId + " has tried registering the action " + _action + " and failed. This action name is already being used by the mod: " + RegisteredModKeybinds.get(_action))
+                        continue
+                    elif (InputMap.has_action(_action)):
+                        continue
+                    elif (!InputMap.has_action(_action)):
+                        RegisteredModKeybinds.erase(_action)
+                
+                LoadInput(_modId, _action, _configValues["value"], _configValues["type"])
                     
 func LoadInput(modId: String, action: String, keycode, type: String):    
     var _actionEvent
@@ -232,9 +229,9 @@ func GetModConfigFileName(modId: String) -> String:
     return _fileName
     
 func ToggleMCMMenu():
-    if MCM_Menu.visible:
+    if MCMMenu.visible:
         SettingsMenu.show()
-        MCM_Menu.hide()
+        MCMMenu.hide()
     else:
         SettingsMenu.hide()
-        MCM_Menu.show()
+        MCMMenu.show()

@@ -8,7 +8,7 @@ extends Node
 var valueId: String
 var section: String
 var valueData
-var menu: MCMMenu
+var menu: MCM_Menu
 var callbackObject: Object
 
 var value: Vector2 = Vector2.ZERO
@@ -40,12 +40,10 @@ func _ready():
     xInput.min_value = minRange.x
     xInput.max_value = maxRange.x
     xInput.rounded = isInt
-    xInput.set_value_no_signal(value.x)
     
     yInput.min_value = minRange.y
     yInput.max_value = maxRange.y
     yInput.rounded = isInt
-    yInput.set_value_no_signal(value.y)
 
     if ("step" in valueData):
         xInput.step = valueData["step"]
@@ -53,6 +51,9 @@ func _ready():
     elif (isInt):
         xInput.step = 1
         yInput.step = 1
+        
+    xInput.set_value_no_signal(value.x)
+    yInput.set_value_no_signal(value.y)
         
     xInput.UpdatePrecision()
     yInput.UpdatePrecision()
