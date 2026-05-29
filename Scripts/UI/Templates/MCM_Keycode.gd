@@ -41,30 +41,41 @@ func _ready():
     
     defaultValue = valueData["default"]
     
+    value.alt_pressed = valueData["altPressed"]
+    value.ctrl_pressed = valueData["controlPressed"]
+    value.meta_pressed = valueData["metaPressed"]
+    value.shift_pressed = valueData["shiftPressed"]
+    
     keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
     
     CheckIsDefault(value)
     
 func _input(event):
     if isRemapping:
-        if event is InputEventKey || (event is InputEventMouseButton && event.pressed):
-            if event is InputEventMouseMotion && event.double_click:
-                event.double_click = false
+        if event.is_released():
+            if event is InputEventKey || (event is InputEventMouseButton && event.pressed):
+                if event is InputEventMouseMotion && event.double_click:
+                    event.double_click = false
+                    
+                if (event is InputEventKey):            
+                    keycodeInput.text = event.as_text().trim_suffix(" (Physical)")
+                    valueData["type"] = "Key"
+                elif (event is InputEventMouseButton):
+                    keycodeInput.text = GetMouseButtonText(event.button_index)
+                    valueData["type"] = "Mouse"
+                    
+                value = event
                 
-            if (event is InputEventKey):            
-                keycodeInput.text = event.as_text().trim_suffix(" (Physical)")
-                valueData["type"] = "Key"
-            elif (event is InputEventMouseButton):
-                keycodeInput.text = GetMouseButtonText(event.button_index)
-                valueData["type"] = "Mouse"
+                valueData["altPressed"] = event.alt_pressed
+                valueData["controlPressed"] = event.ctrl_pressed
+                valueData["metaPressed"] = event.meta_pressed
+                valueData["shiftPressed"] = event.shift_pressed
                 
-            value = event
-            
-            CheckIsDefault(value)
-            OnValueChanged(value)
-            
-            Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-            isRemapping = false
+                CheckIsDefault(value)
+                OnValueChanged(value)
+                
+                Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+                isRemapping = false
     elif MCMHelpers.MCMMenu && MCMHelpers.MCMMenu.visible:
         MCMHelpers.isRemapping = false
             

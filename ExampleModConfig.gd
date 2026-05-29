@@ -55,7 +55,8 @@ func _ready():
         "default_type" = "Key",
         "value" = KEY_ALT,
         "type" = "Key",
-        "category" = "Test Category 2"
+        "category" = "Test Category 2",
+        "controlPressed" = true
     })
     
     _config.set_value("String", "testString", {

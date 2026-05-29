@@ -44,6 +44,12 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                 # Lastly let's check if the dev has set the 'value' property. If not set it to the defaultValue
                 if('value' not in _newValues.keys() && 'default' in _newValues.keys()):
                     _newValues['value'] = _newValues['default']
+                    
+                if(_section == "Keycode"):
+                    if("altPressed" not in _newValues.keys()): _newValues["altPressed"] = false
+                    if("controlPressed" not in _newValues.keys()): _newValues["controlPressed"] = false
+                    if("metaPressed" not in _newValues.keys()): _newValues["metaPressed"] = false
+                    if("shiftPressed" not in _newValues.keys()): _newValues["shiftPressed"] = false
                 
                 # Finally insert the new values in the config that will be saved
                 _tempConfig.set_value(_section, _key, _newValues)
@@ -79,6 +85,20 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                         if (typeof(_newValues["value"]) != typeof(_currentValues["value"]) || _currentValues["value"] > _newValues["options"].size()):
                             _currentValues["value"] = _newValues["default"]
                             _configUpdated = true
+                            
+                if(_section == "Keycode"):
+                    if("altPressed" not in _currentValues.keys()):
+                        _currentValues["altPressed"] = false if "altPressed" not in _newValues.keys() else _newValues["altPressed"]
+                        _configUpdated = true
+                    if("controlPressed" not in _currentValues.keys()): 
+                        _currentValues["controlPressed"] = false if "controlPressed" not in _newValues.keys() else _newValues["controlPressed"]
+                        _configUpdated = true
+                    if("metaPressed" not in _currentValues.keys()): 
+                        _currentValues["metaPressed"] = false if "metaPressed" not in _newValues.keys() else _newValues["metaPressed"]
+                        _configUpdated = true
+                    if("shiftPressed" not in _currentValues.keys()): 
+                        _currentValues["shiftPressed"] = false if "shiftPressed" not in _newValues.keys() else _newValues["shiftPressed"]
+                        _configUpdated = true
                     
                 _tempConfig.set_value(_section, _key, _currentValues)
                 
@@ -126,7 +146,7 @@ func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: 
                 if ("type" not in _configValues || _configValues["type"] == null):
                     _configValues["type"] = "Key"
                 
-                LoadInput(modId, _action, _configValues["value"], _configValues["type"])
+                LoadInput(modId, _action, _configValues)
                     
     else:
         push_warning("[MCM] " + modId + " has failed to register. This ID already exists.")
@@ -163,17 +183,24 @@ func LoadInputs():
                     elif (!InputMap.has_action(_action)):
                         RegisteredModKeybinds.erase(_action)
                 
-                LoadInput(_modId, _action, _configValues["value"], _configValues["type"])
+                LoadInput(_modId, _action, _configValues)
                     
-func LoadInput(modId: String, action: String, keycode, type: String):    
+func LoadInput(modId: String, action: String, configValues: Dictionary):    
     var _actionEvent
+    var _type = configValues["type"]
+    var _keycode = configValues["value"]
     
-    if (type == "Mouse"):
+    if (_type == "Mouse"):
         _actionEvent = InputEventMouseButton.new()
-        _actionEvent.button_index = keycode
+        _actionEvent.button_index = _keycode
     else:
         _actionEvent = InputEventKey.new()
-        _actionEvent.physical_keycode = keycode
+        _actionEvent.physical_keycode = _keycode
+        
+    _actionEvent.alt_pressed = configValues["altPressed"]
+    _actionEvent.ctrl_pressed = configValues["controlPressed"]
+    _actionEvent.meta_pressed = configValues["metaPressed"]
+    _actionEvent.shift_pressed = configValues["shiftPressed"]
     
     InputMap.add_action(action)
     InputMap.action_add_event(action, _actionEvent)
