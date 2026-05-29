@@ -4,8 +4,7 @@
 _config.set_value("Int", "testInt", {
 	"name" = "Test Int",
 	"tooltip" = "A test int",
-	"default" = 5,
-	"value" = 5,
+	"default" = 5
 	"minRange" = 0,
 	"maxRange" = 20,
 	"step" = 1
@@ -32,4 +31,4 @@ _config.set_value("Int", "testInt", {
 | `maxRange` | `Int` | The maximum value the player is able to set the value to in the configuration menu. |
 | `step` | `Int` | How much is added per step in both the Slider and SpinBox input. |
 
-[Up next: Float Value Type >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Float-Value-Type)
+[Up next: Float Value Type >](Float-Value-Type)

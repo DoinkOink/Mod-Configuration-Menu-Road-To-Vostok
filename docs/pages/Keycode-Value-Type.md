@@ -5,8 +5,7 @@ _config.set_value("Keycode", "testKeycode", {
 	"name" = "Test Keycode",
 	"tooltip" = "A test keycode",
 	"default" = KEY_ALT,
-	"default_type" = "Key",
-	"value" = KEY_ALT,
+	"default_type" = "Key"
 	"type" = "Key"
 })
 ```
@@ -28,6 +27,10 @@ _config.set_value("Keycode", "testKeycode", {
 | `value` | `Keycode` | The current value that is set. If this property is not present on creation it will automatically be set to the `default` value. |
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
+| `altPressed` | `Boolean` | If the alt key has to also be pressed for the input to register. |
+| `controlPressed` | `Boolean` | If the control key has to also be pressed for the input to register. |
+| `metaPressed` | `Boolean` | If the windows/meta key has to also be pressed for the input to register. |
+| `shiftPressed` | `Boolean` | If the shift key has to also be pressed for the input to register. |
 
 ## Additional Information
 The Inputs action name will be the config value name you set here, for this example it would be `testKeycode`
@@ -45,4 +48,4 @@ func _input(event):
 ### Other Input Methods
 To see all Input methods you can use [check out this docs page about it](https://docs.godotengine.org/en/stable/classes/class_input.html) and look at any methods that have the word `action` in it.
 
-[Up next: Color Value Type >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Color-Picker-Value-Type)
+[Up next: Color Value Type >](Color-Picker-Value-Type)

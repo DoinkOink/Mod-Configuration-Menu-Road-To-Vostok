@@ -18,15 +18,13 @@ func _ready():
 	_config.set_value("String", "testString", {
 		"name" = "Test String",
 		"tooltip" = "A test string",
-		"default" = "Hello World",
-		"value" = "Hello World"
+		"default" = "Hello World"
 	})
 
 	_config.set_value("Int", "testInt", {
 		"name" = "Test Int",
 		"tooltip" = "A test int",
-		"default" = 5,
-		"value" = 5,
+		"default" = 5
 		"minRange" = 0,
 		"maxRange" = 20,
 		"step" = 1
@@ -35,8 +33,7 @@ func _ready():
 	_config.set_value("Float", "testFloat", {
 		"name" = "Test Float",
 		"tooltip" = "A test float",
-		"default" = 10.3,
-		"value" = 10.3,
+		"default" = 10.3
 		"minRange" = 0,
 		"maxRange" = 50.5,
 		"step" = 0.001
@@ -45,31 +42,27 @@ func _ready():
 	_config.set_value("Bool", "testBool", {
 		"name" = "Test Bool",
 		"tooltip" = "The first test bool",
-		"default" = false,
-		"value" = false
+		"default" = false
 	})
 	
 	_config.set_value("Keycode", "testKeycode", {
 		"name" = "Test Keycode",
 		"tooltip" = "A test keycode",
 		"default" = KEY_ALT,
-		"default_type" = "Key",
-		"value" = KEY_ALT,
+		"default_type" = "Key"
 		"type" = "Key"
 	})
 
 	_config.set_value("Color", "testColor", {
 		"name" = "Test Color",
 		"tooltip" = "A test color",
-		"default" = Color.WHITE,
-		"value" = Color.WHITE
+		"default" = Color.WHITE
 	})
 
 	_config.set_value("Dropdown", "testDropdown", {
 		"name" = "Test Dropdown",
 		"tooltip" = "A test dropdown",
-		"default" = "opt_2",
-		"value" = "opt_2",
+		"default" = "opt_2"
 		"options" = {
 			"opt_1": "Option 1",
 			"opt_2": "Option 2",
@@ -80,8 +73,7 @@ func _ready():
 	_config.set_value("Vector2", "testVector2", {
 		"name": "Test Vector2",
 		"tooltip": "A test vector2",
-		"default": Vector2(10, 10),
-		"value": Vector2(10, 10),
+		"default": Vector2(10, 10)
 		"minRange": Vector2(0, 2),
 		"maxRange": Vector2(50, 40),
 		"step": 0.5,
@@ -91,8 +83,7 @@ func _ready():
 	_config.set_value("Vector3", "testVector3", {
 		"name": "Test Vector3",
 		"tooltip": "A test vector3",
-		"default": Vector3(10, 10, 10),
-		"value": Vector3(10, 10, 10),
+		"default": Vector3(10, 10, 10)
 		"minRange": Vector3(0, 2, -10),
 		"maxRange": Vector3(50, 40, 20),
 		"step": 1,
@@ -103,9 +94,17 @@ func _ready():
 		"name": "Test Array",
 		"tooltip": "A test array",
 		"arrayType": "String",
-		"default": ["Hello World!"],
-		"value": ["Hello World!"],
+		"default": ["Hello World!"]
 		"defaultItemValue": "",
+		"maxItems": 5
+	})
+
+	_config.set_value("Dictionary", "testStringDictionary", {
+		"name": "Test Dictionary",
+		"tooltip": "A test dictionary",
+		"valueType": "String",
+		"default": { "Test Key": "Test Value" },
+		"defaultItemValue": { "Key": "Value" },
 		"maxItems": 5
 	})
 		
@@ -129,8 +128,9 @@ MCM Supports 5 different types of values
 * [Vector2](Vector2-Value-Type)
 * [Vector3](Vector3-Value-Type)
 * [Array*](Array-Value-Type)
+* [Dictionary*](Dictionary-Value-Type)
 
-***Array's of these types are not currently supported.**
+***Array's and Dictionary's of these types are not currently supported.**
 
 Instead of just storing a value in a normal variable we create a Dictionary for every value. This allows MCM to store control variables that is used in the GUI aspect of the mod and allows the author to set default values to be reset if the player wishes.
 
@@ -147,7 +147,8 @@ Because of this it is **VERY** important that the sections are written exactly a
 * Vector2
 * Vector3
 * Array
+* Dictionary
 
 Let's go over the different types and how they should be set up.
 
-[Up next: String Value Type >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/String-Value-Type)
+[Up next: String Value Type >](String-Value-Type)

@@ -4,8 +4,7 @@
 _config.set_value("Dropdown", "testDropdown", {
 	"name" = "Test Dropdown",
 	"tooltip" = "A test dropdown",
-	"default" = "opt_2",
-	"value" = "opt_2",
+	"default" = "opt_2"
 	"options" = {
 		"opt_1": "Option 1",
 		"opt_2": "Option 2",

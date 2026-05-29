@@ -36,4 +36,4 @@ func _ready():
     pass
 ```
 
-[Up next: Creating The Config File >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Creating-The-Config-File)
+[Up next: Creating The Config File >](Creating-The-Config-File)

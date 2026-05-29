@@ -63,4 +63,4 @@ func UpdateConfigProperties(config: ConfigFile):
 ### Note about multiple config files
 While at the moment the `RegisterConfiguration` function can handle multiple configuration files being registered this is not yet implemented (but will be implemented in the future). As of now the first config file in the dictionary is what's shown in the configuration menu.
 
-[Up next: Updating Your Mods Configuration >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Updating-Your-Mods-Configuration)
+[Up next: Updating Your Mods Configuration >](Updating-Your-Mods-Configuration)

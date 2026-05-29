@@ -6,4 +6,4 @@ Whenever a player updates the configuration file from MCM the associated callbac
 
 I've included a small example on how to retrieve a value from a `ConfigFile` in the `UpdateConfigProperties` function. Again I highly recommend you looking at the [documentation page for `ConfigFile`](https://docs.godotengine.org/en/4.4/classes/class_configfile.html) to get a better understanding on how to access the data stored in them.
 
-[Up next: Wrapping Up >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Wrapping-Up)
+[Up next: Wrapping Up >](Wrapping-Up)

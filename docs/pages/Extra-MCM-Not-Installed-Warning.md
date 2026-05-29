@@ -68,4 +68,4 @@ func _ready():
 
 And with that added your mod is ready to go. You can edit the Description text to whatever you like but don't change the link in `OS.shell_open` as that's how people can easily get to the MCM mod page.
 
-[Up Next: Custom Config Property Sorting >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Custom-Config-Property-Sorting)
+[Up Next: Custom Config Property Sorting >](Custom-Config-Property-Sorting)

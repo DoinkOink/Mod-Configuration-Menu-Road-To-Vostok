@@ -4,8 +4,7 @@
 _config.set_value("Float", "testFloat", {
 	"name" = "Test Float",
 	"tooltip" = "A test float",
-	"default" = 10.3,
-	"value" = 10.3,
+	"default" = 10.3
 	"minRange" = 0,
 	"maxRange" = 50.5,
 	"step" = 0.001
@@ -31,4 +30,4 @@ _config.set_value("Float", "testFloat", {
 | `maxRange` | `Float` | The maximum value the player is able to set the value to in the configuration menu. |
 | `step` | `Float` | This property effectively sets two settings.<br>1. How many decimal places are allowed in the input<br>2. How much is added per step in both the Slider and SpinBox input. |
 
-[Up next: Boolean Value Type >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Boolean-Value-Type)
+[Up next: Boolean Value Type >](Boolean-Value-Type)

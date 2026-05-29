@@ -4,8 +4,7 @@
 _config.set_value("String", "testString", {
 	"name" = "Test String",
 	"tooltip" = "A test string",
-	"default" = "Hello World",
-	"value" = "Hello World"
+	"default" = "Hello World"
 })
 ```
 
@@ -25,4 +24,4 @@ _config.set_value("String", "testString", {
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 
-[Up next: Integer Value Type >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Integer-Value-Type)
+[Up next: Integer Value Type >](Integer-Value-Type)

@@ -4,8 +4,7 @@
 _config.set_value("Bool", "testBool", {
 	"name" = "Test Bool",
 	"tooltip" = "The first test bool",
-	"default" = false,
-	"value" = false
+	"default" = false
 })
 ```
 
@@ -25,4 +24,4 @@ _config.set_value("Bool", "testBool", {
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 
-[Up next: Keycode Value Type >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Keycode-Value-Type)
+[Up next: Keycode Value Type >](Keycode-Value-Type)

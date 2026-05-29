@@ -4,8 +4,7 @@
 _config.set_value("Vector3", "testVector3", {
     "name": "Test Vector3",
     "tooltip": "A test vector3",
-    "default": Vector3(10, 10, 10),
-    "value": Vector3(10, 10, 10),
+    "default": Vector3(10, 10, 10)
     "minRange": Vector3(0, 2, -10),
     "maxRange": Vector3(50, 40, 20),
     "step": 1,

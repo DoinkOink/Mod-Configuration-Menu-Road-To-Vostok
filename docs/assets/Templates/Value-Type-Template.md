@@ -4,8 +4,7 @@
 _config.set_value("{Section Name}", "", {
 	"name" = "",
 	"tooltip" = "",
-	"default" = "",
-	"value" = ""
+	"default" = ""
 })
 ```
 

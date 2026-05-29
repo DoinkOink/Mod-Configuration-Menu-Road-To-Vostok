@@ -40,4 +40,4 @@ func _ready():
 
 That's all that needs to be done. Now anytime you make changes to your config file in future updates players will see the new settings within the configuration menu!
 
-[Up next: Handling Configuration Updates By The Player >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Handling-configuration-updates-by-the-player)
+[Up next: Handling Configuration Updates By The Player >](Handling-configuration-updates-by-the-player)

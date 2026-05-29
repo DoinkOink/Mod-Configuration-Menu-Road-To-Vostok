@@ -5,8 +5,7 @@
 _config.set_value("Color", "testColor", {
 	"name" = "Test Color",
 	"tooltip" = "A test color",
-	"default" = Color.WHITE,
-	"value" = Color.WHITE
+	"default" = Color.WHITE
 })
 ```
 
@@ -29,4 +28,4 @@ _config.set_value("Color", "testColor", {
 ## Additional Information
 When the player clicks on the currently displayed color a color picking UI will be displayed on screen.
 
-[Up next: Dropdown Value Type >](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dropdown-Value-Type)
+[Up next: Dropdown Value Type >](Dropdown-Value-Type)
