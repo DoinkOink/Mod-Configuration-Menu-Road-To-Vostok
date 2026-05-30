@@ -27,10 +27,7 @@ _config.set_value("Keycode", "testKeycode", {
 | `value` | `Keycode` | The current value that is set. If this property is not present on creation it will automatically be set to the `default` value. |
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
-| `altPressed` | `Boolean` | If the alt key has to also be pressed for the input to register. |
-| `controlPressed` | `Boolean` | If the control key has to also be pressed for the input to register. |
-| `metaPressed` | `Boolean` | If the windows/meta key has to also be pressed for the input to register. |
-| `shiftPressed` | `Boolean` | If the shift key has to also be pressed for the input to register. |
+| `default_modifiers` | `Dictionary<String, Boolean>` | Sets the default values  |
 
 ## Additional Information
 The Inputs action name will be the config value name you set here, for this example it would be `testKeycode`
