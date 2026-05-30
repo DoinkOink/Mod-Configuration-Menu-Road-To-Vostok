@@ -19,7 +19,7 @@ const OPTIONAL_PROPERTIES : Dictionary = {
     "Number": [ "minRange", "maxRange", "step" ],
     "Vector": [ "isInt" ],
     "Object": [ "maxItems" ],
-    "Keycode": [ "altPressed", "controlPressed", "metaPressed", "shiftPressed" ]
+    "Keycode": [ "default_modifiers" ]
 }
 
 static func GetRequiredProperties(valueType: String):

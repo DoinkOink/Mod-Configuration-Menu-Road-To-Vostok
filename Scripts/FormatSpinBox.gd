@@ -15,13 +15,11 @@ func _ready() -> void:
     get_line_edit().focus_exited.connect(_on_focus_exited, CONNECT_DEFERRED)
     
     originalSize = Vector2(get_line_edit().size.x, get_line_edit().size.y)
-    
-    #UpdatePrecision()
 
 # This handler ensures the format is maintained while editing the field.
 func _on_value_changed(newValue: float) -> void:
-    # For some reason the Vector2 and Vector3 y fields will switch to their
-    #   minimum values on init. This stops it from doing that. ¯\_(ツ)_/¯
+    # For some reason the SpinBox will switch to their minimum values on init. 
+    #   This stops it from doing that. ¯\_(ツ)_/¯
     if (newValue != value):
         return
         

@@ -149,9 +149,6 @@ func LoadConfiguration(modId: String):
             _property.erase("section")
             _property.erase("key")
             
-            if (_section == "Dictionary"):
-                print("Hello")
-            
             if (availableElements.has(_section)):
                 _element = availableElements.get(_section).instantiate()
             else:

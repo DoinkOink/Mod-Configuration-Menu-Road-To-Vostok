@@ -53,10 +53,10 @@ func _ready():
         "tooltip" = "A test keycode",
         "default" = KEY_ALT,
         "default_type" = "Key",
+        "default_modifiers" = { "alt": false, "control": false, "meta": false, "shift": true },
         "value" = KEY_ALT,
         "type" = "Key",
-        "category" = "Test Category 2",
-        "controlPressed" = true
+        "category" = "Test Category 2"
     })
     
     _config.set_value("String", "testString", {

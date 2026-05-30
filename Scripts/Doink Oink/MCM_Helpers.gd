@@ -46,10 +46,14 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                     _newValues['value'] = _newValues['default']
                     
                 if(_section == "Keycode"):
-                    if("altPressed" not in _newValues.keys()): _newValues["altPressed"] = false
-                    if("controlPressed" not in _newValues.keys()): _newValues["controlPressed"] = false
-                    if("metaPressed" not in _newValues.keys()): _newValues["metaPressed"] = false
-                    if("shiftPressed" not in _newValues.keys()): _newValues["shiftPressed"] = false
+                    if("altPressed" not in _newValues.keys()): 
+                        _newValues["altPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["alt"]
+                    if("controlPressed" not in _newValues.keys()): 
+                        _newValues["controlPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["control"]
+                    if("metaPressed" not in _newValues.keys()): 
+                        _newValues["metaPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["meta"]
+                    if("shiftPressed" not in _newValues.keys()): 
+                        _newValues["shiftPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["shift"]
                 
                 # Finally insert the new values in the config that will be saved
                 _tempConfig.set_value(_section, _key, _newValues)
@@ -88,16 +92,16 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                             
                 if(_section == "Keycode"):
                     if("altPressed" not in _currentValues.keys()):
-                        _currentValues["altPressed"] = false if "altPressed" not in _newValues.keys() else _newValues["altPressed"]
+                        _currentValues["altPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["alt"]
                         _configUpdated = true
-                    if("controlPressed" not in _currentValues.keys()): 
-                        _currentValues["controlPressed"] = false if "controlPressed" not in _newValues.keys() else _newValues["controlPressed"]
+                    if("controlPressed" not in _currentValues.keys()):
+                        _currentValues["controlPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["control"]
                         _configUpdated = true
-                    if("metaPressed" not in _currentValues.keys()): 
-                        _currentValues["metaPressed"] = false if "metaPressed" not in _newValues.keys() else _newValues["metaPressed"]
+                    if("metaPressed" not in _currentValues.keys()):
+                        _currentValues["metaPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["meta"]
                         _configUpdated = true
-                    if("shiftPressed" not in _currentValues.keys()): 
-                        _currentValues["shiftPressed"] = false if "shiftPressed" not in _newValues.keys() else _newValues["shiftPressed"]
+                    if("shiftPressed" not in _currentValues.keys()):
+                        _currentValues["shiftPressed"] = false if "default_modifiers" not in _newValues.keys() else _newValues["default_modifiers"]["shift"]
                         _configUpdated = true
                     
                 _tempConfig.set_value(_section, _key, _currentValues)

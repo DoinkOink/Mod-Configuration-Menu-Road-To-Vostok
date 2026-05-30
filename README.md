@@ -67,6 +67,13 @@ None right now :)
         * Vector2
         * Vector3
         * More may be added but would require significant work to get working
+* Added the Dictionary Value type
+    * [Check out the Wiki page for implementation](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Dictionary-Value-Type)
+    * Thank you to MJRamon for the suggestion
+    * Very similar to function as the Array type but gives the player an editable key value as well
+* Updated the Keycode value type to allow storing modifier keys alongside the keycode
+    * There is nothing that needs to be added on the devs end to get this working
+    * [If a dev wishes to set modifier keys as the default head over to the Wiki to see implementation](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Keycode-Value-Type)
 * The input mapping spam should hopefully be fixed now
 ### v2.7.0
 * Changed the Dropdown value to accept a dictionary of options
