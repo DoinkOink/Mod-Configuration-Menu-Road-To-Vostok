@@ -231,7 +231,11 @@ func UpdateInputs(modId: String, fileId):
                     _originalEvent = (InputMap.action_get_events(_action)[0] as InputEventMouseButton)
                     _originalEventKeycode = _originalEvent.button_index
                 
-                if (_originalEventKeycode != _configData["value"]):
+                if (_originalEventKeycode != _configData["value"]
+                || _originalEvent.alt_pressed != _configData["altPressed"]
+                || _originalEvent.ctrl_pressed != _configData["controlPressed"]
+                || _originalEvent.meta_pressed != _configData["metaPressed"]
+                || _originalEvent.shift_pressed != _configData["shiftPressed"]):                        
                     var _actionEvent
                     
                     if (_configData["type"] == "Mouse"):
@@ -240,6 +244,11 @@ func UpdateInputs(modId: String, fileId):
                     else:
                         _actionEvent = InputEventKey.new()
                         _actionEvent.physical_keycode = _configData["value"]
+                        
+                    _actionEvent.alt_pressed = _configData["altPressed"]
+                    _actionEvent.ctrl_pressed = _configData["controlPressed"]
+                    _actionEvent.meta_pressed = _configData["metaPressed"]
+                    _actionEvent.shift_pressed = _configData["shiftPressed"]
                 
                     InputMap.action_erase_events(_action)
                     InputMap.action_add_event(_action, _actionEvent)
