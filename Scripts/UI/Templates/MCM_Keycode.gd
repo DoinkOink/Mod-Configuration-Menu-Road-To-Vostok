@@ -47,21 +47,23 @@ func _ready():
     value.shift_pressed = valueData["shiftPressed"]
     
     keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
+    keycodeInput.text = value.as_text().trim_suffix(" - Physical")
     
     CheckIsDefault(value)
     
 func _input(event):
     if isRemapping:
         if event.is_released():
-            if event is InputEventKey || (event is InputEventMouseButton && event.pressed):
+            if event is InputEventKey || (event is InputEventMouseButton):
                 if event is InputEventMouseMotion && event.double_click:
                     event.double_click = false
                     
                 if (event is InputEventKey):            
                     keycodeInput.text = event.as_text().trim_suffix(" (Physical)")
+                    keycodeInput.text = event.as_text().trim_suffix(" - Physical")
                     valueData["type"] = "Key"
                 elif (event is InputEventMouseButton):
-                    keycodeInput.text = GetMouseButtonText(event.button_index)
+                    keycodeInput.text = GetMouseButtonText(event)
                     valueData["type"] = "Mouse"
                     
                 value = event
@@ -87,30 +89,47 @@ func GetValueData():
         
     return valueData
     
-func GetMouseButtonText(buttonIndex):
-    match buttonIndex:
+func GetMouseButtonText(event: InputEventWithModifiers):
+    var _text = ""
+    
+    #if(event.ctrl_pressed):
+        #_text = _text + "Ctrl+"
+    _text = (_text + "Ctrl+") if event.ctrl_pressed else _text
+    _text = (_text + "Alt+") if event.alt_pressed else _text
+    _text = (_text + "Shift+") if event.shift_pressed else _text
+    _text = (_text + "Meta+") if event.meta_pressed else _text
+    
+    match event.button_index:
         MOUSE_BUTTON_LEFT:
-                return "Left Mouse Button"
+                _text = _text + "Left Mouse Button"
         MOUSE_BUTTON_RIGHT:
-                return "Right Mouse Button"
+                _text = _text + "Right Mouse Button"
         MOUSE_BUTTON_MIDDLE:
-                return "Middle Mouse Button"
+                _text = _text + "Middle Mouse Button"
         MOUSE_BUTTON_WHEEL_DOWN:
-                return "Mouse Wheel Down"
+                _text = _text + "Mouse Wheel Down"
         MOUSE_BUTTON_WHEEL_UP:
-                return "Mouse Wheel Up"
+                _text = _text + "Mouse Wheel Up"
         MOUSE_BUTTON_XBUTTON1:
-                return "Mouse Button 1"
+                _text = _text + "Mouse Button 1"
         MOUSE_BUTTON_XBUTTON2:
-                return "Mouse Button 2"
+                _text = _text + "Mouse Button 2"
         _:
-            return "Mouse " + buttonIndex
+            _text = _text + "Mouse " + event.button_index
+            
+    return _text
 
 func CheckIsDefault(checkValue):
     if (valueData["type"] == "Mouse"):
         hasChanged = defaultValue != checkValue.button_index || valueData["default_type"] != valueData["type"]
     else:
         hasChanged = defaultValue != checkValue.physical_keycode || valueData["default_type"] != valueData["type"]
+        
+    if("default_modifiers" in valueData):
+        if(valueData["default_modifiers"]["alt"] != checkValue.alt_pressed): hasChanged = true
+        if(valueData["default_modifiers"]["control"] != checkValue.ctrl_pressed): hasChanged = true
+        if(valueData["default_modifiers"]["meta"] != checkValue.meta_pressed): hasChanged = true
+        if(valueData["default_modifiers"]["shift"] != checkValue.shift_pressed): hasChanged = true
         
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
@@ -124,6 +143,7 @@ func SetValue(newValue) -> void:
         value = InputEventKey.new()
         value.physical_keycode = newValue
         keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
+        keycodeInput.text = value.as_text().trim_suffix(" - Physical")
     CheckIsDefault(value)
 
 func OnValueChanged(newValue):
@@ -150,9 +170,22 @@ func _on_revert_button_pressed() -> void:
     else:
         value = InputEventKey.new()
         value.physical_keycode = defaultValue
-        keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
         
     valueData["type"] = valueData["default_type"]
+    
+    if("default_modifiers" in valueData):
+        value.alt_pressed = valueData["default_modifiers"]["alt"]
+        value.ctrl_pressed = valueData["default_modifiers"]["control"]
+        value.meta_pressed = valueData["default_modifiers"]["meta"]
+        value.shift_pressed = valueData["default_modifiers"]["shift"]
+        
+        valueData["altPressed"] = valueData["default_modifiers"]["alt"]
+        valueData["controlPressed"] = valueData["default_modifiers"]["control"]
+        valueData["metaPressed"] = valueData["default_modifiers"]["meta"]
+        valueData["shiftPressed"] = valueData["default_modifiers"]["shift"]
+        
+    keycodeInput.text = value.as_text().trim_suffix(" (Physical)")
+    keycodeInput.text = value.as_text().trim_suffix(" - Physical")
     
     CheckIsDefault(value)
     OnValueChanged(value)
