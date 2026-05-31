@@ -25,7 +25,7 @@ func CreateModButton(modData):
     var _button = modButton.instantiate()
     
     _button.modFriendlyName = modData["friendlyName"]
-    _button.exportMenu = self
+    _button.parentMenu = self
     
     modButtons[modData["id"]] = _button
     modContainer.add_child(_button)
@@ -95,9 +95,11 @@ func UpdateSelectAll():
     selectAll.set_pressed_no_signal(_allSelected)
 
 func _on_export_pressed() -> void:
+    menu.PlayClick()
     fileMenu.popup_centered()
 
 func _on_close_pressed() -> void:
+    menu.PlayClick()
     menu.ToggleExportScreen()
     
 func _on_visibility_changed() -> void:
@@ -110,9 +112,15 @@ func _on_file_menu_confirmed(path):
     CreateAndSaveExportedFile(path)
 
 func _on_file_menu_visibility_changed():
+    menu.PlayClick()
     windowContainer.visible = !fileMenu.visible
     
 func _on_select_all_pressed() -> void:
+    menu.PlayClick()
     selectAll.tooltip_text = "Deselect All" if selectAll.button_pressed else "Select All"    
     for _button in modButtons.values():
         _button.SetCheckBox(selectAll.button_pressed)
+
+
+func _on_open_on_save_pressed() -> void:
+    menu.PlayClick()

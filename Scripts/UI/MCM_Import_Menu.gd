@@ -3,6 +3,7 @@ extends Control
 @onready var windowContainer : PanelContainer = find_child("Window Container")
 @onready var modContainer : VBoxContainer = find_child("Mod Container")
 @onready var selectAll : CheckBox = find_child("Select All")
+@onready var importLabel : Label = find_child("Import Label")
 
 var MCMHelpers = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 var modButton = preload("res://ModConfigurationMenu/UI/Elements/MCM_Import_Export_Mod_List_Button.tscn")
@@ -16,8 +17,10 @@ var modButtons = {}
 func _ready() -> void:
     ClearTemplateButtons()
     
-func LoadImportFile(path):
+func LoadImportFile(path, fileName):
     ClearTemplateButtons()
+    
+    importLabel.text = "Importing: " + fileName
     
     importConfigFile = ConfigFile.new()
     importConfigFile.load(path)
@@ -32,7 +35,7 @@ func CreateModButton(modId, modFriendlyName):
     var _button = modButton.instantiate()
     
     _button.modFriendlyName = modFriendlyName
-    _button.exportMenu = self
+    _button.parentMenu = self
     _button.isModPresent = modId in MCMHelpers.RegisteredMods.keys()
     
     modButtons[modId] = _button
@@ -84,6 +87,7 @@ func ImportSettings():
             _modConfigFile.save(MCMHelpers.GetModConfigFilePath(_modId))
 
 func _on_import_pressed() -> void:
+    menu.PlayClick()
     ImportSettings()
     
     if(menu.loadedModId != ""):
@@ -92,9 +96,11 @@ func _on_import_pressed() -> void:
     menu.ToggleImportScreen()
 
 func _on_close_pressed() -> void:
+    menu.PlayClick()
     menu.ToggleImportScreen()
     
 func _on_select_all_pressed() -> void:
+    menu.PlayClick()
     selectAll.tooltip_text = "Deselect All" if selectAll.button_pressed else "Select All"    
     for _button in modButtons.values():
         if(_button.isModPresent):

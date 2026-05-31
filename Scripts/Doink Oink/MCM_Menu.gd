@@ -268,14 +268,14 @@ func ToggleExportScreen():
     if(isExportScreenShowing):
         SaveConfiguration(loadedModId)
     
-func ToggleImportScreen(path=""):
+func ToggleImportScreen(path="", fileName=""):
     isImportScreenShowing = !isImportScreenShowing
     SettingsMenu.visible = !isImportScreenShowing
     ImportScreen.visible = isImportScreenShowing
     
     if(isImportScreenShowing):
         SaveConfiguration(loadedModId)
-        ImportScreen.LoadImportFile(path)
+        ImportScreen.LoadImportFile(path, fileName)
     
 func CreateImportFileDialog():
     importFileMenu = FileDialog.new()
@@ -300,9 +300,10 @@ func RemoveImportFileDialog():
         importFileMenu.queue_free()
         
 func _on_file_menu_confirmed(path):
-    ToggleImportScreen(path)
+    ToggleImportScreen(path, importFileMenu.current_file)
 
 func _on_file_menu_visibility_changed():
+    PlayClick()
     SettingsMenu.visible = !importFileMenu.visible        
 
 func _sort_by_pos_and_name(a, b):
@@ -324,6 +325,7 @@ func PlayClick():
     click.PlayInstance(audioLibrary.UIClick)
 
 func _on_export_pressed() -> void:
+    PlayClick()
     ToggleExportScreen()
 
 func _on_import_pressed() -> void:

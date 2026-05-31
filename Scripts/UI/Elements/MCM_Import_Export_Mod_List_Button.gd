@@ -6,7 +6,7 @@ extends PanelContainer
 var isChecked : bool
 var isModPresent : bool = true
 var modFriendlyName : String
-var exportMenu
+var parentMenu
 
 func _ready() -> void:
     nameLabel.text = modFriendlyName
@@ -30,7 +30,8 @@ func SetCheckBox(pressed):
     checkboxButton.tooltip_text = "Deselect Mod" if checkboxButton.button_pressed else "Select Mod"
 
 func _on_check_box_pressed() -> void:
+    parentMenu.menu.PlayClick()
     isChecked = checkboxButton.button_pressed
-    exportMenu.UpdateSelectAll()
+    parentMenu.UpdateSelectAll()
     
     checkboxButton.tooltip_text = "Deselect Mod" if checkboxButton.button_pressed else "Select Mod"

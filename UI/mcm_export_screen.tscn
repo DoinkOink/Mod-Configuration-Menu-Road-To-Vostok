@@ -236,5 +236,6 @@ text = "Close"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/Column Bar/PanelContainer/MarginContainer/Column Headers/Select All" to="." method="_on_select_all_pressed"]
+[connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/HBoxContainer_2/Open On Save" to="." method="_on_open_on_save_pressed"]
 [connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/HBoxContainer/Export" to="." method="_on_export_pressed"]
 [connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

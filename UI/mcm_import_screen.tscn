@@ -65,7 +65,7 @@ theme_override_constants/separation = 15
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1092070491]
+[node name="Import Label" type="Label" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1092070491]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
@@ -214,5 +214,6 @@ size_flags_horizontal = 3
 text = "Close"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/Column Bar/PanelContainer/MarginContainer/Column Headers/Select All" to="." method="_on_select_all_pressed"]
 [connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
 [connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
