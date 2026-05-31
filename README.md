@@ -42,6 +42,10 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.9.0
+* Added a Import/Export system for mod configs
+    * Users can now mass export all of their currently loaded mod configs into one single file that can then be shared with other players
+    * Users can take those exported config files and import them into their game automatically overriding all of their current settings with the file that's been selected
 ### v2.8.0
 * Remember last opened MCM mod settings by @Joaoha in https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/pull/6
     * Also added Joaoha's changes to the spinner boxes so they keep the SpinnerBox width the same size as the inputted value and removed trailing .0 from the value
