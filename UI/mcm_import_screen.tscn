@@ -1,0 +1,218 @@
+[gd_scene format=3 uid="uid://c0x2r8hcgvps3"]
+
+[ext_resource type="Script" uid="uid://b0ovpr3w3v7sc" path="res://ModConfigurationMenu/Scripts/UI/MCM_Import_Menu.gd" id="1_1rgwj"]
+[ext_resource type="PackedScene" uid="uid://nj1iccthipsh" path="res://ModConfigurationMenu/UI/Elements/MCM_Import_Export_Mod_List_Button.tscn" id="2_4awf4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xsa1"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2xsa1"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.21230483, 0.21230483, 0.21230483, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcboq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsf2y"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8foou"]
+
+[node name="MCM Import Screen" type="Control" unique_id=283199618]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rgwj")
+
+[node name="Window Container" type="PanelContainer" parent="." unique_id=238825140]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 240.0
+offset_right = 1360.0
+offset_bottom = 840.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2xsa1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Window Container" unique_id=337259747]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Container/MarginContainer" unique_id=227076898]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window Container/MarginContainer/VBoxContainer" unique_id=203049145]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1092070491]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Import"
+horizontal_alignment = 1
+
+[node name="Label_2" type="Label" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer" unique_id=483149947]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Select all mods you wish to import."
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window Container/MarginContainer/VBoxContainer" unique_id=661173291]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_2xsa1")
+
+[node name="VBoxContainer_2" type="VBoxContainer" parent="Window Container/MarginContainer/VBoxContainer" unique_id=973674026]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Column Bar" type="MarginContainer" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2" unique_id=805784809]
+layout_mode = 2
+theme_override_constants/margin_right = 13
+
+[node name="PanelContainer" type="PanelContainer" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/Column Bar" unique_id=1463829808]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rcboq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/Column Bar/PanelContainer" unique_id=280925977]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 4
+
+[node name="Column Headers" type="HBoxContainer" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/Column Bar/PanelContainer/MarginContainer" unique_id=1127848477]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Select All" type="CheckBox" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/Column Bar/PanelContainer/MarginContainer/Column Headers" unique_id=844223928]
+layout_mode = 2
+tooltip_text = "Select All"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vsf2y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vsf2y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vsf2y")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vsf2y")
+theme_override_colors/checkbox_unchecked_color = Color(18.892157, 18.892157, 18.892157, 1)
+
+[node name="ModLabel" type="Label" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/Column Bar/PanelContainer/MarginContainer/Column Headers" unique_id=679697628]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.6039216, 0.6039216, 0.6039216, 1)
+theme_override_font_sizes/font_size = 14
+text = "Mod Name"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2" unique_id=214062085]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer" unique_id=1696259117]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 5
+
+[node name="Mod Container" type="VBoxContainer" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer" unique_id=492392574]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="McmExportModListButton" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1281632359 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_2" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1483882644 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_3" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=320481690 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_4" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1785537496 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_5" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1546467255 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_6" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=122796937 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_7" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=305395429 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_8" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=358117696 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_9" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1074440747 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_10" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1223868136 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_11" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1442307444 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_12" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=793825895 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_13" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1836469963 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_14" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1966731934 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_15" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1224115906 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="McmExportModListButton_16" parent="Window Container/MarginContainer/VBoxContainer/VBoxContainer_2/ScrollContainer/MarginContainer/Mod Container" unique_id=1960193650 instance=ExtResource("2_4awf4")]
+layout_mode = 2
+
+[node name="HSeparator_2" type="HSeparator" parent="Window Container/MarginContainer/VBoxContainer" unique_id=1786513287]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_2xsa1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window Container/MarginContainer/VBoxContainer" unique_id=56065092]
+layout_mode = 2
+
+[node name="Import" type="Button" parent="Window Container/MarginContainer/VBoxContainer/HBoxContainer" unique_id=123073397]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8foou")
+text = "Import Config"
+
+[node name="Close" type="Button" parent="Window Container/MarginContainer/VBoxContainer/HBoxContainer" unique_id=275458912]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Close"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
+[connection signal="pressed" from="Window Container/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

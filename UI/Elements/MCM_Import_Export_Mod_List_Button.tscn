@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://nj1iccthipsh"]
+
+[ext_resource type="Script" uid="uid://cs6lqi0i6uyld" path="res://ModConfigurationMenu/Scripts/UI/Elements/MCM_Import_Export_Mod_List_Button.gd" id="1_u300h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84wql"]
+bg_color = Color(0.105882354, 0.105882354, 0.105882354, 0.48235294)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcshl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="McmExportModListButton" type="PanelContainer" unique_id=846706929]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1368.0
+offset_bottom = -1056.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_84wql")
+script = ExtResource("1_u300h")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=139924696]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1457301124]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/HBoxContainer" unique_id=1711470638]
+layout_mode = 2
+tooltip_text = "Deselect Mod"
+theme_override_styles/normal = SubResource("StyleBoxFlat_mcshl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mcshl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mcshl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mcshl")
+theme_override_colors/checkbox_unchecked_color = Color(18.892157, 18.892157, 18.892157, 1)
+button_pressed = true
+
+[node name="ModNameLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=793849503]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Very long mod name that is far beyond available container width"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 5
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]
