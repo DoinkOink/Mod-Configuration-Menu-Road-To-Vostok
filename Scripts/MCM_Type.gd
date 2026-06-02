@@ -1,6 +1,7 @@
 class_name MCM_Type
 ## MCMs base type to control config creation
 ##
+## DO NOT USE THIS CLASS[br]
 ## The base type that all MCM values inherit and sets up properties that all
 ## values will use.
 
@@ -29,3 +30,13 @@ func _init(section: String, id: String, name: String) -> void:
 func setMenuPos(menuPos: int):
     MenuPos = menuPos
     return self
+    
+func createConfigObject() -> Dictionary:
+    return {
+        "name": Name,
+        "menu_pos": MenuPos
+    }
+    
+func addToConfig(config: ConfigFile):
+    print(createConfigObject())
+    config.set_value(Section, ID, createConfigObject())

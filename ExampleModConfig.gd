@@ -7,137 +7,104 @@ const FILE_PATH = "user://MCM/ExampleMod"
 const MOD_ID = "ExampleMod"
 
 func _ready():
-    var _config = ConfigFile.new()    
-    _config.set_value("Int", "testInt", {
-        "name" = "Test Int",
-        "tooltip" = "A test int",
-        "default" = 5,
-        "value" = 5,
-        "minRange" = 0,
-        "maxRange" = 20,
-        "on_value_changed" = "IntCallback",
-        "category" = "Test Category 1",
-        "menu_pos" = 1
-    })
-    
-    _config.set_value("Bool", "testBool1", {
-        "name" = "Test Bool 1",
-        "tooltip" = "The first test bool",
-        "default" = false,
-        "value" = false,
-        "category" = "Test Category 1"
-    })
-    
-    _config.set_value("Bool", "testBool2", {
-        "name" = "Test Bool 2",
-        "tooltip" = "The second test bool",
-        "default" = true,
-        "value" = true,
-        "category" = "Test Category 1",
-        "menu_pos" = 2
-    })
-    
-    _config.set_value("Float", "testFloat", {
-        "name" = "Test Float",
-        "tooltip" = "A test float",
-        "default" = 10.3,
-        "value" = 10.3,
-        "minRange" = 0,
-        "maxRange" = 50.5,
-        "step" = 0.000001,
-        "category" = "Test Category 1"
-    })
-    
-    _config.set_value("Keycode", "testKeycode", {
-        "name" = "Test Keycode",
-        "tooltip" = "A test keycode",
-        "default" = KEY_ALT,
-        "default_type" = "Key",
-        "default_modifiers" = { "alt": false, "control": false, "meta": false, "shift": true },
-        "value" = KEY_ALT,
-        "type" = "Key",
-        "category" = "Test Category 2"
-    })
-    
-    _config.set_value("String", "testString", {
-        "name" = "Test String",
-        "tooltip" = "A test string",
-        "default" = "Hello World",
-        "value" = "Hello World",
-        "category" = "Test Category 2",
-        "menu_pos" = 1
-    })
-    
-    _config.set_value("Color", "testColor", {
-        "name" = "Test Color",
-        "tooltip" = "A test color",
-        "default" = Color.WHITE,
-        "value" = Color.WHITE,
-        "category" = "Test Category 3"
-    })
-    
-    _config.set_value("Dropdown", "testDropdown", {
-        "name" = "Test Dropdown",
-        "tooltip" = "A test dropdown",
-        "default" = "opt_1",
-        "value" = "opt_1",
-        "options" = {
-            "opt_1": "Option 1",
-            "opt_2": "Option 2",
-            "opt_3": "Option 3"
-        },
-        "category" = "Test Category 3"
-    })
-    
-    _config.set_value("Vector2", "testVector2", {
-        "name": "Test Vector2",
-        "tooltip": "A test vector2",
-        "default": Vector2(10, 10),
-        "value": Vector2(10, 10),
-        "minRange": Vector2(0, 5),
-        "maxRange": Vector2(50, 40),
-        "step": 0.5,
-        "category": "Test Category 4",
-        "isInt": false
-    })
-    
-    _config.set_value("Vector3", "testVector3", {
-        "name": "Test Vector3",
-        "tooltip": "A test vector3",
-        "default": Vector3(10, 10, 10),
-        "value": Vector3(10, 10, 10),
-        "minRange": Vector3(0, 4, -10),
-        "maxRange": Vector3(50, 40, 20),
-        "step": 1,
-        "category": "Test Category 4",
-        "isInt": true
-    })
-    
-    _config.set_value("Array", "testVector3Array", {
-        "name": "Test Array",
-        "tooltip": "A test array",
-        "valueType": "Vector3",
-        "default": [],
-        "value": [],
-        "defaultItemValue": Vector3.FORWARD,
-        "minRange": Vector3.ZERO,
-        "maxRange": Vector3(40,50,10),
-        "category": "Test Category 4",
-        "maxItems": 5
-    })
-    
-    _config.set_value("Dictionary", "testStringDictionary", {
-        "name": "Test Dictionary",
-        "tooltip": "A test dictionary",
-        "valueType": "String",
-        "default": { "Test Key": "Test Value" },
-        "defaultItemValue": { "Key": "Value" },
-        "maxItems": 5
-    })
-    
-    _config.set_value("Category", "Test Category 2", {
-        "menu_pos" = 1
-    })
+    var _config = ConfigFile.new()
+    MCM_Int.new("testInt", "Test Int", "A test int", 5) \
+        .setMinRange(0) \
+        .setMaxRange(20) \
+        .setOnValueChanged("IntCallback") \
+        .setCategory("Test Category 1") \
+        .setMenuPos(1) \
+        .addToConfig(_config)
+        
+    MCM_Bool.new("testBool1", "Test Bool 1", "The first test bool", false) \
+        .setCategory("Test Category 1") \
+        .addToConfig(_config)
+        
+    MCM_Bool.new("testBool2", "Test Bool 2", "The second test bool", true) \
+        .setCategory("Test Category 1") \
+        .setMenuPos(2) \
+        .addToConfig(_config)
+        
+    MCM_Float.new("testFloat", "Test Float", "A test float", 10.3) \
+        .setMinRange(0) \
+        .setMaxRange(50.5) \
+        .setStep(0.000001) \
+        .setCategory("Test Category 1") \
+        .addToConfig(_config)
+        
+    MCM_Keycode.new(
+            "testKeycode",
+            "Test Keycode",
+            "A test keycode",
+            KEY_ALT, MCM_Keycode.MCM_Key_Types.KEY
+        ) \
+        .addShiftModifier() \
+        .setCategory("Test Category 2") \
+        .addToConfig(_config)
+        
+    MCM_String.new("testString", "Test String", "A test string", "Hello World") \
+        .setCategory("Test Category 2") \
+        .setMenuPos(1) \
+        .addToConfig(_config)
+        
+    MCM_Color.new("testColor", "Test Color", "A test color", Color.WHITE) \
+        .setCategory("Test Category 3") \
+        .addToConfig(_config)
+        
+    MCM_Dropdown.new(
+            "testDropdown",
+            "Test Dropdown",
+            "A test dropdown",
+            "opt_1",
+            {
+                "opt_1": "Option 1",
+                "opt_2": "Option 2",
+                "opt_3": "Option 3"
+            }
+        ).setCategory("Test Category 3") \
+        .addToConfig(_config)
+        
+    MCM_Vector2.new("testVector2", "Test Vector2", "A test vector2", Vector2(10, 10)) \
+        .setMinRange(Vector2(0, 5)) \
+        .setMaxRange(Vector2(50, 40)) \
+        .setStep(0.5) \
+        .setIsInt(false) \
+        .addToConfig(_config)
+        
+    MCM_Vector3.new("testVector3", "Test Vector3", "a test vector3", Vector3(10, 10, 10)) \
+        .setMinRange(Vector3(0, 4, -10)) \
+        .setMaxRange(Vector3(50, 40, 20)) \
+        .setStep(1) \
+        .setIsInt(true) \
+        .setCategory("Test Category 4") \
+        .addToConfig(_config)
+        
+    MCM_Array.new(
+            "testVector3Array",
+            "Test Array",
+            "A test array",
+            [],
+            MCM_Collection.MCM_Collection_Types.VECTOR3,
+            Vector3.FORWARD
+        ).setMinRange(Vector3.ZERO) \
+        .setMaxRange(Vector3(40, 50, 10)) \
+        .setMaxItems(5) \
+        .setCategory("Test Category 4") \
+        .addToConfig(_config)
+        
+    MCM_Dictionary.new(
+            "testStringDictionary",
+            "Test Dictionary",
+            "A test dictionary",
+            { "Test Key": "Test Value" },
+            MCM_Collection.MCM_Collection_Types.STRING,
+            { "Key": "Value" }
+        ).setMaxItems(5) \
+        .addToConfig(_config)
+        
+    MCM_Category.new("Test Category 2", "Test Category 2") \
+        .setMenuPos(1) \
+        .addToConfig(_config)
         
     if McmHelpers:
         if !FileAccess.file_exists(FILE_PATH + "/config.ini"):
