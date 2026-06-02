@@ -155,6 +155,9 @@ func LoadConfiguration(modId: String):
                 push_warning("[MCM] " + modId + " has an unsupported value type [" + _section + "] in config file")
                 continue
                 
+            if("value" not in _property.keys()):
+                _property["value"] = _property["default"]
+                
             _element.valueId = _valueKey
             _element.section = _section
             _element.valueData = _property

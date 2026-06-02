@@ -348,27 +348,35 @@ layout_mode = 2
 
 [node name="Bool Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=882903359 instance=ExtResource("8_b4gw8")]
 layout_mode = 2
+script = null
 
 [node name="Color Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=71822911 instance=ExtResource("9_qvno0")]
 layout_mode = 2
+script = null
 
 [node name="Dropdown Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1584880875 instance=ExtResource("10_cob11")]
 layout_mode = 2
+script = null
 
 [node name="Keycode" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=190023062 instance=ExtResource("11_fny3e")]
 layout_mode = 2
+script = null
 
 [node name="Slider Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1914209537 instance=ExtResource("12_mmk3h")]
 layout_mode = 2
+script = null
 
 [node name="String Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1852979968 instance=ExtResource("13_lcey6")]
 layout_mode = 2
+script = null
 
 [node name="Vector 2 Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1965773547 instance=ExtResource("14_c0ttn")]
 layout_mode = 2
+script = null
 
 [node name="Vector 3 Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1441468210 instance=ExtResource("15_i0dgn")]
 layout_mode = 2
+script = null
 
 [node name="Array Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=505336327 instance=ExtResource("16_8o33l")]
 layout_mode = 2
@@ -376,5 +384,6 @@ script = ExtResource("17_gucg0")
 
 [node name="MCM_Array_Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1354449043 instance=ExtResource("18_t0fdo")]
 layout_mode = 2
+script = null
 
 [connection signal="pressed" from="Header/MarginContainer/Back" to="." method="_on_back_pressed"]

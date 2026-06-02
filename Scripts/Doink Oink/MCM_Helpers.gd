@@ -201,6 +201,15 @@ func LoadInput(modId: String, action: String, configValues: Dictionary):
         _actionEvent = InputEventKey.new()
         _actionEvent.physical_keycode = _keycode
         
+    if("altPressed" not in configValues.keys()): 
+        configValues["altPressed"] = false if "default_modifiers" not in configValues.keys() else configValues["default_modifiers"]["alt"]
+    if("controlPressed" not in configValues.keys()):
+        configValues["controlPressed"] = false if "default_modifiers" not in configValues.keys() else configValues["default_modifiers"]["control"]
+    if("metaPressed" not in configValues.keys()):
+        configValues["metaPressed"] = false if "default_modifiers" not in configValues.keys() else configValues["default_modifiers"]["meta"]
+    if("shiftPressed" not in configValues.keys()):
+        configValues["shiftPressed"] = false if "default_modifiers" not in configValues.keys() else configValues["default_modifiers"]["shift"]
+        
     _actionEvent.alt_pressed = configValues["altPressed"]
     _actionEvent.ctrl_pressed = configValues["controlPressed"]
     _actionEvent.meta_pressed = configValues["metaPressed"]
