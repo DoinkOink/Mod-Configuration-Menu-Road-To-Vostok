@@ -1,0 +1,2 @@
+extends MCM_Value
+class_name MCM_Color

@@ -1,0 +1,2 @@
+extends MCM_Collection
+class_name MCM_Array

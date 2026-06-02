@@ -1,0 +1,2 @@
+extends MCM_Vector
+class_name MCM_Vector3

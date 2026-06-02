@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cg7bdpjwt3mrv"]
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_84kag"]
-[ext_resource type="Script" uid="uid://b6rlgwpcoyw4a" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_Dropdown.gd" id="1_wh4rw"]
+[ext_resource type="Script" uid="uid://b6rlgwpcoyw4a" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_UI_Dropdown.gd" id="1_wh4rw"]
 [ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="3_5ni0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ni0t"]
