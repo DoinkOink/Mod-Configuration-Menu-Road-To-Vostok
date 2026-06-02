@@ -36,7 +36,8 @@ func _ready():
             "testKeycode",
             "Test Keycode",
             "A test keycode",
-            KEY_ALT, MCM_Keycode.MCM_Key_Types.KEY
+            KEY_ALT, 
+            MCM_Keycode.MCM_Key_Types.KEY
         ) \
         .addShiftModifier() \
         .setCategory("Test Category 2") \
