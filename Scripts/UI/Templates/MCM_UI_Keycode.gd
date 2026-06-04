@@ -41,6 +41,15 @@ func _ready():
     
     defaultValue = valueData["default"]
     
+    if("altPressed" not in valueData.keys()): 
+        valueData["altPressed"] = false if "default_modifiers" not in valueData.keys() else valueData["default_modifiers"]["alt"]
+    if("controlPressed" not in valueData.keys()):
+        valueData["controlPressed"] = false if "default_modifiers" not in valueData.keys() else valueData["default_modifiers"]["control"]
+    if("metaPressed" not in valueData.keys()):
+        valueData["metaPressed"] = false if "default_modifiers" not in valueData.keys() else valueData["default_modifiers"]["meta"]
+    if("shiftPressed" not in valueData.keys()):
+        valueData["shiftPressed"] = false if "default_modifiers" not in valueData.keys() else valueData["default_modifiers"]["shift"]
+    
     value.alt_pressed = valueData["altPressed"]
     value.ctrl_pressed = valueData["controlPressed"]
     value.meta_pressed = valueData["metaPressed"]
