@@ -9,6 +9,9 @@ var audioInstance2D = preload("res://Resources/AudioInstance2D.tscn")
 @onready var ConfigPanel = find_child("Settings")
 @onready var Logo: Control = find_child("Logo")
 @onready var SettingsLabel: Label = find_child("Settings_Label", true, false)
+@onready var SettingsMenu: Control = find_child("Settings Menu")
+@onready var ExportScreen: Control = find_child("MCM Export Screen")
+@onready var ImportScreen: Control = find_child("MCM Import Screen")
 
 var modListButton = preload("res://ModConfigurationMenu/UI/Elements/MCM_Mod_List_Button.tscn")
 var categoryHeader = preload("res://ModConfigurationMenu/UI/Elements/MCM_Header_String.tscn")
@@ -30,15 +33,22 @@ var availableElements = {
 
 var uiManager
 var isRemapping = false
+var isExportScreenShowing = false
+var isImportScreenShowing = false
 
 var loadedModId: String = ""
 var loadedButton: Button
 var currentConfig: ConfigFile
 var modButtons: Dictionary = {}
 
+var importFileMenu : FileDialog
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     availableElements["Float"] = availableElements["Int"]
+    
+    ExportScreen.menu = self
+    ImportScreen.menu = self
     
     ClearConfiguration()
     CreateAllModButtons()
@@ -46,11 +56,15 @@ func _ready() -> void:
         
 func _on_visibility_changed():
     if !visible:
+        RemoveImportFileDialog()
+        
         if loadedModId != "":
             MCMHelpers.LastOpenedModId = loadedModId
             SaveConfiguration(loadedModId)
         PlayClick()
         return
+    else:
+        CreateImportFileDialog()
 
     loadedModId = ""
     loadedButton = null
@@ -249,6 +263,52 @@ func ClearConfiguration():
     for _element in ConfigPanel.get_children():
         _element.queue_free()
         
+func ToggleExportScreen():
+    isExportScreenShowing = !isExportScreenShowing
+    SettingsMenu.visible = !isExportScreenShowing
+    ExportScreen.visible = isExportScreenShowing
+    
+    if(isExportScreenShowing):
+        SaveConfiguration(loadedModId)
+    
+func ToggleImportScreen(path="", fileName=""):
+    isImportScreenShowing = !isImportScreenShowing
+    SettingsMenu.visible = !isImportScreenShowing
+    ImportScreen.visible = isImportScreenShowing
+    
+    if(isImportScreenShowing):
+        SaveConfiguration(loadedModId)
+        ImportScreen.LoadImportFile(path, fileName)
+    
+func CreateImportFileDialog():
+    importFileMenu = FileDialog.new()
+    
+    importFileMenu.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+    importFileMenu.access = FileDialog.ACCESS_FILESYSTEM
+    importFileMenu.unresizable = true
+    
+    importFileMenu.filters = [ "*.ini ; Config" ]
+    importFileMenu.current_path = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS) + "/"
+    
+    importFileMenu.size = ImportScreen.windowContainer.size
+    importFileMenu.title = "Select the file you wish to import data from."
+    
+    importFileMenu.file_selected.connect(_on_file_menu_confirmed)
+    importFileMenu.visibility_changed.connect(_on_file_menu_visibility_changed)
+    
+    add_child(importFileMenu)
+    
+func RemoveImportFileDialog():
+    if (importFileMenu):
+        importFileMenu.queue_free()
+        
+func _on_file_menu_confirmed(path):
+    ToggleImportScreen(path, importFileMenu.current_file)
+
+func _on_file_menu_visibility_changed():
+    PlayClick()
+    SettingsMenu.visible = !importFileMenu.visible        
+
 func _sort_by_pos_and_name(a, b):
     var _aPos = 1000000 if !a.has("menu_pos") else a["menu_pos"]
     var _bPos = 1000000 if !b.has("menu_pos") else b["menu_pos"]
@@ -266,3 +326,10 @@ func PlayClick():
     var click = audioInstance2D.instantiate()
     add_child(click)
     click.PlayInstance(audioLibrary.UIClick)
+
+func _on_export_pressed() -> void:
+    PlayClick()
+    ToggleExportScreen()
+
+func _on_import_pressed() -> void:
+    importFileMenu.popup_centered()

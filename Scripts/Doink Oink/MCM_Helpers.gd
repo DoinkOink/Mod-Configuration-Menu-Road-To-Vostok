@@ -167,7 +167,7 @@ func CallConfigCallback(modId: String, fileId: String, data: ConfigFile):
 
 func LoadInputs():
     for _modId in RegisteredMods:
-        var _config = GetModConfigFile(_modId)            
+        var _config = GetModConfigFile(_modId)
         if _config.has_section("Keycode"):
             var _keycodes = _config.get_section_keys("Keycode")
             for _action in _keycodes:
@@ -276,6 +276,10 @@ func GetModConfigFileName(modId: String) -> String:
         _fileName = RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
         
     return _fileName
+    
+func GetModConfigFilePath(modId: String) -> String:
+    var _fileName = GetModConfigFileName(modId)
+    return RegisteredMods[modId].filePath + _fileName
     
 func ToggleMCMMenu():
     if MCMMenu.visible:

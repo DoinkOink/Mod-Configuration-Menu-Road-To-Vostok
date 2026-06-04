@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ccio7axqb4r3q"]
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_7okv8"]
-[ext_resource type="Script" uid="uid://0vo8q4ix2bcm" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_Keycode.gd" id="1_oos7r"]
+[ext_resource type="Script" uid="uid://0vo8q4ix2bcm" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_UI_Keycode.gd" id="1_oos7r"]
 [ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="3_t8gty"]
 
 [node name="MCM_Keycode_Value" type="MarginContainer" unique_id=190023062]

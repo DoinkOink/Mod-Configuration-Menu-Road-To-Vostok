@@ -16,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://cvfqkiyc0puhq" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector2_Value.tscn" id="14_c0ttn"]
 [ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn" id="15_i0dgn"]
 [ext_resource type="PackedScene" uid="uid://b56uh4tdnp8v" path="res://ModConfigurationMenu/UI/Templates/MCM_Object_Value.tscn" id="16_8o33l"]
-[ext_resource type="Script" uid="uid://daonqt6rl6nta" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_Array.gd" id="17_gucg0"]
+[ext_resource type="PackedScene" uid="uid://bcboq78kerguy" path="res://ModConfigurationMenu/UI/mcm_export_screen.tscn" id="18_gucg0"]
 [ext_resource type="PackedScene" uid="uid://bto3cqmvkp38c" path="res://ModConfigurationMenu/UI/Templates/MCM_Dictionary_Value.tscn" id="18_t0fdo"]
+[ext_resource type="PackedScene" uid="uid://c0x2r8hcgvps3" path="res://ModConfigurationMenu/UI/mcm_import_screen.tscn" id="19_t0fdo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3gea"]
 
@@ -70,15 +71,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.80784315)
 
-[node name="Header" type="Panel" parent="." unique_id=2122593540]
+[node name="Settings Menu" type="Control" parent="." unique_id=328060762]
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Header" type="Panel" parent="Settings Menu" unique_id=2122593540]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 150.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_x3gea")
 
-[node name="MarginContainer" type="MarginContainer" parent="Header" unique_id=1805693948]
+[node name="MarginContainer" type="MarginContainer" parent="Settings Menu/Header" unique_id=1805693948]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,36 +97,57 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 50
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Header/MarginContainer" unique_id=956545549]
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings Menu/Header/MarginContainer" unique_id=8913415]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Settings Menu/Header/MarginContainer/HBoxContainer" unique_id=956545549]
 custom_minimum_size = Vector2(1080, 40)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="TextureRect_2" type="TextureRect" parent="Header/MarginContainer/HFlowContainer" unique_id=903611828]
+[node name="TextureRect_2" type="TextureRect" parent="Settings Menu/Header/MarginContainer/HBoxContainer/HFlowContainer" unique_id=903611828]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("5_58edf")
 expand_mode = 5
 
-[node name="Panel" type="Panel" parent="Header/MarginContainer/HFlowContainer" unique_id=1199583020]
+[node name="Panel" type="Panel" parent="Settings Menu/Header/MarginContainer/HBoxContainer/HFlowContainer" unique_id=1199583020]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Header/MarginContainer/HFlowContainer" unique_id=1551031649]
+[node name="Label" type="Label" parent="Settings Menu/Header/MarginContainer/HBoxContainer/HFlowContainer" unique_id=1551031649]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 24
 text = "Mod Configuration Menu"
 vertical_alignment = 1
 
-[node name="Back" type="Button" parent="Header/MarginContainer" unique_id=1749737548]
+[node name="Import" type="Button" parent="Settings Menu/Header/MarginContainer/HBoxContainer" unique_id=782025079]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Import"
+expand_icon = true
+
+[node name="Export" type="Button" parent="Settings Menu/Header/MarginContainer/HBoxContainer" unique_id=1763555922]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Export"
+expand_icon = true
+
+[node name="Spacer" type="Control" parent="Settings Menu/Header/MarginContainer/HBoxContainer" unique_id=1443494598]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Back" type="Button" parent="Settings Menu/Header/MarginContainer/HBoxContainer" unique_id=1749737548]
 custom_minimum_size = Vector2(256, 40)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "← Return"
 expand_icon = true
 
-[node name="Settings_Panel" type="Panel" parent="." unique_id=643974054]
+[node name="Settings_Panel" type="Panel" parent="Settings Menu" unique_id=643974054]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -134,7 +162,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_eo6k8")
 
-[node name="Margin_Panel" type="MarginContainer" parent="Settings_Panel" unique_id=462283364]
+[node name="Margin_Panel" type="MarginContainer" parent="Settings Menu/Settings_Panel" unique_id=462283364]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,17 +170,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Box_Container" type="HBoxContainer" parent="Settings_Panel/Margin_Panel" unique_id=511302993]
+[node name="Box_Container" type="HBoxContainer" parent="Settings Menu/Settings_Panel/Margin_Panel" unique_id=511302993]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Mod_List_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container" unique_id=1493730462]
+[node name="Mod_List_Panel" type="Panel" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container" unique_id=1493730462]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1qods")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel" unique_id=1242224031]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel" unique_id=1242224031]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,12 +189,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=1706176933]
+[node name="Panel" type="Panel" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=1706176933]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Panel" unique_id=981146510]
+[node name="Label" type="Label" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Panel" unique_id=981146510]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,115 +205,115 @@ text = "Mods"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=738126004]
+[node name="Spacer" type="Panel" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=738126004]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wd52j")
 
-[node name="MarginContainer" type="MarginContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=713058264]
+[node name="MarginContainer" type="MarginContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=713058264]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 16
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer" unique_id=1624359536]
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer" unique_id=1624359536]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer" unique_id=1454152798]
+[node name="MarginContainer" type="MarginContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer" unique_id=1454152798]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 4
 
-[node name="Mods" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=671517203]
+[node name="Mods" type="VBoxContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=671517203]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ModListButton" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1038402848 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1038402848 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_2" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2114539945 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_2" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2114539945 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_3" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1308437606 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_3" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1308437606 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_4" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=803821561 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_4" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=803821561 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_5" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=63380404 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_5" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=63380404 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_6" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=738489492 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_6" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=738489492 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_7" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1079725772 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_7" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1079725772 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_8" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1452319002 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_8" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1452319002 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_9" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=477577898 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_9" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=477577898 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_10" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1249300587 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_10" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1249300587 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_11" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=251692170 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_11" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=251692170 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_12" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1003207276 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_12" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1003207276 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_13" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=566288199 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_13" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=566288199 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_14" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2042953690 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_14" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2042953690 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_15" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=275082636 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_15" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=275082636 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_16" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1939116297 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_16" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1939116297 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_17" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=858952258 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_17" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=858952258 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_18" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=361462616 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_18" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=361462616 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_19" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=937997291 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_19" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=937997291 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_20" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1346560890 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_20" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1346560890 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_21" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1244381988 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_21" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1244381988 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_22" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=988617519 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_22" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=988617519 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_23" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1140782874 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_23" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1140782874 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_24" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1158131816 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_24" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1158131816 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_25" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1739676503 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_25" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=1739676503 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="ModListButton_26" parent="Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2081695536 instance=ExtResource("6_6ftbm")]
+[node name="ModListButton_26" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/Mods" unique_id=2081695536 instance=ExtResource("6_6ftbm")]
 layout_mode = 2
 
-[node name="Config_Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container" unique_id=1967957978]
+[node name="Config_Panel" type="Panel" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container" unique_id=1967957978]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qnjx8")
 
-[node name="Logo" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel" unique_id=954286995]
+[node name="Logo" type="Panel" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel" unique_id=954286995]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -295,7 +323,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel" unique_id=586767344]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel" unique_id=586767344]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -304,12 +332,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Panel" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=2135819949]
+[node name="Panel" type="Panel" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=2135819949]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="Settings_Label" type="Label" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/Panel" unique_id=1544020867]
+[node name="Settings_Label" type="Label" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/Panel" unique_id=1544020867]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -320,16 +348,16 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Panel" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=336354577]
+[node name="Spacer" type="Panel" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=336354577]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q5ye3")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=490590795]
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer" unique_id=490590795]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer" unique_id=1036896201]
+[node name="MarginContainer" type="MarginContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer" unique_id=1036896201]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -338,52 +366,73 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Settings" type="VBoxContainer" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer" unique_id=2010114482]
+[node name="Settings" type="VBoxContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer" unique_id=2010114482]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Header String" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=610194201 instance=ExtResource("7_qcy1k")]
+[node name="Header String" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=610194201 instance=ExtResource("7_qcy1k")]
 layout_mode = 2
 
-[node name="Bool Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=882903359 instance=ExtResource("8_b4gw8")]
-layout_mode = 2
-script = null
-
-[node name="Color Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=71822911 instance=ExtResource("9_qvno0")]
+[node name="Bool Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=882903359 instance=ExtResource("8_b4gw8")]
 layout_mode = 2
 script = null
 
-[node name="Dropdown Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1584880875 instance=ExtResource("10_cob11")]
+[node name="Color Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=71822911 instance=ExtResource("9_qvno0")]
 layout_mode = 2
 script = null
 
-[node name="Keycode" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=190023062 instance=ExtResource("11_fny3e")]
+[node name="Dropdown Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1584880875 instance=ExtResource("10_cob11")]
 layout_mode = 2
 script = null
 
-[node name="Slider Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1914209537 instance=ExtResource("12_mmk3h")]
+[node name="Keycode" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=190023062 instance=ExtResource("11_fny3e")]
 layout_mode = 2
 script = null
 
-[node name="String Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1852979968 instance=ExtResource("13_lcey6")]
+[node name="Slider Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1914209537 instance=ExtResource("12_mmk3h")]
 layout_mode = 2
 script = null
 
-[node name="Vector 2 Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1965773547 instance=ExtResource("14_c0ttn")]
+[node name="String Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1852979968 instance=ExtResource("13_lcey6")]
 layout_mode = 2
 script = null
 
-[node name="Vector 3 Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1441468210 instance=ExtResource("15_i0dgn")]
+[node name="Vector 2 Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1965773547 instance=ExtResource("14_c0ttn")]
 layout_mode = 2
 script = null
 
-[node name="Array Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=505336327 instance=ExtResource("16_8o33l")]
-layout_mode = 2
-script = ExtResource("17_gucg0")
-
-[node name="MCM_Array_Value" parent="Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1354449043 instance=ExtResource("18_t0fdo")]
+[node name="Vector 3 Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1441468210 instance=ExtResource("15_i0dgn")]
 layout_mode = 2
 script = null
 
-[connection signal="pressed" from="Header/MarginContainer/Back" to="." method="_on_back_pressed"]
+[node name="Array Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=505336327 instance=ExtResource("16_8o33l")]
+layout_mode = 2
+script = null
+
+[node name="MCM_Array_Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1354449043 instance=ExtResource("18_t0fdo")]
+layout_mode = 2
+script = null
+
+[node name="MCM Export Screen" parent="." unique_id=54026999 instance=ExtResource("18_gucg0")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MCM Import Screen" parent="." unique_id=283199618 instance=ExtResource("19_t0fdo")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
+[connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Export" to="." method="_on_export_pressed"]
+[connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

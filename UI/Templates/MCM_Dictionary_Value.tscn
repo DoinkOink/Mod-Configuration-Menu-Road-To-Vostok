@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bto3cqmvkp38c"]
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_c5r30"]
-[ext_resource type="Script" uid="uid://bgnr4e7x0o64l" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_Dictionary.gd" id="2_c5r30"]
+[ext_resource type="Script" uid="uid://bgnr4e7x0o64l" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_UI_Dictionary.gd" id="2_c5r30"]
 [ext_resource type="Texture2D" uid="uid://csvnuhpmri7g5" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Keyboard_Arrow_Down.svg" id="3_fqmls"]
 [ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="4_dgqo3"]
 [ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn" id="5_2yrty"]
