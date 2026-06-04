@@ -397,6 +397,7 @@ layout_mode = 2
 
 [node name="Vector 3 Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=1441468210 instance=ExtResource("15_i0dgn")]
 layout_mode = 2
+script = null
 
 [node name="Array Value" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Config_Panel/VBoxContainer/ScrollContainer/MarginContainer/Settings" unique_id=505336327 instance=ExtResource("16_8o33l")]
 layout_mode = 2
