@@ -31,6 +31,9 @@ _config.set_value("Dictionary", "testStringDictionary", {
 | `maxItems` | `Int` | How many items the player is able to add to the array. If this property is not set it allows the player to add as many as they wish. |
 | `expanded` | `Boolean` | Sets if the Collection is expanded by default or not. |
 | `canDeleteAndAdd` | `Boolean` | Sets if the player can add and delete items from the collection. |
+| `keyLabel` | `String` | The label text for the key column. |
+| `valueLabel` | `String` | The label text for the value column. |
+| `canEditKeys` | `Boolean` | Sets if the player can edit the keys in the dictionary value editor. |
 
 ## Additional Information
 ### Available Array Types
