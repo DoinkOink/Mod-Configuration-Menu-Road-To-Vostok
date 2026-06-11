@@ -2,11 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_c5r30"]
 [ext_resource type="Script" uid="uid://bgnr4e7x0o64l" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_UI_Dictionary.gd" id="2_c5r30"]
-[ext_resource type="Texture2D" uid="uid://csvnuhpmri7g5" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Keyboard_Arrow_Down.svg" id="3_fqmls"]
-[ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://mods/00ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="4_dgqo3"]
-[ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://mods/00ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn" id="5_2yrty"]
-[ext_resource type="PackedScene" uid="uid://c8bfg0xicg0jh" path="res://mods/00ModConfigurationMenu/UI/Elements/MCM_Array_Entry_Separator.tscn" id="6_eoktr"]
-[ext_resource type="Texture2D" uid="uid://dyevjeux65vef" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Add_Circle.svg" id="7_e5d74"]
+[ext_resource type="Texture2D" uid="uid://n6camknfghy3" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Keyboard_Arrow_Down.svg" id="3_fqmls"]
+[ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="4_dgqo3"]
+[ext_resource type="PackedScene" uid="uid://bmfhbg7uxqhk8" path="res://ModConfigurationMenu/UI/Templates/MCM_Vector3_Value.tscn" id="5_2yrty"]
+[ext_resource type="PackedScene" uid="uid://c8bfg0xicg0jh" path="res://ModConfigurationMenu/UI/Elements/MCM_Array_Entry_Separator.tscn" id="6_eoktr"]
+[ext_resource type="Texture2D" uid="uid://d380nus20usqm" path="res://ModConfigurationMenu/UI/Sprites/Icons/Icon_Add_Circle.svg" id="7_e5d74"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py62t"]
 content_margin_left = 8.0
@@ -116,7 +116,6 @@ icon = ExtResource("3_fqmls")
 
 [node name="MCM_Revert_Button" parent="VBoxContainer/Container" unique_id=219514080 instance=ExtResource("4_dgqo3")]
 layout_mode = 2
-icon = null
 
 [node name="Panel Divider" type="Panel" parent="VBoxContainer" unique_id=628017569]
 custom_minimum_size = Vector2(0, 2)
