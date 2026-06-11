@@ -38,5 +38,4 @@ func createConfigObject() -> Dictionary:
     }
     
 func addToConfig(config: ConfigFile):
-    print(createConfigObject())
     config.set_value(Section, ID, createConfigObject())

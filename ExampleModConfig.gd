@@ -8,6 +8,8 @@ const MOD_ID = "ExampleMod"
 
 func _ready():
     var _config = ConfigFile.new()
+    var _mcmConfig = MCM_Config.new("ExampleMod")
+    
     MCM_Int.new("testInt", "Test Int", "A test int", 5) \
         .setMinRange(0) \
         .setMaxRange(20) \
@@ -37,7 +39,7 @@ func _ready():
             "Test Keycode",
             "A test keycode",
             KEY_ALT, 
-            MCM_Keycode.MCM_Key_Types.KEY
+            McmHelpers.MCM_Key_Types.KEY
         ) \
         .addShiftModifier() \
         .setCategory("Test Category 2") \
@@ -85,7 +87,7 @@ func _ready():
             "Test Array",
             "A test array",
             [],
-            MCM_Collection.MCM_Collection_Types.VECTOR3,
+            McmHelpers.MCM_Collection_Types.VECTOR3,
             Vector3.FORWARD
         ).setMinRange(Vector3.ZERO) \
         .setMaxRange(Vector3(40, 50, 10)) \
@@ -98,7 +100,7 @@ func _ready():
             "Test Dictionary",
             "A test dictionary",
             { "Test Key": "Test Value" },
-            MCM_Collection.MCM_Collection_Types.STRING,
+            McmHelpers.MCM_Collection_Types.STRING,
             { "Key": "Value" }
         ).setMaxItems(5) \
         .addToConfig(_config)

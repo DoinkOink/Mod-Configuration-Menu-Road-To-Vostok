@@ -1,6 +1,45 @@
 extends Resource
 class_name MCM_Helpers
 
+## The allowed MCM value types that can be used for a collection
+enum MCM_Collection_Types {
+    ## [MCM_String]
+    STRING,
+    ## [MCM_Int]
+    INT,
+    ## [MCM_Float]
+    FLOAT,
+    ## [MCM_Bool]
+    BOOLEAN,
+    ## [MCM_Color]
+    COLOR,
+    ## [MCM_Vector2]
+    VECTOR2,
+    ## [MCM_Vector3]
+    VECTOR3
+}
+
+## The type of input the default value can be set as
+enum MCM_Key_Types {
+    ## A keyboard key
+    KEY,
+    ## A mouse button
+    MOUSE
+}
+
+## The modifier keys that can be set to be pressed alongside the assigned
+## keycode.
+enum MCM_Modifiers {
+    ## The alt key.
+    ALT,
+    ## The control key.
+    CONTROL,
+    ## The Meta/Windows key.
+    META,
+    ## The shift key.
+    SHIFT
+}
+
 const ValidationData = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Validation.gd")
 
 var RegisteredMods = {}
