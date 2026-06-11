@@ -46,6 +46,16 @@ None right now :)
 * Added a Import/Export system for mod configs
     * Users can now mass export all of their currently loaded mod configs into one single file that can then be shared with other players
     * Users can take those exported config files and import them into their game automatically overriding all of their current settings with the file that's been selected
+### v2.8.2
+* Fixed an issue where icons weren't being loaded
+    * Thank you to likho1eye for pointing this out
+* Fixed an issue with Array and Dictionary values where after pressing the default button it won't appear again
+### v2.8.1
+* Array's and Dictionary's can be expanded by default with the "expanded" (bool) property
+* The Key and Value column labels can now be set with the "keyLabel" (string) and "valueLabel" (string) property
+* Can set if values can be added and removed from Array and Dictionary with the "canDeleteAndAdd" (bool) property
+* Can set if Dictionary keys can be edited by the player with the "canEditKeys" (bool) property
+* Thank you to MJRamon for these suggestions
 ### v2.8.0
 * Remember last opened MCM mod settings by @Joaoha in https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/pull/6
     * Also added Joaoha's changes to the spinner boxes so they keep the SpinnerBox width the same size as the inputted value and removed trailing .0 from the value

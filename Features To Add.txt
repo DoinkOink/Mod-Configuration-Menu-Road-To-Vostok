@@ -7,4 +7,4 @@
     file and loading it through the ConfigFile functions and just passing the
     loaded file into MCM.
     
-* Per character configs
+* Per Metro Mod Loader profile configurations
