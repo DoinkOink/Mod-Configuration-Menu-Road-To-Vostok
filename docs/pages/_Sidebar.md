@@ -10,6 +10,7 @@
     * [Vector2 Value Type](Vector2-Value-Type)
     * [Vector3 Value Type](Vector3-Value-Type)
     * [Array Value Type](Array-Value-Type)
+    * [Dictionary Value Type](Dictionary-Value-Type)
 * [Registering Your Mod With MCM](Registering-Your-Mod-With-MCM)
 * [Updating Your Mods Configuration](Updating-Your-Mods-Configuration)
 * [Handling Configuration Updates By The Player](Handling-configuration-updates-by-the-player)
