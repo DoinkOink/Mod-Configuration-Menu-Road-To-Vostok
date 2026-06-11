@@ -48,6 +48,12 @@ func _ready():
     CheckIsDefault(value)
     UpdateAddItemButton()
     UpdateCountLabel()
+    
+    if("canDeleteAndAdd" in valueData and !valueData["canDeleteAndAdd"]):
+        newItemButton.visible = false
+
+    if ("expanded" in valueData and valueData["expanded"]):
+            ToggleExpand()
 
 func ResetLayout() -> void:
     itemContainer.visible = false
@@ -128,7 +134,9 @@ func CreateNewElement(valueToAdd, index):
     }
     _element.menu = menu
     _element.callbackObject = self
-    _element.find_child("Input Container").add_sibling(_deleteButtonElement)
+    
+    if("canDeleteAndAdd" not in valueData or valueData["canDeleteAndAdd"]):
+        _element.find_child("Input Container").add_sibling(_deleteButtonElement)
 
     AddElementSeparator(_element)
     
@@ -169,6 +177,13 @@ func UpdateCountLabel():
     countLabel.text = "Size: " + str(value.size())
     if ("maxItems" in valueData):
         countLabel.text += "/" + str(valueData["maxItems"])
+        
+func ToggleExpand():
+    itemContainer.visible = !itemContainer.visible
+    panelDivider.visible = itemContainer.visible
+    expandButton.icon = collapseButtonIcon if itemContainer.visible else expandButtonIcon
+    expandButton.text = "Collapse" if itemContainer.visible else "Expand"
+    expandButton.tooltip_text = "Collapse array list" if itemContainer.visible else "Expand array list"
 
 func _on_revert_button_pressed() -> void:
     value = defaultValue
@@ -180,11 +195,7 @@ func _on_revert_button_pressed() -> void:
     menu.PlayClick()
 
 func _on_expand_button_pressed() -> void:
-    itemContainer.visible = !itemContainer.visible
-    panelDivider.visible = itemContainer.visible
-    expandButton.icon = collapseButtonIcon if itemContainer.visible else expandButtonIcon
-    expandButton.text = "Collapse" if itemContainer.visible else "Expand"
-    expandButton.tooltip_text = "Collapse array list" if itemContainer.visible else "Expand array list"
+    ToggleExpand()
     menu.PlayClick()
 
 func _on_new_item_button_pressed() -> void:

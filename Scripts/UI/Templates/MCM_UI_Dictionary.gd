@@ -8,6 +8,8 @@ extends Node
 @onready var expandButton : Button = find_child("Expand Button")
 @onready var newItemButton : Button = find_child("New Item Button")
 @onready var defaultRevertButton : Button = find_child("MCM_Revert_Button")
+@onready var keyLabel : Label = find_child("KeyLabel")
+@onready var valueLabel : Label = find_child("ValueLabel")
 
 const deleteButtonElement = preload("res://ModConfigurationMenu/UI/Elements/MCM_Array_Delete_Button.tscn")
 const dictionaryKeyInput = preload("res://ModConfigurationMenu/UI/Elements/MCM_Dictionary_Key_Input.tscn")
@@ -42,6 +44,11 @@ func _ready():
     value = valueData["value"]
     defaultValue = valueData["default"]
     
+    if ("keyLabel" in valueData):
+        keyLabel.text = valueData["keyLabel"]
+    if ("valueLabel" in valueData):
+        valueLabel.text = valueData["valueLabel"]
+    
     ResetLayout()
 
     CreateElementsFromValue()
@@ -49,6 +56,12 @@ func _ready():
     CheckIsDefault(value)
     UpdateAddItemButton()
     UpdateCountLabel()
+    
+    if("canDeleteAndAdd" in valueData and !valueData["canDeleteAndAdd"]):
+        newItemButton.visible = false
+
+    if ("expanded" in valueData and valueData["expanded"]):
+            ToggleExpand()
 
 func ResetLayout() -> void:
     itemContainer.visible = false
@@ -117,6 +130,7 @@ func CreateNewElement(valueToAdd, key):
     
     _dictionaryKeyInput.valueKey = key
     _dictionaryKeyInput.callback = self
+    _dictionaryKeyInput.editable = "canEditKeys" not in valueData or valueData["canEditKeys"]
     
     _element.valueId = key
     _element.valueData = {
@@ -134,7 +148,10 @@ func CreateNewElement(valueToAdd, key):
     }
     _element.menu = menu
     _element.callbackObject = self
-    _element.find_child("Input Container").add_sibling(_deleteButtonElement)
+    
+    if("canDeleteAndAdd" not in valueData or valueData["canDeleteAndAdd"]):
+        _element.find_child("Input Container").add_sibling(_deleteButtonElement)
+        
     _element.find_child("Name Label").add_sibling(_dictionaryKeyInput)
     _element.find_child("Name Label").visible = false
 
@@ -196,6 +213,13 @@ func AddItemToValue(valueToAdd, key = ""):
         
     value[key] = valueToAdd
     return key
+    
+func ToggleExpand():
+    itemContainer.visible = !itemContainer.visible
+    panelDivider.visible = itemContainer.visible
+    expandButton.icon = collapseButtonIcon if itemContainer.visible else expandButtonIcon
+    expandButton.text = "Collapse" if itemContainer.visible else "Expand"
+    expandButton.tooltip_text = "Collapse array list" if itemContainer.visible else "Expand array list"
 
 func _on_revert_button_pressed() -> void:
     value = defaultValue
@@ -207,11 +231,7 @@ func _on_revert_button_pressed() -> void:
     menu.PlayClick()
 
 func _on_expand_button_pressed() -> void:
-    itemContainer.visible = !itemContainer.visible
-    panelDivider.visible = itemContainer.visible
-    expandButton.icon = collapseButtonIcon if itemContainer.visible else expandButtonIcon
-    expandButton.text = "Collapse" if itemContainer.visible else "Expand"
-    expandButton.tooltip_text = "Collapse array list" if itemContainer.visible else "Expand array list"
+    ToggleExpand()
     menu.PlayClick()
 
 func _on_new_item_button_pressed() -> void:

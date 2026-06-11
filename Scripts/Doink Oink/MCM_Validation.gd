@@ -18,8 +18,9 @@ const OPTIONAL_PROPERTIES : Dictionary = {
     "Generic": [ "category", "menu_pos", "on_value_changed" ],
     "Number": [ "minRange", "maxRange", "step" ],
     "Vector": [ "isInt" ],
-    "Object": [ "maxItems" ],
-    "Keycode": [ "default_modifiers" ]
+    "Object": [ "maxItems", "expanded", "canDeleteAndAdd" ],
+    "Keycode": [ "default_modifiers" ],
+    "Dictionary": [ "keyLabel", "valueLabel", "canEditKeys" ]
 }
 
 static func GetRequiredProperties(valueType: String):

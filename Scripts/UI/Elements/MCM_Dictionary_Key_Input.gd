@@ -6,10 +6,12 @@ extends Node
 var valueKey: String
 var previousKey: String
 var callback
+var editable: bool
 
 func _ready():
     inputField.text = valueKey
     previousKey = valueKey
+    inputField.editable = editable
     
 func UpdateInputKey(newKey):
     if (newKey == valueKey):

@@ -2,13 +2,13 @@
 
 ```gdscript
 _config.set_value("Array", "testStringArray", {
-	"name": "Test Array",
-	"tooltip": "A test array",
-	"valueType": "String",
-	"default": ["Hello World!"],
-	"value": ["Hello World!"],
-	"defaultItemValue": "",
-	"maxItems": 5
+    "name": "Test Array",
+    "tooltip": "A test array",
+    "valueType": "String",
+    "default": ["Hello World!"],
+    "value": ["Hello World!"],
+    "defaultItemValue": "",
+    "maxItems": 5
 })
 ```
 
@@ -30,6 +30,8 @@ _config.set_value("Array", "testStringArray", {
 | `category` | `String` | The categories name to place the value in. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `menu_pos` | `Int` | Overrides the default alhpabetical sorting and places it in the given position in relation to other values with a `menu_pos` property. [Learn more about this property here.](Custom-Config-Property-Sorting) |
 | `maxItems` | `Int` | How many items the player is able to add to the array. If this property is not set it allows the player to add as many as they wish. |
+| `expanded` | `Boolean` | Sets if the Collection is expanded by default or not. |
+| `canDeleteAndAdd` | `Boolean` | Sets if the player can add and delete items from the collection. |
 
 ## Additional Information
 ### Available Array Types

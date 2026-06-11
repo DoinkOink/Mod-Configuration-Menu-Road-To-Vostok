@@ -1,12 +1,12 @@
 [mod]
 name="Mod Configuration Menu"
 id="doinkoink-mcm"
-version="2.8.0"
+version="2.8.1"
 priority=-100
 
 [autoload]
 mcm="res://ModConfigurationMenu/Main.gd"
-ExampleMod="res://ModConfigurationMenu/ExampleModConfig.gd"
+;ExampleMod="res://ModConfigurationMenu/ExampleModConfig.gd"
 
 [updates]
 modworkshop=53713

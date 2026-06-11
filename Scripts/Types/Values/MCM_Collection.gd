@@ -17,6 +17,10 @@ var DefaultItemValue
 ## not set it allows the player to add as many as they wish.
 ## [br][br]Anything less than or equal to zero = infinite entries
 var MaxItems: int = 0
+## Sets if the Collection is expanded by default or not
+var Expanded: bool = false
+## Sets if the player can add and delete items from the collection
+var CanDeleteAndAdd: bool = true
 
 # Optional Number Properties
 ## The minimum value the player is able to set the value to in the configuration
@@ -49,6 +53,16 @@ func _init(section: String, id: String, name: String, tooltip: String, default,
 ## Set how many items the player is allowed to enter into the collection.
 func setMaxItems(maxItems: int) -> MCM_Collection:
     MaxItems = maxItems
+    return self
+
+## Set if the collection should be default expanded in the MCM  
+func setExpanded(expanded: bool) -> MCM_Collection:
+    Expanded = expanded
+    return self
+   
+## Sets if the player can add and delete items from the collection
+func setCanDeleteAndAdd(canDeleteAndAdd: bool) -> MCM_Collection:
+    CanDeleteAndAdd = canDeleteAndAdd
     return self
     
 # Optional setter functions for Number value types
@@ -98,7 +112,9 @@ func createConfigObject() -> Dictionary:
     
     _superObject.merge({
         "valueType": _valueType,
-        "defaultItemValue": DefaultItemValue
+        "defaultItemValue": DefaultItemValue,
+        "expanded": Expanded,
+        "canDeleteAndAdd": CanDeleteAndAdd
     })
     
     if(MaxItems > 0): _superObject["maxItems"] = MaxItems
