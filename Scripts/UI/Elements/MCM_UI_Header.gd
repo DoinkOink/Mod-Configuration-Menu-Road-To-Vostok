@@ -1,5 +1,5 @@
 extends Node
-class_name MCM_Header
+class_name MCM_UI_Header
 
 @onready var headerLabel: Label = find_child("Header_Label")
 

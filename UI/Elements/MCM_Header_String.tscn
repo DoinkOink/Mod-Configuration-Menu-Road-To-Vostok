@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ba1armg3os37p"]
 
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_hq7v8"]
-[ext_resource type="Script" uid="uid://s787byv22jn1" path="res://mods/00ModConfigurationMenu/Scripts/UI/Elements/MCM_Header.gd" id="2_wni7n"]
+[ext_resource type="Script" uid="uid://s787byv22jn1" path="res://ModConfigurationMenu/Scripts/UI/Elements/MCM_UI_Header.gd" id="2_wni7n"]
 
 [node name="MCM_Header_String" type="MarginContainer" unique_id=610194201]
 offset_right = 476.0

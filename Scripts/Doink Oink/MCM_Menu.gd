@@ -185,7 +185,7 @@ func SaveConfiguration(modId: String):
         return
 
     for _element in ConfigPanel.get_children():
-        if (_element is not MCM_Header):
+        if (_element is not MCM_UI_Header):
             currentConfig.set_value(_element.section, _element.valueId, _element.GetValueData())
             
     var _fileName = MCMHelpers.GetModConfigFileName(modId)
