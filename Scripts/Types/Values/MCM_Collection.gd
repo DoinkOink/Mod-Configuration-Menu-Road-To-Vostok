@@ -7,7 +7,7 @@ class_name MCM_Collection
 # Required Properties
 ## Sets the type of inputs to be displayed to the player when adding items to 
 ## the array.
-var ValueType: MCM_Helpers.MCM_Collection_Types
+var ValueType: MCM_Config.MCM_Collection_Types
 ## The default value assigned when the player creates a new item in the
 ## collection.
 var DefaultItemValue
@@ -36,14 +36,14 @@ var Step = null
 
 ## The accepted variable types a collection type accepts
 const AcceptedNumberValueTypes: Dictionary = {
-    MCM_Helpers.MCM_Collection_Types.FLOAT: TYPE_FLOAT,
-    MCM_Helpers.MCM_Collection_Types.INT: TYPE_INT,
-    MCM_Helpers.MCM_Collection_Types.VECTOR2: TYPE_VECTOR2,
-    MCM_Helpers.MCM_Collection_Types.VECTOR3: TYPE_VECTOR3
+    MCM_Config.MCM_Collection_Types.FLOAT: TYPE_FLOAT,
+    MCM_Config.MCM_Collection_Types.INT: TYPE_INT,
+    MCM_Config.MCM_Collection_Types.VECTOR2: TYPE_VECTOR2,
+    MCM_Config.MCM_Collection_Types.VECTOR3: TYPE_VECTOR3
 }
 
 func _init(section: String, id: String, name: String, tooltip: String, default,
-            valueType: MCM_Helpers.MCM_Collection_Types, defaultItemValue
+            valueType: MCM_Config.MCM_Collection_Types, defaultItemValue
 ) -> void:
     ValueType = valueType
     DefaultItemValue = defaultItemValue
@@ -89,25 +89,27 @@ func setStep(step) -> MCM_Collection:
     
     Step = step
     return self
-    
+  
+## Internal Use Only. Do [b]not[/b] call this method directly.[br]
+## Use [code]MCM_Config.RegisterMod()[/code] instead.  
 func createConfigObject() -> Dictionary:
     var _superObject = super()
     
     var _valueType = ""
     match(ValueType):
-        MCM_Helpers.MCM_Collection_Types.STRING:
+        MCM_Config.MCM_Collection_Types.STRING:
             _valueType = "String"
-        MCM_Helpers.MCM_Collection_Types.INT:
+        MCM_Config.MCM_Collection_Types.INT:
             _valueType = "Int"
-        MCM_Helpers.MCM_Collection_Types.FLOAT:
+        MCM_Config.MCM_Collection_Types.FLOAT:
             _valueType = "Float"            
-        MCM_Helpers.MCM_Collection_Types.BOOLEAN:
+        MCM_Config.MCM_Collection_Types.BOOLEAN:
             _valueType = "Bool"
-        MCM_Helpers.MCM_Collection_Types.COLOR:
+        MCM_Config.MCM_Collection_Types.COLOR:
             _valueType = "Color"
-        MCM_Helpers.MCM_Collection_Types.VECTOR2:
+        MCM_Config.MCM_Collection_Types.VECTOR2:
             _valueType = "Vector2"
-        MCM_Helpers.MCM_Collection_Types.VECTOR3:
+        MCM_Config.MCM_Collection_Types.VECTOR3:
             _valueType = "Vector3"
     
     _superObject.merge({

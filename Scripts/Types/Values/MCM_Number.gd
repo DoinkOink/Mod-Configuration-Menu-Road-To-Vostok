@@ -31,7 +31,9 @@ func setMaxRange(maxRange) -> MCM_Number:
 func setStep(step) -> MCM_Number:
     Step = step
     return self
-    
+
+## Internal Use Only. Do [b]not[/b] call this method directly.[br]
+## Use [code]MCM_Config.RegisterMod()[/code] instead.   
 func createConfigObject() -> Dictionary:
     var _superObject = super()
     

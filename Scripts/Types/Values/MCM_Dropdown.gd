@@ -16,7 +16,9 @@ func _init(id: String, name: String, tooltip: String, default: String,
         "Dropdown",
         id, name, tooltip, default
     )
-    
+
+## Internal Use Only. Do [b]not[/b] call this method directly.[br]
+## Use [code]MCM_Config.RegisterMod()[/code] instead.    
 func createConfigObject() -> Dictionary:
     var _superObject = super()
     _superObject.merge({

@@ -2,17 +2,104 @@ class_name MCM_Config
 ## A helper class to create the MCM Config file to be registered with MCM
 ##
 ## This class creates a config file to be used with MCM while also providing
-## methods to easily create all available MCM value types.
+## methods to easily create all available MCM value types and to register your
+## mod with MCM.
+
+#region Enums
+## The allowed MCM value types that can be used for a collection
+enum MCM_Collection_Types {
+    ## [MCM_String]
+    STRING,
+    ## [MCM_Int]
+    INT,
+    ## [MCM_Float]
+    FLOAT,
+    ## [MCM_Bool]
+    BOOLEAN,
+    ## [MCM_Color]
+    COLOR,
+    ## [MCM_Vector2]
+    VECTOR2,
+    ## [MCM_Vector3]
+    VECTOR3
+}
+
+## The type of input the default value can be set as
+enum MCM_Key_Types {
+    ## A keyboard key
+    KEY,
+    ## A mouse button
+    MOUSE
+}
+
+## The modifier keys that can be set to be pressed alongside the assigned
+## keycode.
+enum MCM_Modifiers {
+    ## The alt key.
+    ALT,
+    ## The control key.
+    CONTROL,
+    ## The Meta/Windows key.
+    META,
+    ## The shift key.
+    SHIFT
+}
+#endregion
+
+var McmHelpers: MCM_Helpers = load("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 
 var FilePath: String = "user://MCM//"
 var ModID: String
+var FriendlyName: String
+var Description: String
+var FileOnSaveCallback
+var CallbackObject: Object
 
 var CreatedValues: Dictionary = {}
 
-func _init(modId: String):
+## Creates the MCM_Config object[br][br]
+## [u]Params:[/u][br]
+## [br][param modId] [String]: The mods unique ID. Warning: If another mod has this same 
+## ID an error will be given and your mod will not be registered
+## [br][param modFriendlyName] [String]: The name that will be displayed within the MCM
+## [br][param modDescription] [String]: A short description of the mod
+## [br][param fileOnSaveCallback]: The callback function that will handle value updates 
+## for your mod
+## [br][param callbackObject] [Object]: The object to call for individual value 
+## `on_value_changed` callbacks
+func _init(modId: String, modFriendlyName: String, modDescription: String, fileOnSaveCallback, callbackObject: Object = null):
     ModID = modId
+    FilePath += ModID
+    FriendlyName = modFriendlyName
+    Description = modDescription
+    FileOnSaveCallback = fileOnSaveCallback
+    CallbackObject = callbackObject
     
+## Checks to see if the config file has already been created. Creates the file
+## if it hasnt or checks if it has been updated if it was already created. Then 
+## registers your mods config with MCM
+func RegisterMod() -> void:
+    var _config: ConfigFile = CreateConfigFile()
+    
+    if !FileAccess.file_exists(FilePath + "/config.ini"):
+        DirAccess.open("user://").make_dir(FilePath)
+        _config.save(FilePath + "/config.ini")
+    else:
+        McmHelpers.CheckConfigurationHasUpdated(ModID, _config, FilePath + "/config.ini")
+        _config.load(FilePath + "/config.ini")
+            
+    McmHelpers.RegisterConfiguration(
+        ModID,
+        FriendlyName,
+        FilePath,
+        Description,
+        FileOnSaveCallback,
+        CallbackObject
+    )
 
+## Generates the config file with all the values that were previously created
+## [br][br][b][color=red]WARNING[/color][/b]: It's recommended to use [RegisterMod] instead as it handles 
+## calling this and other needed functions for registering your mod.
 func CreateConfigFile() -> ConfigFile:
     var _configFile = ConfigFile.new()
     
@@ -21,7 +108,16 @@ func CreateConfigFile() -> ConfigFile:
     
     return _configFile
 
-
+#region Value Creation Methods
+## Creates and adds an [code]MCM_String[/code] value to the config file.[br]
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateStringValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]
 func CreateStringValue(id: String, name: String, tooltip: String, default: String) -> MCM_String:
     if(id in CreatedValues.keys()):
         return null
@@ -30,7 +126,16 @@ func CreateStringValue(id: String, name: String, tooltip: String, default: Strin
     CreatedValues[id] = _tempString
     
     return _tempString
-    
+
+## Creates and adds an [code]MCM_Int[/code] value to the config file.
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateIntValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]
 func CreateIntValue(id: String, name: String, tooltip: String, default: int) -> MCM_Int:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
@@ -40,7 +145,16 @@ func CreateIntValue(id: String, name: String, tooltip: String, default: int) -> 
     CreatedValues[id] = _tempInt
     
     return _tempInt
-    
+
+## Creates and adds an [code]MCM_Float[/code] value to the config file.    
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateFloatValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]
 func CreateFloatValue(id: String, name: String, tooltip: String, default: float) -> MCM_Float:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
@@ -50,7 +164,16 @@ func CreateFloatValue(id: String, name: String, tooltip: String, default: float)
     CreatedValues[id] = _tempFloat
     
     return _tempFloat
-    
+
+## Creates and adds an [code]MCM_Bool[/code] value to the config file.    
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateBoolValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]
 func CreateBoolValue(id: String, name: String, tooltip: String, default: bool) -> MCM_Bool:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
@@ -61,7 +184,16 @@ func CreateBoolValue(id: String, name: String, tooltip: String, default: bool) -
     
     return _tempBool
 
-func CreateKeycodeValue(id: String, name: String, tooltip: String, default: Key, defaultType: MCM_Helpers.MCM_Key_Types) -> MCM_Keycode:
+## Creates and adds an [code]MCM_Keycode[/code] value to the config file.
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged, setDefaultModifiers, addAltModifier, addControlModifier, addControlModifier, addMetaModifier, addShiftModifier[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateKeycodeValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]
+func CreateKeycodeValue(id: String, name: String, tooltip: String, default: Key, defaultType: MCM_Key_Types) -> MCM_Keycode:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
         return null
@@ -70,7 +202,16 @@ func CreateKeycodeValue(id: String, name: String, tooltip: String, default: Key,
     CreatedValues[id] = _tempKeycode
     
     return _tempKeycode
-    
+
+## Creates and adds an [code]MCM_Color[/code] value to the config file.    
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateColorValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]
 func CreateColorValue(id: String, name: String, tooltip: String, default: Color) -> MCM_Color:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
@@ -80,7 +221,16 @@ func CreateColorValue(id: String, name: String, tooltip: String, default: Color)
     CreatedValues[id] = _tempColor
     
     return _tempColor
-    
+   
+## Creates and adds an [code]MCM_Dropdown[/code] value to the config file.    
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateDropdownValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]
 func CreateDropdownValue(id: String, name: String, tooltip: String, default: String, options: Dictionary) -> MCM_Dropdown:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
@@ -90,7 +240,16 @@ func CreateDropdownValue(id: String, name: String, tooltip: String, default: Str
     CreatedValues[id] = _tempDropdown
     
     return _tempDropdown
-    
+ 
+## Creates and adds an [code]MCM_Vector2[/code] value to the config file.      
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateVector2Value(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock] 
 func CreateVector2Value(id: String, name: String, tooltip: String, default: Vector2) -> MCM_Vector2:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
@@ -100,7 +259,16 @@ func CreateVector2Value(id: String, name: String, tooltip: String, default: Vect
     CreatedValues[id] = _tempVector2
     
     return _tempVector2
-    
+   
+## Creates and adds an [code]MCM_Vector3[/code] value to the config file.     
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateVector3Value(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock] 
 func CreateVector3Value(id: String, name: String, tooltip: String, default: Vector3) -> MCM_Vector3:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
@@ -110,8 +278,17 @@ func CreateVector3Value(id: String, name: String, tooltip: String, default: Vect
     CreatedValues[id] = _tempVector3
     
     return _tempVector3
-    
-func CreateArrayValue(id: String, name: String, tooltip: String, default: Array, valueType: MCM_Helpers.MCM_Collection_Types, defaultItemValue) -> MCM_Array:
+
+## Creates and adds an [code]MCM_Array[/code] value to the config file.  
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged, setMaxItems, setExpanded, setCanDeleteAndAdd, setMinRange, setMaxRange, setStep[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateArrayValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]       
+func CreateArrayValue(id: String, name: String, tooltip: String, default: Array, valueType: MCM_Collection_Types, defaultItemValue) -> MCM_Array:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
         return null
@@ -120,8 +297,17 @@ func CreateArrayValue(id: String, name: String, tooltip: String, default: Array,
     CreatedValues[id] = _tempArray
     
     return _tempArray
-    
-func CreateDictionaryValue(id: String, name: String, tooltip: String, default: Dictionary, valueType: MCM_Helpers.MCM_Collection_Types, defaultItemValue: Dictionary) -> MCM_Dictionary:
+
+## Creates and adds an [code]MCM_Dictionary[/code] value to the config file.      
+## [u]Available Chain Methods:[/u][br]
+## [code]setCategory, setOnValueChanged, setMaxItems, setExpanded, setCanDeleteAndAdd, setMinRange, setMaxRange, setStep, setKeyLabel, setValueLabel, setCanEditKeys, [/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateDictionaryValue(...) \
+##     .setCategory("Category Name") \
+##     .setOnValueChanged("callback_method_name")
+## [/codeblock]      
+func CreateDictionaryValue(id: String, name: String, tooltip: String, default: Dictionary, valueType: MCM_Collection_Types, defaultItemValue: Dictionary) -> MCM_Dictionary:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
         return null
@@ -130,3 +316,4 @@ func CreateDictionaryValue(id: String, name: String, tooltip: String, default: D
     CreatedValues[id] = _tempDictionary
     
     return _tempDictionary
+#endregion

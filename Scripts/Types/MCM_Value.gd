@@ -33,7 +33,9 @@ func setCategory(category: String):
 func setOnValueChanged(onValueChanged: String):
     OnValueChanged = onValueChanged
     return self
-    
+
+## Internal Use Only. Do [b]not[/b] call this method directly.[br]
+## Use [code]MCM_Config.RegisterMod()[/code] instead.
 func createConfigObject() -> Dictionary:
     var _superObject = super()
     _superObject.merge({

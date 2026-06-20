@@ -11,7 +11,7 @@ var ValueLabel: String
 var CanEditKeys: bool = true
 
 func _init(id: String, name: String, tooltip: String, default: Dictionary,
-            valueType: MCM_Helpers.MCM_Collection_Types, defaultItemValue
+            valueType: MCM_Config.MCM_Collection_Types, defaultItemValue
 ) -> void:
     super(
         "Dictionary",
@@ -33,7 +33,9 @@ func setValueLabel(valueLabel: String) -> MCM_Dictionary:
 func setCanEditKeys(canEditKeys: bool) -> MCM_Dictionary:
     CanEditKeys = canEditKeys
     return self
-    
+ 
+## Internal Use Only. Do [b]not[/b] call this method directly.[br]
+## Use [code]MCM_Config.RegisterMod()[/code] instead.     
 func createConfigObject() -> Dictionary:
     var _superObject = super()
     
