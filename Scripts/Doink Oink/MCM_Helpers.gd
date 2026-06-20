@@ -1,45 +1,6 @@
 extends Resource
 class_name MCM_Helpers
 
-## The allowed MCM value types that can be used for a collection
-enum MCM_Collection_Types {
-    ## [MCM_String]
-    STRING,
-    ## [MCM_Int]
-    INT,
-    ## [MCM_Float]
-    FLOAT,
-    ## [MCM_Bool]
-    BOOLEAN,
-    ## [MCM_Color]
-    COLOR,
-    ## [MCM_Vector2]
-    VECTOR2,
-    ## [MCM_Vector3]
-    VECTOR3
-}
-
-## The type of input the default value can be set as
-enum MCM_Key_Types {
-    ## A keyboard key
-    KEY,
-    ## A mouse button
-    MOUSE
-}
-
-## The modifier keys that can be set to be pressed alongside the assigned
-## keycode.
-enum MCM_Modifiers {
-    ## The alt key.
-    ALT,
-    ## The control key.
-    CONTROL,
-    ## The Meta/Windows key.
-    META,
-    ## The shift key.
-    SHIFT
-}
-
 const ValidationData = preload("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Validation.gd")
 
 var RegisteredMods = {}
@@ -98,11 +59,7 @@ func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
                 _tempConfig.set_value(_section, _key, _newValues)
                 _configUpdated = true
             else:
-                #var _newValues = newConfig.get_value(_section, _key)
                 var _currentValues = _tempConfig.get_value(_section, _key)
-                
-                #var _valuesToCheck = ["default", "name", "tooltip", "minRange", "maxRange", "options", "arrayType", "defaultItemValue"]
-                #var _optionalValuesToCheck = ["menu_pos", "step", "allowAlpha", "default_type", "on_value_changed", "category", "isInt", "maxItems"]
                 
                 for _valueName in _requiredValueProperties:
                     if (_newValues.has(_valueName)):
