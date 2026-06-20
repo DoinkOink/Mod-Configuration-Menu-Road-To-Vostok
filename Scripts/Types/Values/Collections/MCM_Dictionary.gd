@@ -1,6 +1,9 @@
 extends MCM_Collection
 class_name MCM_Dictionary
 ## Allows the player to set a dictionary of keys and values in MCM
+##
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateDictionaryValue()[/code] instead.
 
 # Optional Properties
 ## The label text for the key column

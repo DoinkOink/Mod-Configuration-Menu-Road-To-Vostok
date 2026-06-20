@@ -1,6 +1,9 @@
 extends MCM_Vector
 class_name MCM_Vector2
 ## Allows the player to input a Vector2 in MCM
+##
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateVector2Value()[/code] instead.
 
 func _init(id: String, name: String, tooltip: String, default: Vector2) -> void:
     super(

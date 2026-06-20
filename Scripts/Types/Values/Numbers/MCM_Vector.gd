@@ -2,7 +2,8 @@ extends MCM_Number
 class_name MCM_Vector
 ## The base type for all Vector input types for MCM
 ##
-## DO NOT USE THIS CLASS[br]Use either [MCM_Vector2] or [MCM_Vector3] instead
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateVector2Value(), MCM_Config.CreateVector3Value()[/code] instead.
 
 # Optional Properties
 ## This sets if the SpinBox inputs will allow float values to be entered.

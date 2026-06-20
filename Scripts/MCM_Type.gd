@@ -1,7 +1,7 @@
 class_name MCM_Type
 ## MCMs base type to control config creation
 ##
-## DO NOT USE THIS CLASS[br]
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
 ## The base type that all MCM values inherit and sets up properties that all
 ## values will use.
 
@@ -30,12 +30,16 @@ func _init(section: String, id: String, name: String) -> void:
 func setMenuPos(menuPos: int):
     MenuPos = menuPos
     return self
-    
+
+## Internal Use Only. Do [b]not[/b] call this method directly.[br]
+## Use [code]MCM_Config.RegisterMod()[/code] instead.    
 func createConfigObject() -> Dictionary:
     return {
         "name": Name,
         "menu_pos": MenuPos
     }
-    
+
+## Internal Use Only. Do [b]not[/b] call this method directly.[br]
+## Use [code]MCM_Config.RegisterMod()[/code] instead.    
 func addToConfig(config: ConfigFile):
     config.set_value(Section, ID, createConfigObject())

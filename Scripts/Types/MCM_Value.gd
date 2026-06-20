@@ -2,7 +2,8 @@ class_name MCM_Value
 extends MCM_Type
 ## An editable value within MCM
 ##
-## DO NOT USE THIS CLASS
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use any of the [code]MCM_Config.Create[/code] methods instead.
 
 # Required Properties
 ## A short description of the value that will be displayed when hovering over

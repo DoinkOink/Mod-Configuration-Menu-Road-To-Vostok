@@ -1,6 +1,9 @@
 extends MCM_Value
 class_name MCM_Dropdown
 ## Allows the player to select a list of options from a dropdown.
+##
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateDropdownValue()[/code] instead.
 
 # Required Parameters
 ## A Dictionary that holds the config "value" as the key and the label that's

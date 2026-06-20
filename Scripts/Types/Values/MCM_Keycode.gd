@@ -1,6 +1,9 @@
 extends MCM_Value
 class_name MCM_Keycode
 ## Allows players the input a custom keybind as a value.
+##
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateKeycodeValue()[/code] instead.
 
 # Required Properties
 ## The input type the default key is set to.

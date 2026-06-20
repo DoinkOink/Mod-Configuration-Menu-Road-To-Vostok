@@ -2,8 +2,9 @@ extends MCM_Value
 class_name MCM_Number
 ## The base type for all editable values that store numbers
 ##
-## DO NOT USE THIS CLASS[br]Use either [MCM_Float], [MCM_Int], [MCM_Vector2],
-## [MCM_Vector3] instead
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateFLoatValue(), MCM_Config.CreateIntValue(), 
+## MCM_Config.CreateVector2Value(), MCM_Config.CreateVector3Value()[/code] instead.
 
 # Optional Properties
 ## The minimum value the player is able to set the value to in the configuration menu.

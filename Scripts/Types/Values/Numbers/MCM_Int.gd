@@ -1,6 +1,9 @@
 extends MCM_Number
 class_name MCM_Int
 ## Allows the player to input an integar value in MCM
+##
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateIntValue()[/code] instead.
 
 func _init(id: String, name: String, tooltip: String, default: int) -> void:
     super(

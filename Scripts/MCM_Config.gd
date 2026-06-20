@@ -109,9 +109,26 @@ func CreateConfigFile() -> ConfigFile:
     return _configFile
 
 #region Value Creation Methods
+## Creates and adds an [code]MCM_Category[/code] value to the config file.[br]
+## [u]Available Chain Methods:[/u][br]
+## [code]setMenuPos[/code][br][br]
+## [u]Usage:[/u]
+## [codeblock]
+## _mcmConfig.CreateCategoryHeader(...) \
+##     .setMenuPos(1)
+## [/codeblock]
+func CreateCategoryHeader(id: String, name: String) -> MCM_Category:
+    if(id in CreatedValues.keys()):
+        return null
+        
+    var _tempCategory = MCM_Category.new(id, name)
+    CreatedValues[id] = _tempCategory
+    
+    return _tempCategory
+    
 ## Creates and adds an [code]MCM_String[/code] value to the config file.[br]
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateStringValue(...) \
@@ -129,7 +146,7 @@ func CreateStringValue(id: String, name: String, tooltip: String, default: Strin
 
 ## Creates and adds an [code]MCM_Int[/code] value to the config file.
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateIntValue(...) \
@@ -148,7 +165,7 @@ func CreateIntValue(id: String, name: String, tooltip: String, default: int) -> 
 
 ## Creates and adds an [code]MCM_Float[/code] value to the config file.    
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateFloatValue(...) \
@@ -167,7 +184,7 @@ func CreateFloatValue(id: String, name: String, tooltip: String, default: float)
 
 ## Creates and adds an [code]MCM_Bool[/code] value to the config file.    
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateBoolValue(...) \
@@ -186,7 +203,7 @@ func CreateBoolValue(id: String, name: String, tooltip: String, default: bool) -
 
 ## Creates and adds an [code]MCM_Keycode[/code] value to the config file.
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged, setDefaultModifiers, addAltModifier, addControlModifier, addControlModifier, addMetaModifier, addShiftModifier[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged, setDefaultModifiers, addAltModifier, addControlModifier, addControlModifier, addMetaModifier, addShiftModifier[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateKeycodeValue(...) \
@@ -205,7 +222,7 @@ func CreateKeycodeValue(id: String, name: String, tooltip: String, default: Key,
 
 ## Creates and adds an [code]MCM_Color[/code] value to the config file.    
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateColorValue(...) \
@@ -224,7 +241,7 @@ func CreateColorValue(id: String, name: String, tooltip: String, default: Color)
    
 ## Creates and adds an [code]MCM_Dropdown[/code] value to the config file.    
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateDropdownValue(...) \
@@ -243,7 +260,7 @@ func CreateDropdownValue(id: String, name: String, tooltip: String, default: Str
  
 ## Creates and adds an [code]MCM_Vector2[/code] value to the config file.      
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateVector2Value(...) \
@@ -262,7 +279,7 @@ func CreateVector2Value(id: String, name: String, tooltip: String, default: Vect
    
 ## Creates and adds an [code]MCM_Vector3[/code] value to the config file.     
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged, setMinRange, setMaxRange, setStep[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateVector3Value(...) \
@@ -281,7 +298,7 @@ func CreateVector3Value(id: String, name: String, tooltip: String, default: Vect
 
 ## Creates and adds an [code]MCM_Array[/code] value to the config file.  
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged, setMaxItems, setExpanded, setCanDeleteAndAdd, setMinRange, setMaxRange, setStep[/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged, setMaxItems, setExpanded, setCanDeleteAndAdd, setMinRange, setMaxRange, setStep[/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateArrayValue(...) \
@@ -300,7 +317,7 @@ func CreateArrayValue(id: String, name: String, tooltip: String, default: Array,
 
 ## Creates and adds an [code]MCM_Dictionary[/code] value to the config file.      
 ## [u]Available Chain Methods:[/u][br]
-## [code]setCategory, setOnValueChanged, setMaxItems, setExpanded, setCanDeleteAndAdd, setMinRange, setMaxRange, setStep, setKeyLabel, setValueLabel, setCanEditKeys, [/code][br][br]
+## [code]setMenuPos, setCategory, setOnValueChanged, setMaxItems, setExpanded, setCanDeleteAndAdd, setMinRange, setMaxRange, setStep, setKeyLabel, setValueLabel, setCanEditKeys, [/code][br][br]
 ## [u]Usage:[/u]
 ## [codeblock]
 ## _mcmConfig.CreateDictionaryValue(...) \

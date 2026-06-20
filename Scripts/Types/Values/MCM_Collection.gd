@@ -2,7 +2,8 @@ extends MCM_Value
 class_name MCM_Collection
 ## The base type for MCM values that hold a collection of inputs
 ##
-## DO NOT USE THIS CLASS[br]Use either [MCM_Array] or [MCM_Dictionary] instead
+## Internal Use Only. Do [b]not[/b] call this class directly.[br]
+## Use [code]MCM_Config.CreateArrayValue(), MCM_Config.CreateDictionaryValue()[/code] instead.
 
 # Required Properties
 ## Sets the type of inputs to be displayed to the player when adding items to 
