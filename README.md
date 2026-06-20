@@ -54,6 +54,9 @@ None right now :)
         * Checks if your config has updated if already created on users system
         * Registers the config file with MCM
     * More information on how to use this class can be found on the Wiki
+* Added a profile system into MCM
+    * MCM now checks what profile is currently loaded in Metro Mod Loader and will save values to that specific profiles config file
+    * No additional work is needed on the developers side and this is fully backwards compatible with the legacy config file creation
 ### v2.8.3
 * Fixed sliders not updating an Int/Float value properly
 * Fixed Array/Dictionaries setting maxRange for any number values to 0 instead of 100 if one isn't provided
