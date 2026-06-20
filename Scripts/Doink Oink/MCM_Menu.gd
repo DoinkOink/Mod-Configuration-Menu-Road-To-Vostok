@@ -6,6 +6,7 @@ var audioLibrary = preload("res://Resources/AudioLibrary.tres")
 var audioInstance2D = preload("res://Resources/AudioInstance2D.tscn")
 
 @onready var ModListPanel = find_child("Mods")
+@onready var ModSearchBox: LineEdit = find_child("Mod_Search_Box")
 @onready var ConfigPanel = find_child("Settings")
 @onready var Logo: Control = find_child("Logo")
 @onready var SettingsLabel: Label = find_child("Settings_Label", true, false)
@@ -69,6 +70,9 @@ func _on_visibility_changed():
     loadedModId = ""
     loadedButton = null
 
+    if ModSearchBox:
+        ModSearchBox.clear()
+
     ClearConfiguration()
     CreateAllModButtons()
     RestoreLastOpenedMod()
@@ -106,7 +110,10 @@ func CreateAllModButtons():
 
     for _modId in _modIds:
         CreateModButton(MCMHelpers.RegisteredMods[_modId])
-        
+
+    if ModSearchBox:
+        FilterModButtons(ModSearchBox.text)
+
 func CreateModButton(mod):
     var _button: Button = modListButton.instantiate()
     var _mod_name_label: Label = _button.get_node_or_null("MarginContainer/ModNameLabel")
@@ -117,6 +124,16 @@ func CreateModButton(mod):
     modButtons[mod.id] = _button
     ModListPanel.add_child(_button)
     
+func _on_mod_search_text_changed(searchText: String) -> void:
+    FilterModButtons(searchText)
+
+func FilterModButtons(searchText: String):
+    var _search = searchText.strip_edges().to_lower()
+
+    for _modId in modButtons.keys():
+        var _friendlyName: String = MCMHelpers.RegisteredMods[_modId]["friendlyName"]
+        modButtons[_modId].visible = (_search == "" || _friendlyName.to_lower().contains(_search))
+
 func _on_mod_button_pressed(modId: String, button: Button):
     SelectMod(modId, button, true)
 

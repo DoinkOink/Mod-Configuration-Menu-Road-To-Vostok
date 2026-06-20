@@ -210,6 +210,12 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wd52j")
 
+[node name="Mod_Search_Box" type="LineEdit" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=1462598731]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+placeholder_text = "Search mods..."
+clear_button_enabled = true
+
 [node name="MarginContainer" type="MarginContainer" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=713058264]
 layout_mode = 2
 size_flags_vertical = 3
@@ -433,6 +439,7 @@ grow_vertical = 1
 visible = false
 layout_mode = 1
 
+[connection signal="text_changed" from="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Mod_Search_Box" to="." method="_on_mod_search_text_changed"]
 [connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
 [connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Export" to="." method="_on_export_pressed"]
 [connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
