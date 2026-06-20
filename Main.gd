@@ -23,6 +23,8 @@ func _ready():
     overrideScript("res://ModConfigurationMenu/Scripts/Overrides/UIManager.gd")
     overrideScript("res://ModConfigurationMenu/Scripts/Overrides/Menu.gd")
     
+    GetCurrentModLoaderProfile()
+    
 func overrideScript(overrideScriptPath: String):
     var script: Script = load(overrideScriptPath)
     script.reload()
@@ -88,6 +90,20 @@ func CreateMCMButton():
         MCMHelpers.SettingsMenu.add_child(MCMHelpers.MCMButton)
 
     MCMHelpers.MCMButton.button_down.connect(MCMHelpers.ToggleMCMMenu)
+
+func GetCurrentModLoaderProfile():
+    var _modLoaderConfig = ConfigFile.new()
+    var _loadError: Error = _modLoaderConfig.load("user://mod_config.cfg")
+    
+    if _loadError == Error.OK:
+        MCMHelpers.CurrentModLoaderProfile = _modLoaderConfig.get_value("settings", "active_profile", MCMHelpers.DefaultConfigFileName)
+        # If the active profile is set to "Default" then we need to assign
+        #   CurrentModLoaderProfile to the default config file name value.
+        #   This allows MCM to use the original default config file
+        if MCMHelpers.CurrentModLoaderProfile == "Default":
+            MCMHelpers.CurrentModLoaderProfile = MCMHelpers.DefaultConfigFileName
+    else:
+        MCMHelpers.CurrentModLoaderProfile = MCMHelpers.DefaultConfigFileName
 
 func _on_settings_visibility_changed():
     if MCMHelpers.SettingsMenu:

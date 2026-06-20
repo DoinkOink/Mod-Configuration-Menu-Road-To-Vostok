@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bb2ho30bbe4pu" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Menu.gd" id="2_o2vcv"]
 [ext_resource type="Material" uid="uid://cv8raxpmbb48a" path="res://UI/Effects/MT_Menu.tres" id="3_gucg0"]
 [ext_resource type="Texture2D" uid="uid://b8qehehfo6ee4" path="res://Editor/RTV_Dynamic.png" id="4_t0fdo"]
-[ext_resource type="Texture2D" uid="uid://828yfc1f880u" path="res://ModConfigurationMenu/UI/Sprites/Logo_MCM.png" id="5_58edf"]
+[ext_resource type="Texture2D" uid="uid://c8gwx14yvpt82" path="res://ModConfigurationMenu/UI/Sprites/Logo_MCM.png" id="5_58edf"]
 [ext_resource type="PackedScene" uid="uid://cmpb147ohg32n" path="res://ModConfigurationMenu/UI/Elements/MCM_Mod_List_Button.tscn" id="6_6ftbm"]
 [ext_resource type="PackedScene" uid="uid://ba1armg3os37p" path="res://ModConfigurationMenu/UI/Elements/MCM_Header_String.tscn" id="7_qcy1k"]
 [ext_resource type="PackedScene" uid="uid://7lg0l3h8unnq" path="res://ModConfigurationMenu/UI/Templates/MCM_Bool_Value.tscn" id="8_b4gw8"]
@@ -22,11 +22,17 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3gea"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0fdo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_58edf"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo6k8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1qods"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wd52j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ftbm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnjx8"]
 
@@ -114,12 +120,26 @@ expand_mode = 5
 [node name="Panel" type="Panel" parent="Settings Menu/Header/MarginContainer/HBoxContainer/HFlowContainer" unique_id=1199583020]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t0fdo")
 
 [node name="Label" type="Label" parent="Settings Menu/Header/MarginContainer/HBoxContainer/HFlowContainer" unique_id=1551031649]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 24
 text = "Mod Configuration Menu"
+vertical_alignment = 1
+
+[node name="Panel_2" type="Panel" parent="Settings Menu/Header/MarginContainer/HBoxContainer/HFlowContainer" unique_id=1098317700]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_58edf")
+
+[node name="Profile Label" type="Label" parent="Settings Menu/Header/MarginContainer/HBoxContainer/HFlowContainer" unique_id=920728337]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 0.47058824)
+theme_override_font_sizes/font_size = 18
+text = "Current Profile: "
 vertical_alignment = 1
 
 [node name="Import" type="Button" parent="Settings Menu/Header/MarginContainer/HBoxContainer" unique_id=782025079]
@@ -213,6 +233,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_wd52j")
 [node name="Mod_Search_Box" type="LineEdit" parent="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer" unique_id=1462598731]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6ftbm")
 placeholder_text = "Search mods..."
 clear_button_enabled = true
 
@@ -439,7 +460,7 @@ grow_vertical = 1
 visible = false
 layout_mode = 1
 
-[connection signal="text_changed" from="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Mod_Search_Box" to="." method="_on_mod_search_text_changed"]
 [connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
 [connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Export" to="." method="_on_export_pressed"]
 [connection signal="pressed" from="Settings Menu/Header/MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="text_changed" from="Settings Menu/Settings_Panel/Margin_Panel/Box_Container/Mod_List_Panel/VBoxContainer/Mod_Search_Box" to="." method="_on_mod_search_text_changed"]

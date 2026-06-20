@@ -81,12 +81,21 @@ func _init(modId: String, modFriendlyName: String, modDescription: String, fileO
 func RegisterMod() -> void:
     var _config: ConfigFile = CreateConfigFile()
     
-    if !FileAccess.file_exists(FilePath + "/config.ini"):
+    # First we need to check if the default config file exists.
+    #   If it doesn't create and save the file.
+    if !FileAccess.file_exists(FilePath + "/" + McmHelpers.DefaultConfigFileName + ".ini"):
         DirAccess.open("user://").make_dir(FilePath)
-        _config.save(FilePath + "/config.ini")
+        _config.save(FilePath + "/" + McmHelpers.DefaultConfigFileName + ".ini")
+        
+    # Then we need to check if the current profile's config file exists.
+    #   If the current profile is default then we're essentially doing the same
+    #   check as before but there isn't an issue with that.
+    if !FileAccess.file_exists(FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini"):
+        DirAccess.open("user://").make_dir(FilePath)
+        _config.save(FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini")
     else:
-        McmHelpers.CheckConfigurationHasUpdated(ModID, _config, FilePath + "/config.ini")
-        _config.load(FilePath + "/config.ini")
+        McmHelpers.CheckConfigurationHasUpdated(ModID, _config, FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini")
+        _config.load(FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini")
             
     McmHelpers.RegisterConfiguration(
         ModID,

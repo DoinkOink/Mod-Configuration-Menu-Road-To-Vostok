@@ -13,6 +13,7 @@ var audioInstance2D = preload("res://Resources/AudioInstance2D.tscn")
 @onready var SettingsMenu: Control = find_child("Settings Menu")
 @onready var ExportScreen: Control = find_child("MCM Export Screen")
 @onready var ImportScreen: Control = find_child("MCM Import Screen")
+@onready var ProfileLabel: Label = find_child("Profile Label")
 
 var modListButton = preload("res://ModConfigurationMenu/UI/Elements/MCM_Mod_List_Button.tscn")
 var categoryHeader = preload("res://ModConfigurationMenu/UI/Elements/MCM_Header_String.tscn")
@@ -50,6 +51,11 @@ func _ready() -> void:
     
     ExportScreen.menu = self
     ImportScreen.menu = self
+    
+    if MCMHelpers.CurrentModLoaderProfile == MCMHelpers.DefaultConfigFileName:
+        ProfileLabel.text +=  "Default"
+    else:
+        ProfileLabel.text += MCMHelpers.CurrentModLoaderProfile
     
     ClearConfiguration()
     CreateAllModButtons()

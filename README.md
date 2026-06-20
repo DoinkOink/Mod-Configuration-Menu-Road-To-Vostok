@@ -46,6 +46,14 @@ None right now :)
 * Added a Import/Export system for mod configs
     * Users can now mass export all of their currently loaded mod configs into one single file that can then be shared with other players
     * Users can take those exported config files and import them into their game automatically overriding all of their current settings with the file that's been selected
+* Added the `MCM_Config` class
+    * Allows devs to more easily create config values and register them to MCM
+    * All value types are now created through the `MCM_Config` class using a dot chaining method
+    * The `MCM_Config` will now handle everything needed for registering your mod to MCM
+        * Creates/Saves the config file
+        * Checks if your config has updated if already created on users system
+        * Registers the config file with MCM
+    * More information on how to use this class can be found on the Wiki
 ### v2.8.3
 * Fixed sliders not updating an Int/Float value properly
 * Fixed Array/Dictionaries setting maxRange for any number values to 0 instead of 100 if one isn't provided

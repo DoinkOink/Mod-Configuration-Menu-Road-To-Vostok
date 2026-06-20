@@ -13,6 +13,9 @@ var MCMMenu
 var SettingsMenu
 var LastOpenedModId: String = ""
 
+var DefaultConfigFileName: String = "config"
+var CurrentModLoaderProfile: String # This will be used as the config file name when saving/loading 
+
 const MCM_PATH = "user://MCM/"
 
 func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
@@ -260,13 +263,31 @@ func UpdateInputs(modId: String, fileId):
 
 func GetModConfigFile(modId: String) -> ConfigFile:
     var _fileName = GetModConfigFileName(modId)
+    
+    # For backwards compatibility we need to check if any mods that aren't
+    #   checking for profiles has a profile specific config file
+    if CurrentModLoaderProfile != DefaultConfigFileName:
+        if !FileAccess.file_exists(RegisteredMods[modId].filePath + _fileName):
+            var _defaultConfig = ConfigFile.new()
+            # Load the already created default config file
+            _defaultConfig.load(RegisteredMods[modId].filePath + GetDefaultConfigFileName(modId))
+            # Now resave the default config as the new profile config file
+            _defaultConfig.save(RegisteredMods[modId].filePath + _fileName)
         
     var _config = ConfigFile.new()
     _config.load(RegisteredMods[modId].filePath + _fileName)
     return _config
     
 func GetModConfigFileName(modId: String) -> String:
-    var _fileName = "config.ini"
+    var _fileName = CurrentModLoaderProfile + ".ini"
+    
+    if (CurrentModLoaderProfile == DefaultConfigFileName and RegisteredMods[modId].fileOnSaveCallbacks is Dictionary):
+        _fileName = RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
+        
+    return _fileName
+
+func GetDefaultConfigFileName(modId: String) -> String:
+    var _fileName = DefaultConfigFileName + ".ini"
     
     if (RegisteredMods[modId].fileOnSaveCallbacks is Dictionary):
         _fileName = RegisteredMods[modId].fileOnSaveCallbacks.keys()[0]
