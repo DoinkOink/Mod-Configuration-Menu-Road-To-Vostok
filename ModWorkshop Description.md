@@ -37,6 +37,10 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # {#3498db}(Changelog)
+### v2.8.3
+* Fixed sliders not updating an Int/Float value properly
+* Fixed Array/Dictionaries setting maxRange for any number values to 0 instead of 100 if one isn't provided
+    * Thank you to MJRamon for finding these and reporting the issues
 ### v2.8.2
 * Fixed an issue where icons weren't being loaded
     * Thank you to likho1eye for pointing this out
@@ -109,7 +113,7 @@ None right now :)
 * Fixed a crash when the player dies
     * Thank you to domfrags for finding this one
 * Added the ability to set how many decimal spots are in a Float value with the step value
-	* Thank you to False_Hope for the suggestion
+    * Thank you to False_Hope for the suggestion
 ### v2.5.0
 * Complete redesign of the MCM UI to match the games UI
     * A huge shotout to MJRamon for creating this redesign along with the new logo

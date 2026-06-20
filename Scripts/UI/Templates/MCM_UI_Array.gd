@@ -28,27 +28,27 @@ var elementArray: Array
 
 var hasChanged = false
 
-func _ready():	
+func _ready():
     if !valueId:
         return
-        
+
     arrayType = valueData["valueType"]
     defaultItemValue = valueData["defaultItemValue"]
-        
+
     nameLabel.text = valueData["name"]
     nameLabel.tooltip_text = valueData["tooltip"]
-    
-    value = valueData["value"]
-    defaultValue = valueData["default"]
-    
+
+    value = valueData["value"].duplicate_deep()
+    defaultValue = valueData["default"].duplicate_deep()
+
     ResetLayout()
 
     CreateElementsFromValue()
-    
+
     CheckIsDefault(value)
     UpdateAddItemButton()
     UpdateCountLabel()
-    
+
     if("canDeleteAndAdd" in valueData and !valueData["canDeleteAndAdd"]):
         newItemButton.visible = false
 
@@ -67,21 +67,21 @@ func ResetLayout() -> void:
             child.queue_free()
 
 func GetValueData():
-    valueData["value"] = value
+    valueData["value"] = value.duplicate_deep()
     return valueData
-    
+
 func CheckIsDefault(checkValue):
     hasChanged = defaultValue != checkValue
     defaultRevertButton.disabled = !hasChanged
     defaultRevertButton.modulate = Color.TRANSPARENT if defaultRevertButton.disabled else Color.WHITE
-    
+
 func SetValue(newValue) -> void:
     if("maxItems" in valueData):
         if(newValue.size() > valueData["maxItems"]):
             push_warning("[MCM] " + menu.loadedModId + " tried adding too many items to the " + valueId + " Array.")
             return
-            
-    value = newValue
+
+    value = newValue.duplicate_deep()
     CreateElementsFromValue()
     CheckIsDefault(value)
     UpdateAddItemButton()
@@ -90,35 +90,35 @@ func SetValue(newValue) -> void:
 func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
-        _callable.call(valueId, newValue, menu)
-        
+        _callable.call(valueId, newValue.duplicate_deep(), menu)
+
 func CreateElementsFromValue():
     if("maxItems" in valueData):
         if(value.size() > valueData["maxItems"]):
             push_warning("[MCM] There were too many items being added to " + menu.loadedModId + " " + valueId + " Array. Reverting to default.")
             value = defaultValue
-            
+
     if(!elementArray.is_empty()):
         for _element in elementArray:
             valueContainer.remove_child(_element)
             _element.queue_free()
-            
+
         elementArray.clear()
-    
+
     for _index in value.size():
         CreateNewElement(value[_index], _index)
-    
+
 func CreateNewElement(valueToAdd, index):
     if("maxItems" in valueData):
         if (index+1 > valueData["maxItems"]):
             return
-    
+
     var _element = menu.availableElements.get(arrayType).instantiate()
     var _deleteButtonElement = deleteButtonElement.instantiate()
-    
+
     _deleteButtonElement.valueKey = index
     _deleteButtonElement.callback = self
-    
+
     _element.valueId = str(index)
     _element.valueData = {
         "name": str(index),
@@ -127,21 +127,21 @@ func CreateNewElement(valueToAdd, index):
         "default": defaultItemValue,
         "on_value_changed": "_on_list_item_updated",
         "deleteButton": _deleteButtonElement,
-        
+
         "minRange": 0 if !valueData.has("minRange") else valueData["minRange"],
-        "maxRange": 0 if !valueData.has("maxRange") else valueData["maxRange"],
+        "maxRange": 100 if !valueData.has("maxRange") else valueData["maxRange"],
         "step": 1 if !valueData.has("step") else valueData["step"]
     }
     _element.menu = menu
     _element.callbackObject = self
-    
+
     if("canDeleteAndAdd" not in valueData or valueData["canDeleteAndAdd"]):
         _element.find_child("Input Container").add_sibling(_deleteButtonElement)
 
     AddElementSeparator(_element)
-    
+
     elementArray.append(_element)
-    
+
     var _childCount = valueContainer.get_child_count()
     valueContainer.add_child(_element)
     valueContainer.move_child(_element, _childCount-1)
@@ -149,35 +149,35 @@ func CreateNewElement(valueToAdd, index):
 func AddElementSeparator(element) -> void:
     var separator: MarginContainer = elementSeparatorScene.instantiate()
     element.add_child(separator)
-    
+
 func DeleteItem(index):
     value.pop_at(index)
     var _removedElement: Node = elementArray.pop_at(index)
-    
+
     valueContainer.remove_child(_removedElement)
     _removedElement.queue_free()
-    
+
     for _elementIndex in elementArray.size():
         var _element: Node = elementArray[_elementIndex]
         _element.valueData["deleteButton"].valueKey = _elementIndex
         _element.valueId = str(_elementIndex)
         _element.valueData["name"] = str(_elementIndex)
         _element.UpdateNameLabel()
-        
+
     CheckIsDefault(value)
     OnValueChanged(value)
     UpdateAddItemButton()
     UpdateCountLabel()
-    
+
 func UpdateAddItemButton():
     if("maxItems" in valueData):
         newItemButton.disabled = value.size() >= valueData["maxItems"]
-        
+
 func UpdateCountLabel():
     countLabel.text = "Size: " + str(value.size())
     if ("maxItems" in valueData):
         countLabel.text += "/" + str(valueData["maxItems"])
-        
+
 func ToggleExpand():
     itemContainer.visible = !itemContainer.visible
     panelDivider.visible = itemContainer.visible
@@ -186,7 +186,7 @@ func ToggleExpand():
     expandButton.tooltip_text = "Collapse array list" if itemContainer.visible else "Expand array list"
 
 func _on_revert_button_pressed() -> void:
-    value = defaultValue
+    value = defaultValue.duplicate_deep()
     CreateElementsFromValue()
     CheckIsDefault(value)
     OnValueChanged(value)
@@ -206,7 +206,7 @@ func _on_new_item_button_pressed() -> void:
     UpdateAddItemButton()
     UpdateCountLabel()
     menu.PlayClick()
-    
+
 func _on_list_item_updated(updatedValueId, newValue, _menu):
     value[int(updatedValueId)] = newValue
     CheckIsDefault(value)

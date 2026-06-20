@@ -54,7 +54,7 @@ func _ready():
     elif (isInt):
         sliderInput.step = 1
         slider.step = 1
-        
+
     sliderInput.UpdatePrecision()
     sliderInput.UpdateWidth()
 
@@ -89,7 +89,7 @@ func OnValueChanged(newValue):
     if ("on_value_changed" in valueData && callbackObject):
         var _callable = Callable(callbackObject, valueData["on_value_changed"])
         _callable.call(valueId, newValue, menu)
-        
+
 func UpdateNameLabel():
     nameLabel.text = valueData["name"]
 
@@ -100,10 +100,11 @@ func _on_slider_value_changed(_wasChanged: bool) -> void:
     sliderInput.UpdateCarret()
     CheckIsDefault(slider.value)
     OnValueChanged(slider.value)
-    
+
 func _on_slider_value_changed_no_width_change(newValue: float) -> void:
     sliderInput.set_value_no_signal(newValue)
     CheckIsDefault(newValue)
+    OnValueChanged(newValue)
 
 func _on_input_value_changed(newValue: float) -> void:
     slider.set_value_no_signal(newValue)

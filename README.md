@@ -46,6 +46,10 @@ None right now :)
 * Added a Import/Export system for mod configs
     * Users can now mass export all of their currently loaded mod configs into one single file that can then be shared with other players
     * Users can take those exported config files and import them into their game automatically overriding all of their current settings with the file that's been selected
+### v2.8.3
+* Fixed sliders not updating an Int/Float value properly
+* Fixed Array/Dictionaries setting maxRange for any number values to 0 instead of 100 if one isn't provided
+    * Thank you to MJRamon for finding these and reporting the issues
 ### v2.8.2
 * Fixed an issue where icons weren't being loaded
     * Thank you to likho1eye for pointing this out

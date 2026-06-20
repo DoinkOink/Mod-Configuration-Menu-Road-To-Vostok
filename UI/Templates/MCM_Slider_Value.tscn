@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://33nsgfalxfbr"]
 
-[ext_resource type="Script" uid="uid://ccnh0q8le7s2q" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_UI_Slider.gd" id="1_lxfp6"]
+[ext_resource type="Script" uid="uid://4m6qy5novm8r" path="res://ModConfigurationMenu/Scripts/UI/Templates/MCM_UI_Slider.gd" id="1_lxfp6"]
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_ux4u5"]
 [ext_resource type="Script" uid="uid://bkqi3o5cys5uf" path="res://ModConfigurationMenu/Scripts/FormatSpinBox.gd" id="3_kdcyj"]
 [ext_resource type="PackedScene" uid="uid://cjii2p3tbjskl" path="res://ModConfigurationMenu/UI/Elements/MCM_Revert_Button.tscn" id="4_o55pe"]
