@@ -35,26 +35,38 @@ enum MCM_Key_Types {
 ## The modifier keys that can be set to be pressed alongside the assigned
 ## keycode.
 enum MCM_Modifiers {
-    ## The alt key.
+    ## The alt key
     ALT,
-    ## The control key.
+    ## The control key
     CONTROL,
-    ## The Meta/Windows key.
+    ## The Meta/Windows key
     META,
-    ## The shift key.
+    ## The shift key
     SHIFT
 }
 #endregion
 
 var McmHelpers: MCM_Helpers = load("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 
+## The path to the mods config file folder. This will be updated in the
+## constructor to include the [ModID](#modid) as well.
 var FilePath: String = "user://MCM//"
+## The mods unique ID. If another mod uses the same ID MCM will not register
+## the mods that load after it.
 var ModID: String
+## The name that gets displayed in MCM for users to easily identify.
 var FriendlyName: String
+## A short description of your mod that gets displayed when hovering over the 
+## mods MCM button.
 var Description: String
+## The method that gets called when a configuration file is edited and saved
+## within MCM.
 var FileOnSaveCallback
+## The object that holds all of the methods that are passed as the 
+## `on_value_changed` property in values.
 var CallbackObject: Object
-
+## All of the currently created values that will be later saved to the config 
+## file.
 var CreatedValues: Dictionary = {}
 
 ## Creates the MCM_Config object[br][br]

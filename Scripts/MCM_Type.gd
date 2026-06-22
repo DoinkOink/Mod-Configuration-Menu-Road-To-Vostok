@@ -27,12 +27,14 @@ func _init(section: String, id: String, name: String) -> void:
 ## Set the position to be displayed within the MCM Menu. Lower number means it 
 ## shows up earlier on the menu. For Categories it sets the position in relation 
 ## to the other headers that are present.
-func setMenuPos(menuPos: int):
+func setMenuPos(menuPos: int) -> MCM_Type:
     MenuPos = menuPos
     return self
 
 ## Internal Use Only. Do [b]not[/b] call this method directly.[br]
-## Use [code]MCM_Config.RegisterMod()[/code] instead.    
+## Use [code]MCM_Config.RegisterMod()[/code] instead.[br][br]
+## Creates the config object format and assigns set values that MCM will use to
+## display settings.
 func createConfigObject() -> Dictionary:
     return {
         "name": Name,
