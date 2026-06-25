@@ -74,4 +74,3 @@
 [MCM_Collection_Types](MCM_Config#mcm-collection-types)
 [MCM_Key_Types](MCM_Config#mcm-key-types)
 [MCM_Modifiers](MCM_Config#mcm-modifiers)
-
