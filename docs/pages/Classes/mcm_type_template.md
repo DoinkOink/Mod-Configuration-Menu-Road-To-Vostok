@@ -1,4 +1,4 @@
-**Inherits:** [MCM_Value](MCM_Value) < [MCM_Type](MCM_Type)
+**Inherits:** [MCM_](MCM_) < [MCM_Value](MCM_Value) < [MCM_Type](MCM_Type)
 
 **Inherited By:** [MCM_](MCM_),
 
@@ -31,7 +31,7 @@
 ## Constructor Descriptions
 <a name="constructor"></a>
 #### Name
-&emsp;Constructs an MCM_ and sets the [](#) properties. And then sends `section`, `id`, and `name` parameters to the inherited [MCM_](MCM_#constructor) constructor 
+&emsp;Constructs an MCM_ and sets the [](#) properties. And then sends `section`, `id`, `name`, `tooltip`, `default`, `` parameters to the inherited [MCM_](MCM_#constructor) constructor.
 
 ## Method Descriptions
 <a name=""></a>
