@@ -3,7 +3,6 @@ extends Node
 var McmHelpers = load("res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Helpers.tres")
 var MCMNotInstalledUI = preload("res://ModConfigurationMenu/UI/mcm_not_installed.tscn")
 
-const FILE_PATH = "user://MCM/ExampleMod"
 const MOD_ID = "ExampleMod"
 const FRIENDLY_NAME = "Example Mod"
 const DESCRIPTION = "A short description of the mod"
