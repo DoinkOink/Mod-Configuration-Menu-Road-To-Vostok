@@ -24,6 +24,7 @@ Welcome to the Mod Configuration Menu (MCM) wiki! Please follow the below links 
         * [MCM_String](MCM_String)
 
 ### Extras
+* [How To Import And Export Mod Configs](Import-Export-Guide)
 * [MCM Not Installed Warning](Extra-MCM-Not-Installed-Warning)
 * [Custom Config Property Sorting](Custom-Config-Property-Sorting)
 
