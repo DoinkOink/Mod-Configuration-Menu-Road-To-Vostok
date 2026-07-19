@@ -28,7 +28,7 @@ Welcome to the Mod Configuration Menu (MCM) wiki! Please follow the below links 
 * [Custom Config Property Sorting](Custom-Config-Property-Sorting)
 
 ### Legacy Config Creation
-* [Initial Mod Setup](Legacy/Initial-Mod-Setup)
+* [Initial Mod Setup](Initial-Mod-Setup)
 * [Creating The Config File](Legacy/Creating-The-Config-File)
     * [String Value Type](Legacy/String-Value-Type)
     * [Integer Value Type](Legacy/Integer-Value-Type)
