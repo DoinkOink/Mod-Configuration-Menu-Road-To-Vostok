@@ -1,3 +1,5 @@
+
+
 **Inherits:** [MCM_Vector2 ](MCM_Vector2 ) <> [MCM_Number](MCM_Number) < [MCM_Value](MCM_Value) < [MCM_Type](MCM_Type)
 
 ## Description

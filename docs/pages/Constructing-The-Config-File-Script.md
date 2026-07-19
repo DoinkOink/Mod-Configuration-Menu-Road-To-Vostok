@@ -1,4 +1,10 @@
-First we must grab the `MCM_Helpers` resource that is made available when it is loaded alongside your mod. To do that we'll place this right below the `extends Node` line:
+# WIP
+The Wiki pages for the new config file creation method is currently under construction. It's highly suggested you go take a look at the fully working [ExampleConfig.gd](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/ExampleModConfig.gd) script file to see how to use the new method.
+
+The [full documentation for the Config File Class](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/blob/main/docs/pages/Classes/MCM_Config.md) are also available for you to take a look at. This goes over every single method and property available to use when creating your configs.
+
+
+<!-- First we must grab the `MCM_Helpers` resource that is made available when it is loaded alongside your mod. To do that we'll place this right below the `extends Node` line:
 
 ```gdscript
 extends Node
@@ -31,4 +37,4 @@ func _ready():
 func UpdateConfigProperties(config: ConfigFile):
     pass
 ```
-
+ -->
