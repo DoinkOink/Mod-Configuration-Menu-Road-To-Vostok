@@ -44,6 +44,7 @@ None right now :)
 # Changelog
 ### v2.9.0
 * Added a Import/Export system for mod configs
+    * Here's a guide on how to use this feature
     * Users can now mass export all of their currently loaded mod configs into one single file that can then be shared with other players
     * Users can take those exported config files and import them into their game automatically overriding all of their current settings with the file that's been selected
 * Added the `MCM_Config` class

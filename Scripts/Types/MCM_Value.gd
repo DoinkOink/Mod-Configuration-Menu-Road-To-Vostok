@@ -26,12 +26,12 @@ func _init(section: String, id: String, name: String, tooltip: String, default) 
     super(section, id, name)
 
 ## Set what category the value belongs to.
-func setCategory(category: String):
+func setCategory(category: String) -> MCM_Type:
     Category = category
     return self
     
 ## Set the callback function to be called when the value is changed
-func setOnValueChanged(onValueChanged: String):
+func setOnValueChanged(onValueChanged: String) -> MCM_Type:
     OnValueChanged = onValueChanged
     return self
 

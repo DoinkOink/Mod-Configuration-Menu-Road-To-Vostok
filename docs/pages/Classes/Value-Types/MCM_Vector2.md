@@ -1,0 +1,41 @@
+
+
+**Inherits:** [MCM_Vector2 ](MCM_Vector2 ) <> [MCM_Number](MCM_Number) < [MCM_Value](MCM_Value) < [MCM_Type](MCM_Type)
+
+## Description
+Allows the player to input a Vector2 in MCM
+
+## Constructors
+| Return Value | Name and Parameters |
+|---|---|
+| [MCM_Vector2](MCM_Vector2) | [MCM_Vector2](#constructor)(id: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), name: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), tooltip: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), default: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html) |
+
+## Methods
+| Return Value | Name and Parameters |
+|---|---|
+| [MCM_Vector2](MCM_Vector2) | [setMinRange](#set-min-range)(minRange: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html)) |
+| [MCM_Vector2](MCM_Vector2) | [setMaxRange](#set-max-range)(maxRange: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html)) |
+| [MCM_Vector2](MCM_Vector2) | [setStep](#set-step)(step: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html)) |
+| [Dictionary]() | [createConfigObject](MCM_Type#create-config-object)() const |
+
+## Constructor Descriptions
+<a name="constructor"></a>
+#### [MCM_Vector2](MCM_Vector2) MCM_Vector2(id: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), name: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), tooltip: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), default: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html))
+&emsp;Constructs an MCM_Vector2. And then sends `section`, `id`, `name`, `tooltip`, and `default` parameters to the inherited [MCM_Vector](MCM_Vector#constructor) constructor.
+
+## Method Descriptions
+<a name="set-min-range"></a>
+#### [MCM_Vector2](MCM_Vector2) setMinRange(minRange: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html))
+&emsp;Set the minimum value this value can be set to
+
+---
+
+<a name="set-max-range"></a>
+#### [MCM_Vector2](MCM_Vector2) setMaxRange(maxRange: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html))
+&emsp;Set the maximum value this value can be set to
+
+---
+
+<a name="set-step"></a>
+#### [MCM_Vector2](MCM_Vector2) setStep(step: [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html))
+&emsp;Set how much the UI SpinBox/Slider increments/decrements the value and how many decimal places the value can have if it accepts floating point values.

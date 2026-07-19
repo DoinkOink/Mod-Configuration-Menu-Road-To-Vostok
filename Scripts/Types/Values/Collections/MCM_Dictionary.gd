@@ -22,17 +22,17 @@ func _init(id: String, name: String, tooltip: String, default: Dictionary,
         valueType, defaultItemValue
     )
 
-## Sets the label text for the key column    
+## Sets the label text for the key column
 func setKeyLabel(keyLabel: String) -> MCM_Dictionary:
     KeyLabel = keyLabel
     return self
     
-## Sets the label text for the value column    
+## Sets the label text for the value column
 func setValueLabel(valueLabel: String) -> MCM_Dictionary:
     ValueLabel = valueLabel
     return self
  
-## Sets if the player can edit the keys in the dictionary value editor   
+## Sets if the player can edit the keys in the dictionary value editor
 func setCanEditKeys(canEditKeys: bool) -> MCM_Dictionary:
     CanEditKeys = canEditKeys
     return self

@@ -35,7 +35,7 @@ var MaxRange = null
 ## [br]Only used if the ValueType inherits MCM_Number
 var Step = null
 
-## The accepted variable types a collection type accepts
+## The accepted variable types a collection accepts
 const AcceptedNumberValueTypes: Dictionary = {
     MCM_Config.MCM_Collection_Types.FLOAT: TYPE_FLOAT,
     MCM_Config.MCM_Collection_Types.INT: TYPE_INT,
@@ -56,7 +56,7 @@ func setMaxItems(maxItems: int) -> MCM_Collection:
     MaxItems = maxItems
     return self
 
-## Set if the collection should be default expanded in the MCM  
+## Set if the collection should be default expanded in the MCM
 func setExpanded(expanded: bool) -> MCM_Collection:
     Expanded = expanded
     return self
