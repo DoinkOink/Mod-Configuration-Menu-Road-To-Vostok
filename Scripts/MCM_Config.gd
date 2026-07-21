@@ -106,7 +106,7 @@ func RegisterMod() -> void:
         DirAccess.open("user://").make_dir(FilePath)
         _config.save(FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini")
     else:
-        McmHelpers.CheckConfigurationHasUpdated(ModID, _config, FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini")
+        McmHelpers.CheckConfigurationHasUpdated(ModID, _config) #, FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini")
         _config.load(FilePath + "/" + McmHelpers.CurrentModLoaderProfile + ".ini")
             
     McmHelpers.RegisterConfiguration(

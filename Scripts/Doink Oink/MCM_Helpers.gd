@@ -18,7 +18,9 @@ var CurrentModLoaderProfile: String # This will be used as the config file name 
 
 const MCM_PATH = "user://MCM/"
 
-func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath):
+func CheckConfigurationHasUpdated(modId, newConfig: ConfigFile, configPath=""):
+    configPath = MCM_PATH + modId + "/" + CurrentModLoaderProfile + ".ini"
+    
     var _configUpdated = false
     var _currentConfig = ConfigFile.new()
     var _tempConfig = ConfigFile.new()
@@ -124,6 +126,7 @@ func ConfigHasChanged(newConfig: ConfigFile, initialConfig: ConfigFile):
     return false
 
 func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: String, modDescription: String, fileOnSaveCallbacks, callbackObject: Object = null):
+    modFilePath = MCM_PATH + modId
     if !RegisteredMods.has(modId):
         if modFilePath.substr(-1) != '/':
             modFilePath += "/"
@@ -157,12 +160,11 @@ func RegisterConfiguration(modId: String, modFriendlyName: String, modFilePath: 
 func CallConfigCallback(modId: String, fileId: String, data: ConfigFile):
     if RegisteredMods.has(modId):
         if (RegisteredMods[modId].fileOnSaveCallbacks is Dictionary):
-            if (RegisteredMods[modId].fileOnSaveCallbacks.has(fileId)):
-                if ((RegisteredMods[modId].fileOnSaveCallbacks[fileId] as Callable).is_valid()):
-                    RegisteredMods[modId].fileOnSaveCallbacks[fileId].call(data)
+            if ((RegisteredMods[modId].fileOnSaveCallbacks.values()[0] as Callable).is_valid()):
+                RegisteredMods[modId].fileOnSaveCallbacks.values()[0].call(data)
         else:
             if ((RegisteredMods[modId].fileOnSaveCallbacks as Callable).is_valid()):
-                    RegisteredMods[modId].fileOnSaveCallbacks.call(data)
+                RegisteredMods[modId].fileOnSaveCallbacks.call(data)
 
 func LoadInputs():
     for _modId in RegisteredMods:

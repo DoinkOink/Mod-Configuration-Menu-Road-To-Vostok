@@ -25,6 +25,12 @@ When editing a field you will nottice a button pop up to the right of the field 
 
 To save changes either exit out of the menu, by clicking the exit button or by hitting the escape key, or click on one of the other mods listed on the left hand side. MCM will then save the settings automatically.
 
+# Configuration Profiles
+MCM works alongside Metro Mod Loader's mod profile system to offer your profile specific configuration settings. Any changes made while using a specific Mod Profile will only change for that profile. Any other profiles, or even the default profile, will not take on those changes.
+
+# How to Import/Export mod configuration
+For those of you that wish to share your mod configurations with friends, the community, or even create a mod list to share out MCM comes with an easy Importing and Exporting feature for you to use that outputs to a single config file. [Head on over to the Wiki to see how to use this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Import-Export-Guide).
+
 # Installation
 * Install the [VostokMods Mod Loader](https://modworkshop.net/mod/49779)
     * Follow the installation instructions for the mod loader
@@ -42,9 +48,13 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.9.1
+* Fixed an issue where new default values aren't updated in profile specific config files
+* Fixed an issue where the callback function isn't called when using the legacy dictionary version
+    * Thank you to MJRamon for pointing these issues out
 ### v2.9.0
 * Added a Import/Export system for mod configs
-    * Here's a guide on how to use this feature
+    * [Here's a guide on how to use this feature](https://github.com/DoinkOink/Mod-Configuration-Menu-Road-To-Vostok/wiki/Import-Export-Guide)
     * Users can now mass export all of their currently loaded mod configs into one single file that can then be shared with other players
     * Users can take those exported config files and import them into their game automatically overriding all of their current settings with the file that's been selected
 * Added the `MCM_Config` class
