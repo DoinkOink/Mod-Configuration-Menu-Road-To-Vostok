@@ -64,6 +64,7 @@ func CreateMCMButton():
         MCMHelpers.SettingsMenu.get_parent().add_child(MCMHelpers.MCMMenu)
 
     var _button = Button.new()
+    _button.name = "MCM_Settings_Button"
     _button.tooltip_text = "Mod Configuration Menu"
     _button.icon = MCMButtonIcon
     _button.expand_icon = true
@@ -79,8 +80,6 @@ func CreateMCMButton():
     _button.set_anchor(SIDE_RIGHT, 1)
     _button.set_anchor(SIDE_BOTTOM, 0)
     
-    _button.set_position(Vector2(- (_buttonSize.x + 30), 30))
-    
     MCMHelpers.MCMButton = _button
     
     if _sceneName == "Menu":
@@ -88,6 +87,11 @@ func CreateMCMButton():
         MCMHelpers.SettingsMenu.get_parent().get_parent().add_child(MCMHelpers.MCMButton)
     else:
         MCMHelpers.SettingsMenu.add_child(MCMHelpers.MCMButton)
+        
+    _button.set_position(Vector2(
+            get_viewport().get_visible_rect().size.x - (_buttonSize.x + 30),
+            30
+    ))
 
     MCMHelpers.MCMButton.button_down.connect(MCMHelpers.ToggleMCMMenu)
 
