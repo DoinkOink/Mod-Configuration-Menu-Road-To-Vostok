@@ -48,6 +48,9 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.9.2
+* Fixed an issue where the MCM button doesn't display with Right-to-Left languages
+    * Thank you to Strelok111 for pointing this issue out
 ### v2.9.1
 * Fixed an issue where new default values aren't updated in profile specific config files
 * Fixed an issue where the callback function isn't called when using the legacy dictionary version
