@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://bropuksxsvs0g" path="res://UI/Themes/Theme.tres" id="1_5wsc0"]
 [ext_resource type="Script" uid="uid://bb2ho30bbe4pu" path="res://ModConfigurationMenu/Scripts/Doink Oink/MCM_Menu.gd" id="2_o2vcv"]
 [ext_resource type="Material" uid="uid://cv8raxpmbb48a" path="res://UI/Effects/MT_Menu.tres" id="3_gucg0"]
-[ext_resource type="Texture2D" uid="uid://b8qehehfo6ee4" path="res://Editor/RTV_Dynamic.png" id="4_t0fdo"]
+[ext_resource type="Texture2D" uid="uid://quax8pww5m" path="res://Editor/RTV_Background.png" id="4_t0fdo"]
 [ext_resource type="Texture2D" uid="uid://c8gwx14yvpt82" path="res://ModConfigurationMenu/UI/Sprites/Logo_MCM.png" id="5_58edf"]
 [ext_resource type="PackedScene" uid="uid://cmpb147ohg32n" path="res://ModConfigurationMenu/UI/Elements/MCM_Mod_List_Button.tscn" id="6_6ftbm"]
 [ext_resource type="PackedScene" uid="uid://ba1armg3os37p" path="res://ModConfigurationMenu/UI/Elements/MCM_Header_String.tscn" id="7_qcy1k"]
@@ -64,6 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.9940179)
 texture = ExtResource("4_t0fdo")
 expand_mode = 5
 stretch_mode = 6
