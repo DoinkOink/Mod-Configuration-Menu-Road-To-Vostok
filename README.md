@@ -48,6 +48,9 @@ I will do my best to make sure this list is as close to 0 as possible either by 
 None right now :)
 
 # Changelog
+### v2.9.3
+* Fixed a broken reference to the games main background image after the 0.2 update
+    * Thank you to MJRamon for letting me know about this
 ### v2.9.2
 * Fixed an issue where the MCM button doesn't display with Right-to-Left languages
     * Thank you to Strelok111 for pointing this issue out
