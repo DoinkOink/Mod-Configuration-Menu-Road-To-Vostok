@@ -11,7 +11,7 @@ Allows the player to select a list of options from a dropdown.
 ## Constructors
 | Return Value | Name and Parameters |
 |---|---|
-| [MCM_Dropdown](MCM_Dropdown) | [MCM_Dropdown](#constructor)(id: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), name: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), tooltip: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), default: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), options: [Dictionary](https://docs.godotengine.org/en/stable/classes/class_dictionary.html)) |
+| [MCM_Dropdown](MCM_Dropdown) | [MCM_Dropdown](#constructor)(id: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), name: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), tooltip: [String](https://docs.godotengine.org/en/stable/classes/class_string.html), default: [Variant](https://docs.godotengine.org/en/stable/classes/class_variant.html), options: [Dictionary](https://docs.godotengine.org/en/stable/classes/class_dictionary.html)) |
 
 ## Methods
 | Return Value | Name and Parameters |
