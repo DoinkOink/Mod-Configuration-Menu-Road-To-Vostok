@@ -10,7 +10,7 @@ class_name MCM_Dropdown
 ## displayed in MCM as the dictionary value.
 var Options: Dictionary
 
-func _init(id: String, name: String, tooltip: String, default: String,
+func _init(id: String, name: String, tooltip: String, default: Variant,
             options: Dictionary
 ) -> void:
     Options = options
