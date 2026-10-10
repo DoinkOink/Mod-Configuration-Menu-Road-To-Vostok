@@ -269,7 +269,7 @@ func CreateColorValue(id: String, name: String, tooltip: String, default: Color)
 ##     .setCategory("Category Name") \
 ##     .setOnValueChanged("callback_method_name")
 ## [/codeblock]
-func CreateDropdownValue(id: String, name: String, tooltip: String, default: String, options: Dictionary) -> MCM_Dropdown:
+func CreateDropdownValue(id: String, name: String, tooltip: String, default: Variant, options: Dictionary) -> MCM_Dropdown:
     if(id in CreatedValues.keys()):
         print("[MCM] The value ID (" + id + ") has already been used. Value has not been created.")
         return null
